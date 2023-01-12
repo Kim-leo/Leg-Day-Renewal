@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		E6A44A95297054B30095E795 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44A94297054B30095E795 /* AppDelegate.swift */; };
 		E6A44A97297054B30095E795 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44A96297054B30095E795 /* SceneDelegate.swift */; };
-		E6A44A99297054B30095E795 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44A98297054B30095E795 /* ViewController.swift */; };
+		E6A44A99297054B30095E795 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44A98297054B30095E795 /* HomeViewController.swift */; };
 		E6A44A9C297054B30095E795 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A44A9A297054B30095E795 /* Main.storyboard */; };
 		E6A44A9E297054B50095E795 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6A44A9D297054B50095E795 /* Assets.xcassets */; };
 		E6A44AA1297054B50095E795 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A44A9F297054B50095E795 /* LaunchScreen.storyboard */; };
+		E6A44AA9297057A40095E795 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44AA8297057A40095E795 /* WorkoutViewController.swift */; };
+		E6A44AAC297057DC0095E795 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44AAB297057DC0095E795 /* UIView+Extension.swift */; };
+		E6A44AAF29705EBC0095E795 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44AAE29705EBC0095E795 /* CardData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E6A44A91297054B30095E795 /* LegDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A44A94297054B30095E795 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6A44A96297054B30095E795 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E6A44A98297054B30095E795 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E6A44A98297054B30095E795 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E6A44A9B297054B30095E795 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E6A44A9D297054B50095E795 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6A44AA0297054B50095E795 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6A44AA2297054B50095E795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6A44AA8297057A40095E795 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		E6A44AAB297057DC0095E795 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		E6A44AAE29705EBC0095E795 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,26 @@
 		E6A44A93297054B30095E795 /* LegDay */ = {
 			isa = PBXGroup;
 			children = (
+				E6A44A9A297054B30095E795 /* Main.storyboard */,
+				E6A44AAB297057DC0095E795 /* UIView+Extension.swift */,
+				E6A44AAE29705EBC0095E795 /* CardData.swift */,
+				E6A44AAD297057F70095E795 /* VC */,
 				E6A44A94297054B30095E795 /* AppDelegate.swift */,
 				E6A44A96297054B30095E795 /* SceneDelegate.swift */,
-				E6A44A98297054B30095E795 /* ViewController.swift */,
-				E6A44A9A297054B30095E795 /* Main.storyboard */,
 				E6A44A9D297054B50095E795 /* Assets.xcassets */,
 				E6A44A9F297054B50095E795 /* LaunchScreen.storyboard */,
 				E6A44AA2297054B50095E795 /* Info.plist */,
 			);
 			path = LegDay;
+			sourceTree = "<group>";
+		};
+		E6A44AAD297057F70095E795 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				E6A44A98297054B30095E795 /* HomeViewController.swift */,
+				E6A44AA8297057A40095E795 /* WorkoutViewController.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +155,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6A44A99297054B30095E795 /* ViewController.swift in Sources */,
+				E6A44AA9297057A40095E795 /* WorkoutViewController.swift in Sources */,
+				E6A44A99297054B30095E795 /* HomeViewController.swift in Sources */,
 				E6A44A95297054B30095E795 /* AppDelegate.swift in Sources */,
+				E6A44AAF29705EBC0095E795 /* CardData.swift in Sources */,
+				E6A44AAC297057DC0095E795 /* UIView+Extension.swift in Sources */,
 				E6A44A97297054B30095E795 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
