@@ -12,8 +12,10 @@ class WorkoutViewController: UIViewController {
     let deckOfCard = CardsString()
     
     @IBOutlet weak var outputLabel: UILabel!
+    @IBOutlet weak var nextBtn: UIButton!
     
-    
+    var emptyArray = [String]()
+    var pickedCard: String = ""
     
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -23,15 +25,44 @@ class WorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        componentsInitialSetting()
+        
     }
     
-    // MARK: - 액션 함수
-    
-    @IBAction func redoBtnTapped(_ sender: UIButton) {
-        outputLabel.text = "redo"
+    func componentsInitialSetting() {
+        outputLabel.text = "Click Start"
+        nextBtn.setTitle("Start", for: .normal)
     }
     
+    // MARK: - (액션) 함수
     @IBAction func nextBtnTapped(_ sender: UIButton) {
-        outputLabel.text = "\(deckOfCard.cardArray.randomElement() ?? "")"
+        nextBtn.setTitle("Next", for: .normal)
+
+        btnTapped()
+        print(emptyArray)
+    }
+    
+    func btnTapped() {
+        if emptyArray.count < 52 {
+            pickedCard = deckOfCard.cardSet.randomElement() ?? ""
+            if !emptyArray.contains(pickedCard) {
+                emptyArray.append(pickedCard)
+                outputLabel.text = "\(pickedCard)"
+                checkBlackOrRed()
+            } else {
+                btnTapped()
+            }
+        } else {
+            outputLabel.text = "Done"
+            outputLabel.textColor = .systemBlue
+        }
+    }
+    
+    func checkBlackOrRed() {
+        if pickedCard.hasPrefix("Heart") || pickedCard.hasPrefix("Diamond") {
+            outputLabel.textColor = .systemRed
+        } else {
+            outputLabel.textColor = .black
+        }
     }
 }
