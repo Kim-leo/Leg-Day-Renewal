@@ -64,3 +64,13 @@ extension UIViewController {
         pv.frame = CGRect(x: x, y: y, width: pv.frame.height, height: pv.frame.width)
     }
 }
+
+extension String {
+    var lastString: String {
+        get {
+            if self.isEmpty { return self }
+            let lastIndex = self.index(before: self.endIndex)
+            return String(self[lastIndex])
+        }
+    }
+}

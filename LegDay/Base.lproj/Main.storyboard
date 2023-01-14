@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aIk-ut-fI8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MBc-EG-8ia">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -69,6 +69,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-2I-skm">
+                                <rect key="frame" x="100" y="301" width="193" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="OEJ-ps-gX8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sWS-cb-EiY">
                                 <rect key="frame" x="50" y="538" width="293" height="80"/>
                                 <subviews>
@@ -109,22 +118,26 @@
                                     <constraint firstAttribute="height" constant="80" id="Vnx-9T-PkN"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-2I-skm">
-                                <rect key="frame" x="100" y="301" width="193" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zib-I4-ZP8">
+                                <rect key="frame" x="50" y="351" width="293" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="OEJ-ps-gX8"/>
+                                    <constraint firstAttribute="height" constant="50" id="WqA-ho-UUe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="23"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DW9-jI-0Jp"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="DW9-jI-0Jp" firstAttribute="trailing" secondItem="Zib-I4-ZP8" secondAttribute="trailing" constant="50" id="1ks-x1-lKc"/>
                             <constraint firstItem="fVc-2I-skm" firstAttribute="leading" secondItem="DW9-jI-0Jp" secondAttribute="leading" constant="100" id="3zM-zo-5Fa"/>
                             <constraint firstItem="fVc-2I-skm" firstAttribute="centerY" secondItem="GUZ-Dr-Pon" secondAttribute="centerY" constant="-100" id="88P-FH-o3o"/>
+                            <constraint firstItem="Zib-I4-ZP8" firstAttribute="top" secondItem="fVc-2I-skm" secondAttribute="bottom" id="CJm-1B-T5D"/>
                             <constraint firstItem="sWS-cb-EiY" firstAttribute="leading" secondItem="DW9-jI-0Jp" secondAttribute="leading" constant="50" id="G3R-GP-Ab8"/>
+                            <constraint firstItem="Zib-I4-ZP8" firstAttribute="leading" secondItem="DW9-jI-0Jp" secondAttribute="leading" constant="50" id="Tcf-bT-eC6"/>
+                            <constraint firstItem="Zib-I4-ZP8" firstAttribute="centerX" secondItem="fVc-2I-skm" secondAttribute="centerX" id="bhN-bN-s7s"/>
                             <constraint firstItem="fVc-2I-skm" firstAttribute="centerX" secondItem="GUZ-Dr-Pon" secondAttribute="centerX" id="fPX-ec-6zM"/>
                             <constraint firstItem="DW9-jI-0Jp" firstAttribute="trailing" secondItem="fVc-2I-skm" secondAttribute="trailing" constant="100" id="hm3-Ah-cwu"/>
                             <constraint firstItem="DW9-jI-0Jp" firstAttribute="trailing" secondItem="sWS-cb-EiY" secondAttribute="trailing" constant="50" id="usi-Hm-t7u"/>
@@ -134,6 +147,7 @@
                     <connections>
                         <outlet property="nextBtn" destination="XeM-jq-3NL" id="ccB-cs-Dui"/>
                         <outlet property="outputLabel" destination="fVc-2I-skm" id="8Cl-lQ-d8a"/>
+                        <outlet property="workoutLabel" destination="Zib-I4-ZP8" id="5Ng-BG-q52"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tqe-Gi-VO4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -163,6 +177,9 @@
         <image name="card" width="958" height="1223"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

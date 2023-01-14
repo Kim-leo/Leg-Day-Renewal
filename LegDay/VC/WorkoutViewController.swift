@@ -13,13 +13,16 @@ class WorkoutViewController: UIViewController {
     
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var workoutLabel: UILabel!
     
     var emptyArray = [String]()
     var pickedCard: String = ""
+    var howManyTimesNum: Int = 0
     
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
+        emptyArray.removeAll()
     }
     
     override func viewDidLoad() {
@@ -31,6 +34,7 @@ class WorkoutViewController: UIViewController {
     
     func componentsInitialSetting() {
         outputLabel.text = "Click Start"
+        workoutLabel.text = "Let's go."
         nextBtn.setTitle("Start", for: .normal)
     }
     
@@ -39,13 +43,15 @@ class WorkoutViewController: UIViewController {
         emptyArray.popLast()
         outputLabel.text = "\(emptyArray.last ?? "")"
         checkBlackOrRed(words: emptyArray.last ?? "")
+        checkWhichWorkout(words: emptyArray.last ?? "")
     }
     
     @IBAction func nextBtnTapped(_ sender: UIButton) {
         nextBtn.setTitle("Next", for: .normal)
 
         btnTapped()
-        print(emptyArray)
+//        print(emptyArray)
+        checkWhichWorkout(words: pickedCard)
     }
     
     func btnTapped() {
@@ -71,4 +77,33 @@ class WorkoutViewController: UIViewController {
             outputLabel.textColor = .black
         }
     }
+    
+    func checkWhichWorkout(words: String) {
+        howManyTimesWorkout(words: words)
+        if words.hasPrefix("Heart") {
+            workoutLabel.text = "Right Lunge \(howManyTimesNum) times"
+        } else if words.hasPrefix("Diamond") {
+            workoutLabel.text = "Left Lunge \(howManyTimesNum) times"
+        } else {
+            workoutLabel.text = "Squat \(howManyTimesNum) times"
+        }
+    }
+    
+    func howManyTimesWorkout(words: String) {
+        switch words.lastString {
+        case "0":
+            howManyTimesNum = 10
+        case "J":
+            howManyTimesNum = 11
+        case "Q":
+            howManyTimesNum = 12
+        case "K":
+            howManyTimesNum = 13
+        default:
+            howManyTimesNum = Int(pickedCard.lastString) ?? 0
+            break
+        }
+    }
+    
 }
+
