@@ -35,6 +35,12 @@ class WorkoutViewController: UIViewController {
     }
     
     // MARK: - (액션) 함수
+    @IBAction func redoBtnTapped(_ sender: UIButton) {
+        emptyArray.popLast()
+        outputLabel.text = "\(emptyArray.last ?? "")"
+        checkBlackOrRed(words: emptyArray.last ?? "")
+    }
+    
     @IBAction func nextBtnTapped(_ sender: UIButton) {
         nextBtn.setTitle("Next", for: .normal)
 
@@ -48,7 +54,7 @@ class WorkoutViewController: UIViewController {
             if !emptyArray.contains(pickedCard) {
                 emptyArray.append(pickedCard)
                 outputLabel.text = "\(pickedCard)"
-                checkBlackOrRed()
+                checkBlackOrRed(words: pickedCard)
             } else {
                 btnTapped()
             }
@@ -58,8 +64,8 @@ class WorkoutViewController: UIViewController {
         }
     }
     
-    func checkBlackOrRed() {
-        if pickedCard.hasPrefix("Heart") || pickedCard.hasPrefix("Diamond") {
+    func checkBlackOrRed(words: String) {
+        if words.hasPrefix("Heart") || words.hasPrefix("Diamond") {
             outputLabel.textColor = .systemRed
         } else {
             outputLabel.textColor = .black
