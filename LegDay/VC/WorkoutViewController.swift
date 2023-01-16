@@ -37,6 +37,7 @@ class WorkoutViewController: UIViewController {
         outputLabel.text = "Click Start"
         workoutLabel.text = "Let's go."
         nextBtn.setTitle("Start", for: .normal)
+        
     }
     
     // MARK: - (액션) 함수
@@ -47,6 +48,13 @@ class WorkoutViewController: UIViewController {
         workoutLabel.textColor = .systemBlue
         checkBlackOrRed(words: pickedCard)
         checkWhichWorkout(words: pickedCard)
+        
+        if pickedCard.isEmpty {
+            cardImageView.image = UIImage(named: "Joker")
+        } else {
+            cardImageView.image = UIImage(named: pickedCard)
+        }
+        
     }
     
     @IBAction func nextBtnTapped(_ sender: UIButton) {
@@ -89,6 +97,8 @@ class WorkoutViewController: UIViewController {
             workoutLabel.text = "Left Lunge \(howManyTimesNum) times"
         } else if words.hasPrefix("Done") {
             workoutLabel.text = "Congratulations"
+        } else if words.isEmpty {
+            componentsInitialSetting()
         } else {
             workoutLabel.text = "Squat \(howManyTimesNum) times"
         }
