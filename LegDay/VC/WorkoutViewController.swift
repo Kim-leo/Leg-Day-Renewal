@@ -11,6 +11,7 @@ class WorkoutViewController: UIViewController {
     // MARK: - 변수, 상수
     let deckOfCard = CardsString()
     
+    @IBOutlet weak var cardImageView: UIImageView!
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var workoutLabel: UILabel!
@@ -41,9 +42,11 @@ class WorkoutViewController: UIViewController {
     // MARK: - (액션) 함수
     @IBAction func redoBtnTapped(_ sender: UIButton) {
         emptyArray.popLast()
-        outputLabel.text = "\(emptyArray.last ?? "")"
-        checkBlackOrRed(words: emptyArray.last ?? "")
-        checkWhichWorkout(words: emptyArray.last ?? "")
+        pickedCard = emptyArray.last ?? ""
+        outputLabel.text = "\(pickedCard)"
+        workoutLabel.textColor = .systemBlue
+        checkBlackOrRed(words: pickedCard)
+        checkWhichWorkout(words: pickedCard)
     }
     
     @IBAction func nextBtnTapped(_ sender: UIButton) {
@@ -61,12 +64,12 @@ class WorkoutViewController: UIViewController {
                 emptyArray.append(pickedCard)
                 outputLabel.text = "\(pickedCard)"
                 checkBlackOrRed(words: pickedCard)
+                cardImageView.image = UIImage(named: pickedCard)
             } else {
                 btnTapped()
             }
         } else {
-            outputLabel.text = "Done"
-            outputLabel.textColor = .systemBlue
+            doneWorkout()
         }
     }
     
@@ -84,6 +87,8 @@ class WorkoutViewController: UIViewController {
             workoutLabel.text = "Right Lunge \(howManyTimesNum) times"
         } else if words.hasPrefix("Diamond") {
             workoutLabel.text = "Left Lunge \(howManyTimesNum) times"
+        } else if words.hasPrefix("Done") {
+            workoutLabel.text = "Congratulations"
         } else {
             workoutLabel.text = "Squat \(howManyTimesNum) times"
         }
@@ -103,6 +108,15 @@ class WorkoutViewController: UIViewController {
             howManyTimesNum = Int(pickedCard.lastString) ?? 0
             break
         }
+    }
+    
+    func doneWorkout() {
+        pickedCard = "Done"
+        outputLabel.text = pickedCard
+        outputLabel.textColor = .systemBlue
+        cardImageView.image = UIImage(named: "Joker")
+//        workoutLabel.text = "Yahoo"
+        workoutLabel.textColor = .systemGreen
     }
     
 }

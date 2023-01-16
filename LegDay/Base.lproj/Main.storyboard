@@ -70,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-2I-skm">
-                                <rect key="frame" x="100" y="301" width="193" height="50"/>
+                                <rect key="frame" x="100" y="401" width="193" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="OEJ-ps-gX8"/>
                                 </constraints>
@@ -79,7 +79,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sWS-cb-EiY">
-                                <rect key="frame" x="50" y="538" width="293" height="80"/>
+                                <rect key="frame" x="50" y="638" width="293" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSI-Ii-n6u">
                                         <rect key="frame" x="0.0" y="0.0" width="141.66666666666666" height="80"/>
@@ -119,7 +119,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zib-I4-ZP8">
-                                <rect key="frame" x="50" y="351" width="293" height="50"/>
+                                <rect key="frame" x="50" y="451" width="293" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="WqA-ho-UUe"/>
                                 </constraints>
@@ -127,24 +127,32 @@
                                 <color key="textColor" systemColor="systemBlueColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Joker" translatesAutoresizingMaskIntoConstraints="NO" id="45U-32-mm1">
+                                <rect key="frame" x="50" y="109" width="293" height="242"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DW9-jI-0Jp"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="DW9-jI-0Jp" firstAttribute="trailing" secondItem="Zib-I4-ZP8" secondAttribute="trailing" constant="50" id="1ks-x1-lKc"/>
+                            <constraint firstItem="45U-32-mm1" firstAttribute="top" secondItem="DW9-jI-0Jp" secondAttribute="top" constant="50" id="2LW-Ym-fx5"/>
                             <constraint firstItem="fVc-2I-skm" firstAttribute="leading" secondItem="DW9-jI-0Jp" secondAttribute="leading" constant="100" id="3zM-zo-5Fa"/>
-                            <constraint firstItem="fVc-2I-skm" firstAttribute="centerY" secondItem="GUZ-Dr-Pon" secondAttribute="centerY" constant="-100" id="88P-FH-o3o"/>
+                            <constraint firstItem="fVc-2I-skm" firstAttribute="centerY" secondItem="GUZ-Dr-Pon" secondAttribute="centerY" id="88P-FH-o3o"/>
                             <constraint firstItem="Zib-I4-ZP8" firstAttribute="top" secondItem="fVc-2I-skm" secondAttribute="bottom" id="CJm-1B-T5D"/>
+                            <constraint firstItem="DW9-jI-0Jp" firstAttribute="trailing" secondItem="45U-32-mm1" secondAttribute="trailing" constant="50" id="EmL-v4-AWb"/>
                             <constraint firstItem="sWS-cb-EiY" firstAttribute="leading" secondItem="DW9-jI-0Jp" secondAttribute="leading" constant="50" id="G3R-GP-Ab8"/>
+                            <constraint firstItem="45U-32-mm1" firstAttribute="leading" secondItem="DW9-jI-0Jp" secondAttribute="leading" constant="50" id="JmY-KW-fIU"/>
                             <constraint firstItem="Zib-I4-ZP8" firstAttribute="leading" secondItem="DW9-jI-0Jp" secondAttribute="leading" constant="50" id="Tcf-bT-eC6"/>
                             <constraint firstItem="Zib-I4-ZP8" firstAttribute="centerX" secondItem="fVc-2I-skm" secondAttribute="centerX" id="bhN-bN-s7s"/>
                             <constraint firstItem="fVc-2I-skm" firstAttribute="centerX" secondItem="GUZ-Dr-Pon" secondAttribute="centerX" id="fPX-ec-6zM"/>
                             <constraint firstItem="DW9-jI-0Jp" firstAttribute="trailing" secondItem="fVc-2I-skm" secondAttribute="trailing" constant="100" id="hm3-Ah-cwu"/>
+                            <constraint firstItem="fVc-2I-skm" firstAttribute="top" secondItem="45U-32-mm1" secondAttribute="bottom" constant="50" id="mvt-wX-bN5"/>
                             <constraint firstItem="DW9-jI-0Jp" firstAttribute="trailing" secondItem="sWS-cb-EiY" secondAttribute="trailing" constant="50" id="usi-Hm-t7u"/>
-                            <constraint firstItem="DW9-jI-0Jp" firstAttribute="bottom" secondItem="sWS-cb-EiY" secondAttribute="bottom" constant="200" id="uzt-5W-zeM"/>
+                            <constraint firstItem="DW9-jI-0Jp" firstAttribute="bottom" secondItem="sWS-cb-EiY" secondAttribute="bottom" constant="100" id="uzt-5W-zeM"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cardImageView" destination="45U-32-mm1" id="udN-fZ-w4a"/>
                         <outlet property="nextBtn" destination="XeM-jq-3NL" id="ccB-cs-Dui"/>
                         <outlet property="outputLabel" destination="fVc-2I-skm" id="8Cl-lQ-d8a"/>
                         <outlet property="workoutLabel" destination="Zib-I4-ZP8" id="5Ng-BG-q52"/>
@@ -174,6 +182,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Joker" width="424" height="596"/>
         <image name="card" width="958" height="1223"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
