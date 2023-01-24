@@ -16,6 +16,9 @@
 		E6A44AA9297057A40095E795 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44AA8297057A40095E795 /* WorkoutViewController.swift */; };
 		E6A44AAC297057DC0095E795 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44AAB297057DC0095E795 /* UIView+Extension.swift */; };
 		E6A44AAF29705EBC0095E795 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44AAE29705EBC0095E795 /* CardData.swift */; };
+		E6A44AB12980088B0095E795 /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44AB02980088B0095E795 /* WorkoutData.swift */; };
+		E6A44AB329800A520095E795 /* ChooseWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44AB229800A520095E795 /* ChooseWorkoutViewController.swift */; };
+		E6A44AB529800AD60095E795 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44AB429800AD60095E795 /* DescriptionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		E6A44AA8297057A40095E795 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		E6A44AAB297057DC0095E795 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		E6A44AAE29705EBC0095E795 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
+		E6A44AB02980088B0095E795 /* WorkoutData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutData.swift; sourceTree = "<group>"; };
+		E6A44AB229800A520095E795 /* ChooseWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseWorkoutViewController.swift; sourceTree = "<group>"; };
+		E6A44AB429800AD60095E795 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,7 @@
 				E6A44A9A297054B30095E795 /* Main.storyboard */,
 				E6A44AAB297057DC0095E795 /* UIView+Extension.swift */,
 				E6A44AAE29705EBC0095E795 /* CardData.swift */,
+				E6A44AB02980088B0095E795 /* WorkoutData.swift */,
 				E6A44AAD297057F70095E795 /* VC */,
 				E6A44A94297054B30095E795 /* AppDelegate.swift */,
 				E6A44A96297054B30095E795 /* SceneDelegate.swift */,
@@ -79,6 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				E6A44A98297054B30095E795 /* HomeViewController.swift */,
+				E6A44AB429800AD60095E795 /* DescriptionViewController.swift */,
+				E6A44AB229800A520095E795 /* ChooseWorkoutViewController.swift */,
 				E6A44AA8297057A40095E795 /* WorkoutViewController.swift */,
 			);
 			path = VC;
@@ -159,6 +168,9 @@
 				E6A44A99297054B30095E795 /* HomeViewController.swift in Sources */,
 				E6A44A95297054B30095E795 /* AppDelegate.swift in Sources */,
 				E6A44AAF29705EBC0095E795 /* CardData.swift in Sources */,
+				E6A44AB12980088B0095E795 /* WorkoutData.swift in Sources */,
+				E6A44AB329800A520095E795 /* ChooseWorkoutViewController.swift in Sources */,
+				E6A44AB529800AD60095E795 /* DescriptionViewController.swift in Sources */,
 				E6A44AAC297057DC0095E795 /* UIView+Extension.swift in Sources */,
 				E6A44A97297054B30095E795 /* SceneDelegate.swift in Sources */,
 			);

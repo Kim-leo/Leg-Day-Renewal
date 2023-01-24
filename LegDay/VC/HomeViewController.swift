@@ -18,10 +18,22 @@ class HomeViewController: UIViewController {
         
     }
 
-
+   
+    
     @IBAction func getStartedBtnTapped(_ sender: UIButton) {
         guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "WorkoutViewController") else { return }
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
+    
+    @IBAction func setWorkoutBtnTapped(_ sender: UIButton) {
+        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "ChooseWorkoutViewController") else { return }
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    @IBAction func aboutTheAppBtnTapped(_ sender: UIButton) {
+        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") else { return }
+        self.present(nextVC, animated: true)
+    }
+    
 }
 
