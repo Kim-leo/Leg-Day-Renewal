@@ -8,7 +8,8 @@
 import UIKit
 
 class ChooseWorkoutViewController: UIViewController {
-
+    
+    // MARK: - Variables
     lazy var leftBarBtn: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "돌아가기", style: .plain, target: self, action: #selector(leftBarBtnTapped(_:)))
         btn.tintColor = .darkGray
@@ -21,8 +22,17 @@ class ChooseWorkoutViewController: UIViewController {
         return btn
     }()
     
+    @IBOutlet weak var cellTabView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var cardBtns: [UIButton]!
+    
+    
+
     let workoutData = WorkoutSorting()
     
+    let shapeOfCards = ["Spade", "Heart", "Diamond", "Clover"]
+    
+    // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
     }
@@ -32,9 +42,15 @@ class ChooseWorkoutViewController: UIViewController {
 
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
         self.navigationItem.rightBarButtonItem = self.rightBarBtn
+
+        cellTabView.alpha = 0
+        
     }
     
-
+   
+    
+    
+    // MARK: - Functions
     @objc func leftBarBtnTapped(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -42,9 +58,22 @@ class ChooseWorkoutViewController: UIViewController {
     @objc func rightBarBtnTapped(_ sender: UIBarButtonItem) {
         print("Tapped")
     }
+    
+    
+    @IBAction func cardBtnsTapped(_ sender: UIButton) {
+        print(sender.currentTitle ?? "")
+        cellTabView.alpha = 0
+        collectionView.alpha = 1
+        
+        
+    }
+    
+   
+    
 
 }
 
+// MARK: - CollectionView Extensions
 extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return workoutData.sampleData.count
@@ -58,6 +87,9 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(workoutData.sampleData[indexPath.row])
+        collectionView.alpha = 0.5
+        cellTabView.alpha = 1
+        self.view.bringSubviewToFront(cellTabView)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -75,3 +107,4 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
     
     
 }
+

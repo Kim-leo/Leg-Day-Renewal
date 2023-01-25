@@ -149,6 +149,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZZ-bR-a5P">
+                                <rect key="frame" x="50" y="259" width="293" height="359"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nKh-sd-BdR">
+                                        <rect key="frame" x="0.0" y="0.0" width="293" height="359"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Dv8-Qa-Plq">
+                                                <rect key="frame" x="0.0" y="0.0" width="293" height="177"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4t-ba-6bM">
+                                                        <rect key="frame" x="0.0" y="0.6666666666666714" width="144" height="174.99999999999994"/>
+                                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Spade" backgroundImage="suit.spade.fill" catalog="system">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="cardBtnsTapped:" destination="bvz-pS-Jtx" eventType="touchUpInside" id="PcB-zV-AR5"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="050-vJ-Enl">
+                                                        <rect key="frame" x="149" y="2" width="144" height="174"/>
+                                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Heart" backgroundImage="heart.fill" catalog="system">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="cardBtnsTapped:" destination="bvz-pS-Jtx" eventType="touchUpInside" id="SCZ-dC-H5l"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uCo-sz-acY">
+                                                <rect key="frame" x="0.0" y="182" width="293" height="177"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbT-wg-lLb">
+                                                        <rect key="frame" x="0.0" y="-0.6666666666666714" width="144" height="178.33333333333331"/>
+                                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Diamond" backgroundImage="diamond.fill" catalog="system">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="cardBtnsTapped:" destination="bvz-pS-Jtx" eventType="touchUpInside" id="MXL-g8-7SU"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LrO-pU-aps">
+                                                        <rect key="frame" x="149" y="1.3333333333333286" width="144" height="174.33333333333331"/>
+                                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Clover" backgroundImage="suit.club.fill" catalog="system">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="cardBtnsTapped:" destination="bvz-pS-Jtx" eventType="touchUpInside" id="MYT-Is-BzQ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nKh-sd-BdR" secondAttribute="trailing" id="SFw-7S-bwJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="nKh-sd-BdR" secondAttribute="bottom" id="TZH-ln-EGQ"/>
+                                    <constraint firstItem="nKh-sd-BdR" firstAttribute="top" secondItem="YZZ-bR-a5P" secondAttribute="top" id="pLa-Rh-b5H"/>
+                                    <constraint firstItem="nKh-sd-BdR" firstAttribute="leading" secondItem="YZZ-bR-a5P" secondAttribute="leading" id="yBZ-JN-Wia"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qKg-IQ-exw">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -208,9 +287,21 @@
                             <constraint firstItem="f6Q-ca-2lq" firstAttribute="trailing" secondItem="qKg-IQ-exw" secondAttribute="trailing" id="0yK-lF-Ee3"/>
                             <constraint firstItem="qKg-IQ-exw" firstAttribute="top" secondItem="f6Q-ca-2lq" secondAttribute="top" id="ISj-db-hS3"/>
                             <constraint firstItem="f6Q-ca-2lq" firstAttribute="bottom" secondItem="qKg-IQ-exw" secondAttribute="bottom" id="Pjf-SV-kyp"/>
+                            <constraint firstItem="f6Q-ca-2lq" firstAttribute="bottom" secondItem="YZZ-bR-a5P" secondAttribute="bottom" constant="200" id="RhP-3z-1ia"/>
+                            <constraint firstItem="f6Q-ca-2lq" firstAttribute="trailing" secondItem="YZZ-bR-a5P" secondAttribute="trailing" constant="50" id="WAS-Is-v5C"/>
                             <constraint firstItem="qKg-IQ-exw" firstAttribute="leading" secondItem="f6Q-ca-2lq" secondAttribute="leading" id="Xl1-CD-anj"/>
+                            <constraint firstItem="YZZ-bR-a5P" firstAttribute="leading" secondItem="f6Q-ca-2lq" secondAttribute="leading" constant="50" id="Y46-QX-mQK"/>
+                            <constraint firstItem="YZZ-bR-a5P" firstAttribute="top" secondItem="f6Q-ca-2lq" secondAttribute="top" constant="200" id="ayB-rU-aKX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cellTabView" destination="YZZ-bR-a5P" id="H0U-UC-UBK"/>
+                        <outlet property="collectionView" destination="qKg-IQ-exw" id="Ytd-E8-bpR"/>
+                        <outletCollection property="cardBtns" destination="P4t-ba-6bM" collectionClass="NSMutableArray" id="8Wz-G8-FnS"/>
+                        <outletCollection property="cardBtns" destination="050-vJ-Enl" collectionClass="NSMutableArray" id="D7z-15-c0a"/>
+                        <outletCollection property="cardBtns" destination="YbT-wg-lLb" collectionClass="NSMutableArray" id="FjW-We-UoZ"/>
+                        <outletCollection property="cardBtns" destination="LrO-pU-aps" collectionClass="NSMutableArray" id="Mbe-1l-JMH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kB7-Tp-cBN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -339,6 +430,10 @@
     <resources>
         <image name="Joker" width="424" height="596"/>
         <image name="card" width="958" height="1223"/>
+        <image name="diamond.fill" catalog="system" width="128" height="124"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="suit.club.fill" catalog="system" width="128" height="123"/>
+        <image name="suit.spade.fill" catalog="system" width="128" height="128"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -350,6 +445,9 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
