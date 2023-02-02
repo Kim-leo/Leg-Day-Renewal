@@ -19,6 +19,7 @@ class WorkoutViewController: UIViewController {
     var emptyArray = [String]()
     var pickedCard: String = ""
     var howManyTimesNum: Int = 0
+    let chosenWorkout = ChosenWorkouts.shared
     
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -91,16 +92,30 @@ class WorkoutViewController: UIViewController {
     
     func checkWhichWorkout(words: String) {
         howManyTimesWorkout(words: words)
-        if words.hasPrefix("Heart") {
-            workoutLabel.text = "Right Lunge \(howManyTimesNum) times"
+//        if words.hasPrefix("Heart") {
+//            workoutLabel.text = "Right Lunge \(howManyTimesNum) times"
+//        } else if words.hasPrefix("Diamond") {
+//            workoutLabel.text = "Left Lunge \(howManyTimesNum) times"
+//        } else if words.hasPrefix("Done") {
+//            workoutLabel.text = "Congratulations"
+//        } else if words.isEmpty {
+//            componentsInitialSetting()
+//        } else {
+//            workoutLabel.text = "Squat \(howManyTimesNum) times"
+//        }
+        
+        if words.hasPrefix("Spade") {
+            workoutLabel.text = "\(chosenWorkout.spadePart ?? "Workout") : \(howManyTimesNum) times"
+        } else if words.hasPrefix("Heart") {
+            workoutLabel.text = "\(chosenWorkout.heartPart ?? "Workout") : \(howManyTimesNum) times"
+        } else if words.hasPrefix("Clover") {
+            workoutLabel.text = "\(chosenWorkout.cloverPart ?? "Workout") : \(howManyTimesNum) times"
         } else if words.hasPrefix("Diamond") {
-            workoutLabel.text = "Left Lunge \(howManyTimesNum) times"
+            workoutLabel.text = "\(chosenWorkout.diamondPart ?? "Workout") : \(howManyTimesNum) times"
         } else if words.hasPrefix("Done") {
             workoutLabel.text = "Congratulations"
-        } else if words.isEmpty {
-            componentsInitialSetting()
         } else {
-            workoutLabel.text = "Squat \(howManyTimesNum) times"
+            componentsInitialSetting()
         }
     }
     

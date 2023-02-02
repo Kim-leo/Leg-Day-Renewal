@@ -8,9 +8,16 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    let chosenWorkouts = ChosenWorkouts.shared
 
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
+        print(chosenWorkouts.spadePart ?? "")
+        print(chosenWorkouts.heartPart ?? "")
+        print(chosenWorkouts.diamondPart ?? "")
+        print(chosenWorkouts.cloverPart ?? "")
+        
     }
     
     override func viewDidLoad() {

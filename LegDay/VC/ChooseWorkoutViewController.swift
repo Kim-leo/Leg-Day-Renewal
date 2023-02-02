@@ -29,12 +29,24 @@ class ChooseWorkoutViewController: UIViewController {
     
 
     let workoutData = WorkoutSorting()
+    let chosenWorkout = ChosenWorkouts.shared
     
-    let shapeOfCards = ["Spade", "Heart", "Diamond", "Clover"]
+    var preChosenSpade: String?
+    var preChosenHeart: String?
+    var preChosenDiamond: String?
+    var preChosenClover: String?
+    
+    var preChosenWorkoutArray = ["", "", "", ""]
+    
+    var whichWorkout: String = ""
     
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
+//        cardBtns[0].setTitle(chosenWorkout.spadePart ?? "+", for: .normal)
+//        cardBtns[1].setTitle(chosenWorkout.heartPart ?? "+", for: .normal)
+//        cardBtns[2].setTitle(chosenWorkout.diamondPart ?? "+", for: .normal)
+//        cardBtns[3].setTitle(chosenWorkout.cloverPart ?? "+", for: .normal)
     }
     
     override func viewDidLoad() {
@@ -56,15 +68,31 @@ class ChooseWorkoutViewController: UIViewController {
     }
     
     @objc func rightBarBtnTapped(_ sender: UIBarButtonItem) {
-        print("Tapped")
+        chosenWorkout.spadePart = preChosenSpade
+        chosenWorkout.heartPart = preChosenHeart
+        chosenWorkout.diamondPart = preChosenDiamond
+        chosenWorkout.cloverPart = preChosenClover
+        self.navigationController?.popViewController(animated: true)
     }
     
     
     @IBAction func cardBtnsTapped(_ sender: UIButton) {
-        print(sender.currentTitle ?? "")
         cellTabView.alpha = 0
         collectionView.alpha = 1
         
+        sender.setTitle(whichWorkout, for: .normal)
+        switch sender.tag  {
+        case 0:
+            preChosenSpade = sender.currentTitle ?? ""
+        case 1:
+            preChosenHeart = sender.currentTitle ?? ""
+        case 2:
+            preChosenDiamond = sender.currentTitle ?? ""
+        case 3:
+            preChosenClover = sender.currentTitle ?? ""
+        default:
+            break
+        }
         
     }
     
@@ -76,20 +104,22 @@ class ChooseWorkoutViewController: UIViewController {
 // MARK: - CollectionView Extensions
 extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return workoutData.sampleData.count
+        return workoutData.workouts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ListCell else { return UICollectionViewCell() }
-        cell.cellLabel.text = workoutData.sampleData[indexPath.row]
+        cell.cellLabel.text = workoutData.workouts[indexPath.row]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(workoutData.sampleData[indexPath.row])
+//        print(workoutData.sampleData[indexPath.row])
         collectionView.alpha = 0.5
         cellTabView.alpha = 1
         self.view.bringSubviewToFront(cellTabView)
+        
+        whichWorkout = workoutData.workouts[indexPath.row]
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
