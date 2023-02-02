@@ -28,8 +28,8 @@ class ChooseWorkoutViewController: UIViewController {
     
     
 
-    let workoutData = WorkoutSorting()
-    let chosenWorkout = ChosenWorkouts.shared
+    var workoutData = WorkoutSorting()
+    var chosenWorkout = ChosenWorkouts.shared
     
     var preChosenSpade: String?
     var preChosenHeart: String?
@@ -115,11 +115,34 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        print(workoutData.sampleData[indexPath.row])
-        collectionView.alpha = 0.5
-        cellTabView.alpha = 1
-        self.view.bringSubviewToFront(cellTabView)
         
-        whichWorkout = workoutData.workouts[indexPath.row]
+        switch workoutData.workouts[indexPath.row] {
+        case "+":
+            let alert = UIAlertController(title: "추가하기", message: "수행하고 싶은 운동을 직접 추가합니다.", preferredStyle: .alert)
+            alert.addTextField{ (myTextField) in
+                myTextField.placeholder = "입력하기"
+            }
+            let okAction = UIAlertAction(title: "Okay", style: .default) { (ok) in
+//                print(alert.textFields?[0].text ?? "")
+                collectionView.performBatchUpdates {
+                    self.workoutData.workouts.insert(alert.textFields?[0].text ?? "", at: 1)
+                    self.collectionView.insertItems(at: [IndexPath(item: 1, section: 0)])
+                } completion: { [weak self] _ in
+                    print(self?.collectionView.numberOfItems(inSection: 0))
+                }
+            }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in }
+            alert.addAction(okAction)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
+            
+        default:
+            collectionView.alpha = 0.5
+            cellTabView.alpha = 1
+            self.view.bringSubviewToFront(cellTabView)
+            whichWorkout = workoutData.workouts[indexPath.row]
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
