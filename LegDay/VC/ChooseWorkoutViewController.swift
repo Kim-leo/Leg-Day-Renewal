@@ -30,6 +30,7 @@ class ChooseWorkoutViewController: UIViewController {
 
     var workoutData = WorkoutSorting()
     var chosenWorkout = ChosenWorkouts.shared
+    var colors = Colors()
     
     var preChosenSpade: String?
     var preChosenHeart: String?
@@ -56,6 +57,7 @@ class ChooseWorkoutViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = self.rightBarBtn
 
         cellTabView.alpha = 0
+        
         
     }
     
@@ -116,6 +118,7 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
         
 //        cell.cellLabel.text = workoutData.workouts[indexPath.row]
         cell.cellLabel.text = chosenWorkout.yourWorkoutArray[indexPath.row]
+        cell.cellLabel.backgroundColor = colors.colorArray[Int(arc4random_uniform(UInt32(colors.colorArray.count)))]
         return cell
     }
     
