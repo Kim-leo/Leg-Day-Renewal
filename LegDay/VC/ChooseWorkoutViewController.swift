@@ -104,12 +104,18 @@ class ChooseWorkoutViewController: UIViewController {
 // MARK: - CollectionView Extensions
 extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return workoutData.workouts.count
+        
+        
+//        return workoutData.workouts.count
+        return chosenWorkout.yourWorkoutArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ListCell else { return UICollectionViewCell() }
-        cell.cellLabel.text = workoutData.workouts[indexPath.row]
+        
+        
+//        cell.cellLabel.text = workoutData.workouts[indexPath.row]
+        cell.cellLabel.text = chosenWorkout.yourWorkoutArray[indexPath.row]
         return cell
     }
     
@@ -117,15 +123,15 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
 //        print(workoutData.sampleData[indexPath.row])
         
         switch workoutData.workouts[indexPath.row] {
-        case "+":
+        case "+ 직접 입력":
             let alert = UIAlertController(title: "추가하기", message: "수행하고 싶은 운동을 직접 추가합니다.", preferredStyle: .alert)
             alert.addTextField{ (myTextField) in
                 myTextField.placeholder = "입력하기"
             }
-            let okAction = UIAlertAction(title: "Okay", style: .default) { (ok) in
+            let okAction = UIAlertAction(title: "Okay", style: .default) { [self] (ok) in
 //                print(alert.textFields?[0].text ?? "")
                 collectionView.performBatchUpdates {
-                    self.workoutData.workouts.insert(alert.textFields?[0].text ?? "", at: 1)
+                    chosenWorkout.yourWorkoutArray.insert(alert.textFields?[0].text ?? "", at: 1)
                     self.collectionView.insertItems(at: [IndexPath(item: 1, section: 0)])
                 } completion: { [weak self] _ in
                     print(self?.collectionView.numberOfItems(inSection: 0))
@@ -140,7 +146,8 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
             collectionView.alpha = 0.5
             cellTabView.alpha = 1
             self.view.bringSubviewToFront(cellTabView)
-            whichWorkout = workoutData.workouts[indexPath.row]
+//            whichWorkout = workoutData.workouts[indexPath.row]
+            whichWorkout = chosenWorkout.yourWorkoutArray[indexPath.row]
         }
         
     }
