@@ -91,19 +91,7 @@ class WorkoutViewController: UIViewController {
     }
     
     func checkWhichWorkout(words: String) {
-        howManyTimesWorkout(words: words)
-//        if words.hasPrefix("Heart") {
-//            workoutLabel.text = "Right Lunge \(howManyTimesNum) times"
-//        } else if words.hasPrefix("Diamond") {
-//            workoutLabel.text = "Left Lunge \(howManyTimesNum) times"
-//        } else if words.hasPrefix("Done") {
-//            workoutLabel.text = "Congratulations"
-//        } else if words.isEmpty {
-//            componentsInitialSetting()
-//        } else {
-//            workoutLabel.text = "Squat \(howManyTimesNum) times"
-//        }
-        
+        howManyTimesWorkout(words: words)        
         if words.hasPrefix("Spade") {
             workoutLabel.text = "\(chosenWorkout.spadePart ?? "Workout") : \(howManyTimesNum) times"
         } else if words.hasPrefix("Heart") {

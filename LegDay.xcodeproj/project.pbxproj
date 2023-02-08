@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E689A012298135F900F69235 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E689A011298135F900F69235 /* ListCell.swift */; };
 		E689A014298BA47200F69235 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E689A013298BA47200F69235 /* Colors.swift */; };
+		E689A0162992557A00F69235 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E689A0152992557A00F69235 /* CategoryCell.swift */; };
 		E6A44A95297054B30095E795 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44A94297054B30095E795 /* AppDelegate.swift */; };
 		E6A44A97297054B30095E795 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44A96297054B30095E795 /* SceneDelegate.swift */; };
 		E6A44A99297054B30095E795 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44A98297054B30095E795 /* HomeViewController.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		E689A011298135F900F69235 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		E689A013298BA47200F69235 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		E689A0152992557A00F69235 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		E6A44A91297054B30095E795 /* LegDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A44A94297054B30095E795 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6A44A96297054B30095E795 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				E6A44A98297054B30095E795 /* HomeViewController.swift */,
 				E6A44AB429800AD60095E795 /* DescriptionViewController.swift */,
 				E6A44AB229800A520095E795 /* ChooseWorkoutViewController.swift */,
+				E689A0152992557A00F69235 /* CategoryCell.swift */,
 				E689A011298135F900F69235 /* ListCell.swift */,
 				E6A44AA8297057A40095E795 /* WorkoutViewController.swift */,
 			);
@@ -181,6 +184,7 @@
 				E6A44AB529800AD60095E795 /* DescriptionViewController.swift in Sources */,
 				E6A44AAC297057DC0095E795 /* UIView+Extension.swift in Sources */,
 				E6A44A97297054B30095E795 /* SceneDelegate.swift in Sources */,
+				E689A0162992557A00F69235 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
