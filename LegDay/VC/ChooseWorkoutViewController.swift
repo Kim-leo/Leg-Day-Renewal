@@ -113,32 +113,53 @@ class ChooseWorkoutViewController: UIViewController {
 // MARK: - CollectionView Extensions
 extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView.tag == 1 {
+//        if collectionView.tag == 1 {
+//            return workoutData.typeOfWorkouts.count
+//        } else {
+//            return chosenWorkout.yourWorkoutArray.count
+//        }
+        
+        switch collectionView.tag {
+        case 1:
             return workoutData.typeOfWorkouts.count
-        } else {
+        case 2:
             return chosenWorkout.yourWorkoutArray.count
+        default:
+            return 0
+            break
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView.tag == 1 {
+        switch collectionView.tag {
+        case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
             cell.categoryLabel.text = workoutData.typeOfWorkouts[indexPath.row]
             cell.categoryLabel.backgroundColor = .white
             cell.categoryLabel.textColor = .darkGray
             return cell
-        } else {
+        case 2:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ListCell else { return UICollectionViewCell() }
             cell.cellLabel.text = chosenWorkout.yourWorkoutArray[indexPath.row]
             cell.cellLabel.backgroundColor = colors.colorArray[Int(arc4random_uniform(UInt32(colors.colorArray.count)))]
             return cell
+        default:
+            return UICollectionViewCell()
+            break
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView.tag == 1 {
-            print(workoutData.typeOfWorkouts[indexPath.row])
-        } else {
+        switch collectionView.tag {
+        case 1:
+            let cell = categoryCollectionView.cellForItem(at: indexPath) as! CategoryCell
+            if cell.categoryLabel.backgroundColor == .lightGray {
+                cell.categoryLabel.backgroundColor = .white
+            } else {
+                cell.categoryLabel.backgroundColor = .lightGray
+            }
+        case 2:
             switch workoutData.workouts[indexPath.row] {
             case "+ 직접 입력":
                 let alert = UIAlertController(title: "추가하기", message: "수행하고 싶은 운동을 직접 추가합니다.", preferredStyle: .alert)
@@ -162,33 +183,47 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
                 self.view.bringSubviewToFront(cellTabView)
                 whichWorkout = chosenWorkout.yourWorkoutArray[indexPath.row]
             }
+        default:
+            break
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionView.tag == 1 {
+        switch collectionView.tag {
+        case 1:
             return 10
-        } else {
+        case 2:
             return 5
+        default:
+            return 0
+            break
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionView.tag == 1 {
+        switch collectionView.tag {
+        case 1:
             return 50
-        } else {
+        case 2:
             return 5
+        default:
+            return 0
+            break
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView.tag == 1 {
+        switch collectionView.tag {
+        case 1:
             let width = categoryCollectionView.frame.width / 4
             let height = categoryCollectionView.frame.height
             return CGSize(width: width, height: height)
-        } else {
+        case 2:
             let width = collectionView.frame.width / 3 - 5
             return CGSize(width: width, height: width)
+        default:
+            return CGSize()
+            break
         }
     }
 }

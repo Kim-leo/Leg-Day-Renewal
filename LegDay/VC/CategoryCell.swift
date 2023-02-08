@@ -10,4 +10,14 @@ import UIKit
 class CategoryCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryLabel: UILabel!
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                backgroundColor = .lightGray
+            } else {
+                backgroundColor = .white
+            }
+        }
+    }
 }
