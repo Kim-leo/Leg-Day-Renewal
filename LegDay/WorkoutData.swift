@@ -9,8 +9,9 @@ import Foundation
 
 struct WorkoutSorting {
     var workouts: [String] = ["+ 직접 입력", "턱걸이", "딥스", "푸쉬업", "스쿼트", "윗몸 일으키기", "버피", "브릿지", "마운틴 클라이머", "바이시클 메뉴버"]
-    var typeOfWorkouts: [String] = ["상체", "하체", "맨몸", "유산소", "스트레칭"]
+    var typeOfWorkouts: [String] = ["전체", "상체", "하체", "맨몸", "유산소", "스트레칭"]
     var categoryArrays: [[String]] = [
+        [],
         ["이두", "삼두", "가슴근육", "복근", "딥스"],
         ["스쿼트", "오른쪽 런지", "왼쪽 런지", "마운틴 클라이머"],
         ["버피테스트", "턱걸이", "푸쉬업", "크런치", "플랭크"],

@@ -12,12 +12,24 @@ class CategoryCell: UICollectionViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     
     override var isSelected: Bool {
-        didSet {
-            if isSelected {
-                backgroundColor = .lightGray
+//        didSet {
+//            if isSelected {
+//                backgroundColor = .lightGray
+//            } else {
+//                backgroundColor = .white
+//            }
+//        }
+        willSet {
+            if newValue {
+                self.categoryLabel.backgroundColor = .lightGray
+                self.categoryLabel.textColor = .black
             } else {
-                backgroundColor = .white
+                self.categoryLabel.backgroundColor = .white
             }
         }
+    }
+    
+    func configure(number: Int) {
+        self.isSelected = true
     }
 }

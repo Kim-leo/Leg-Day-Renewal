@@ -66,9 +66,6 @@ class ChooseWorkoutViewController: UIViewController {
         cellTabView.alpha = 0
         
         
-        print(joinedCategory.count)
-        
-//        let joinedArray = Array(workoutData.categoryArrays.joined())
         chosenWorkout.yourAllWorkoutsArray += Array(workoutData.categoryArrays.joined())
         
     }
@@ -157,15 +154,32 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
         
         switch collectionView.tag {
         case 1:
-            let cell = categoryCollectionView.cellForItem(at: indexPath) as! CategoryCell
-            if cell.categoryLabel.backgroundColor == .lightGray {
-                cell.categoryLabel.backgroundColor = .white
-                // 선택취소 코드
+            print(workoutData.typeOfWorkouts[indexPath.row])    // 상체
+            print(workoutData.categoryArrays[indexPath.row])    // 이두, 삼두 ,,,,
+            
+            if workoutData.typeOfWorkouts[indexPath.row] == "전체" {
+                collectionView.performBatchUpdates {
+                    chosenWorkout.yourAllWorkoutsArray.removeAll()
+                    chosenWorkout.yourAllWorkoutsArray.append("+ 직접 입력")
+                    chosenWorkout.yourAllWorkoutsArray += Array(workoutData.categoryArrays.joined())
+                    
+                    self.collectionView.reloadData()
+                    
+                }
             } else {
-                cell.categoryLabel.backgroundColor = .lightGray
-                // 선택한 카테고리에 해당하는 운동 띄우기
-                
+                collectionView.performBatchUpdates {
+                    chosenWorkout.yourAllWorkoutsArray.removeAll()
+                    chosenWorkout.yourAllWorkoutsArray += workoutData.categoryArrays[indexPath.row]
+                    
+                    self.collectionView.reloadData()
+                    
+                }
             }
+            
+            
+            
+            
+            
         case 2:
             switch chosenWorkout.yourAllWorkoutsArray[indexPath.row] {
             case "+ 직접 입력":
