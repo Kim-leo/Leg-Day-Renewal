@@ -43,7 +43,7 @@ class ChooseWorkoutViewController: UIViewController {
     
     var whichWorkout: String = ""
     
-    let dummyData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    var joinedCategory = Array(WorkoutSorting().categoryArrays.joined())
     
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +65,11 @@ class ChooseWorkoutViewController: UIViewController {
 
         cellTabView.alpha = 0
         
+        
+        print(joinedCategory.count)
+        
+//        let joinedArray = Array(workoutData.categoryArrays.joined())
+        chosenWorkout.yourAllWorkoutsArray += Array(workoutData.categoryArrays.joined())
         
     }
     
@@ -113,17 +118,12 @@ class ChooseWorkoutViewController: UIViewController {
 // MARK: - CollectionView Extensions
 extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if collectionView.tag == 1 {
-//            return workoutData.typeOfWorkouts.count
-//        } else {
-//            return chosenWorkout.yourWorkoutArray.count
-//        }
-        
         switch collectionView.tag {
         case 1:
             return workoutData.typeOfWorkouts.count
         case 2:
-            return chosenWorkout.yourWorkoutArray.count
+            return chosenWorkout.yourAllWorkoutsArray.count
+//            return joinedCategory.count
         default:
             return 0
             break
@@ -134,13 +134,15 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
         switch collectionView.tag {
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
+//            cell.categoryLabel.text = workoutData.typeOfWorkouts[indexPath.row]
             cell.categoryLabel.text = workoutData.typeOfWorkouts[indexPath.row]
             cell.categoryLabel.backgroundColor = .white
             cell.categoryLabel.textColor = .darkGray
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ListCell else { return UICollectionViewCell() }
-            cell.cellLabel.text = chosenWorkout.yourWorkoutArray[indexPath.row]
+//            cell.cellLabel.text = chosenWorkout.yourWorkoutArray[indexPath.row]
+            cell.cellLabel.text = chosenWorkout.yourAllWorkoutsArray[indexPath.row]
             cell.cellLabel.backgroundColor = colors.colorArray[Int(arc4random_uniform(UInt32(colors.colorArray.count)))]
             return cell
         default:
@@ -151,16 +153,21 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
         switch collectionView.tag {
         case 1:
             let cell = categoryCollectionView.cellForItem(at: indexPath) as! CategoryCell
             if cell.categoryLabel.backgroundColor == .lightGray {
                 cell.categoryLabel.backgroundColor = .white
+                // 선택취소 코드
             } else {
                 cell.categoryLabel.backgroundColor = .lightGray
+                // 선택한 카테고리에 해당하는 운동 띄우기
+                
             }
         case 2:
-            switch workoutData.workouts[indexPath.row] {
+            switch chosenWorkout.yourAllWorkoutsArray[indexPath.row] {
             case "+ 직접 입력":
                 let alert = UIAlertController(title: "추가하기", message: "수행하고 싶은 운동을 직접 추가합니다.", preferredStyle: .alert)
                 alert.addTextField{ (myTextField) in
@@ -168,7 +175,7 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
                 }
                 let okAction = UIAlertAction(title: "Okay", style: .default) { [self] (ok) in
                     collectionView.performBatchUpdates {
-                        chosenWorkout.yourWorkoutArray.insert(alert.textFields?[0].text ?? "", at: 1)
+                        chosenWorkout.yourAllWorkoutsArray.insert(alert.textFields?[0].text ?? "", at: 1)
                         self.collectionView.insertItems(at: [IndexPath(item: 1, section: 0)])
                     } completion: { [weak self] _ in
                     }
@@ -181,7 +188,7 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
                 collectionView.alpha = 0.5
                 cellTabView.alpha = 1
                 self.view.bringSubviewToFront(cellTabView)
-                whichWorkout = chosenWorkout.yourWorkoutArray[indexPath.row]
+                whichWorkout = chosenWorkout.yourAllWorkoutsArray[indexPath.row]
             }
         default:
             break
