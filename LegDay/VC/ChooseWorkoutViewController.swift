@@ -27,6 +27,8 @@ class ChooseWorkoutViewController: UIViewController {
     @IBOutlet var cardBtns: [UIButton]!
     @IBOutlet weak var upperView: UIView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
+    @IBOutlet weak var chooseCategoryView: UIView!
+    @IBOutlet var categoryBtns: [UIButton]!
     
     
 
@@ -42,6 +44,7 @@ class ChooseWorkoutViewController: UIViewController {
     var preChosenWorkoutArray = ["", "", "", ""]
     
     var whichWorkout: String = ""
+    var inputWorkout: String = ""
     
     var joinedCategory = Array(WorkoutSorting().categoryArrays.joined())
     
@@ -66,8 +69,8 @@ class ChooseWorkoutViewController: UIViewController {
         cellTabView.alpha = 0
         
         
-        chosenWorkout.yourAllWorkoutsArray += Array(workoutData.categoryArrays.joined())
-        
+//        chosenWorkout.yourAllWorkoutsArray += Array(workoutData.categoryArrays.joined())
+        chosenWorkout.yourAllWorkoutsArray += Array(chosenWorkout.workoutForCategories.joined())
     }
     
    
@@ -104,8 +107,24 @@ class ChooseWorkoutViewController: UIViewController {
         default:
             break
         }
-        
     }
+    
+    @IBAction func chooseCategoryBtnsTapped(_ sender: UIButton) {
+        chooseCategoryView.alpha = 0
+        collectionView.alpha = 1
+        
+        chosenWorkout.workoutForCategories[sender.tag].append(inputWorkout)
+        chosenWorkout.yourAllWorkoutsArray.append(inputWorkout)
+        
+        collectionView.performBatchUpdates {
+        chosenWorkout.yourAllWorkoutsArray.insert(inputWorkout, at: 1)
+        self.collectionView.insertItems(at: [IndexPath(item: 1, section: 0)])
+        } completion: { [weak self] _ in
+        }
+        
+        print("workoutForCategories: \(chosenWorkout.workoutForCategories)")
+    }
+    
     
    
     
@@ -150,8 +169,6 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        
         switch collectionView.tag {
         case 1:
             print(workoutData.typeOfWorkouts[indexPath.row])    // 상체
@@ -161,7 +178,8 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
                 collectionView.performBatchUpdates {
                     chosenWorkout.yourAllWorkoutsArray.removeAll()
                     chosenWorkout.yourAllWorkoutsArray.append("+ 직접 입력")
-                    chosenWorkout.yourAllWorkoutsArray += Array(workoutData.categoryArrays.joined())
+//                    chosenWorkout.yourAllWorkoutsArray += Array(workoutData.categoryArrays.joined())
+                    chosenWorkout.yourAllWorkoutsArray += Array(chosenWorkout.workoutForCategories.joined())
                     
                     self.collectionView.reloadData()
                     
@@ -169,17 +187,13 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
             } else {
                 collectionView.performBatchUpdates {
                     chosenWorkout.yourAllWorkoutsArray.removeAll()
-                    chosenWorkout.yourAllWorkoutsArray += workoutData.categoryArrays[indexPath.row]
+//                    chosenWorkout.yourAllWorkoutsArray += workoutData.categoryArrays[indexPath.row]
+                    chosenWorkout.yourAllWorkoutsArray += Array(chosenWorkout.workoutForCategories[indexPath.row])
                     
                     self.collectionView.reloadData()
                     
                 }
             }
-            
-            
-            
-            
-            
         case 2:
             switch chosenWorkout.yourAllWorkoutsArray[indexPath.row] {
             case "+ 직접 입력":
@@ -187,14 +201,21 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
                 alert.addTextField{ (myTextField) in
                     myTextField.placeholder = "입력하기"
                 }
-                let okAction = UIAlertAction(title: "Okay", style: .default) { [self] (ok) in
-                    collectionView.performBatchUpdates {
-                        chosenWorkout.yourAllWorkoutsArray.insert(alert.textFields?[0].text ?? "", at: 1)
-                        self.collectionView.insertItems(at: [IndexPath(item: 1, section: 0)])
-                    } completion: { [weak self] _ in
-                    }
+                let okAction = UIAlertAction(title: "카테고리 지정", style: .default) { [self] (ok) in
+                    // 카테고리 지정하는 뷰 띄우기
+                    collectionView.alpha = 0.5
+                    chooseCategoryView.alpha = 1
+                    self.view.bringSubviewToFront(chooseCategoryView)
+                    inputWorkout = alert.textFields?[0].text ?? ""
+                    print(inputWorkout ?? "")
+//                    print(alert.textFields?[0].text ?? "")
+//                    collectionView.performBatchUpdates {
+//                        chosenWorkout.yourAllWorkoutsArray.insert(alert.textFields?[0].text ?? "", at: 1)
+//                        self.collectionView.insertItems(at: [IndexPath(item: 1, section: 0)])
+//                    } completion: { [weak self] _ in
+//                    }
                 }
-                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in }
+                let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in }
                 alert.addAction(okAction)
                 alert.addAction(cancel)
                 self.present(alert, animated: true, completion: nil)

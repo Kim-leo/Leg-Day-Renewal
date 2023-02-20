@@ -149,6 +149,134 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LHA-R5-Wi8">
+                                <rect key="frame" x="50" y="301" width="293" height="250"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6i2-Th-2QH">
+                                        <rect key="frame" x="0.0" y="0.0" width="293" height="250"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mrH-Qa-GS5">
+                                                <rect key="frame" x="0.0" y="0.0" width="293" height="120"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qr-VS-tfb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="91" height="120"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="상체">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="chooseCategoryBtnsTapped:" destination="bvz-pS-Jtx" eventType="touchUpInside" id="Nvf-jm-Lj8"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amd-cd-DeJ">
+                                                        <rect key="frame" x="101" y="0.0" width="91" height="120"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="하체">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="chooseCategoryBtnsTapped:" destination="bvz-pS-Jtx" eventType="touchUpInside" id="nuk-Qw-eFw"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKP-cZ-dzu">
+                                                        <rect key="frame" x="202" y="0.0" width="91" height="120"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="맨몸">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="chooseCategoryBtnsTapped:" destination="bvz-pS-Jtx" eventType="touchUpInside" id="sSq-se-Ctd"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="h6u-Hg-63k">
+                                                <rect key="frame" x="0.0" y="130" width="293" height="120"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBa-IS-Rr7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="141.66666666666666" height="120"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="유산소">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="chooseCategoryBtnsTapped:" destination="bvz-pS-Jtx" eventType="touchUpInside" id="xg7-rm-91c"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YQ-JJ-az7">
+                                                        <rect key="frame" x="151.66666666666663" y="0.0" width="141.33333333333337" height="120"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="스트레칭">
+                                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="chooseCategoryBtnsTapped:" destination="bvz-pS-Jtx" eventType="touchUpInside" id="scO-fS-HCv"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="9Wd-3b-La3"/>
+                                    <constraint firstItem="6i2-Th-2QH" firstAttribute="leading" secondItem="LHA-R5-Wi8" secondAttribute="leading" id="BVb-bp-U0B"/>
+                                    <constraint firstAttribute="bottom" secondItem="6i2-Th-2QH" secondAttribute="bottom" id="Dao-AI-SOq"/>
+                                    <constraint firstItem="6i2-Th-2QH" firstAttribute="top" secondItem="LHA-R5-Wi8" secondAttribute="top" id="V5p-Mf-zkR"/>
+                                    <constraint firstAttribute="trailing" secondItem="6i2-Th-2QH" secondAttribute="trailing" id="w18-IS-wcV"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGh-cT-zPp">
                                 <rect key="frame" x="0.0" y="59" width="393" height="80"/>
                                 <subviews>
@@ -214,7 +342,7 @@
                                     <constraint firstItem="JDf-dp-sEu" firstAttribute="leading" secondItem="gGh-cT-zPp" secondAttribute="leading" constant="10" id="v6x-3m-CH7"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZZ-bR-a5P">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZZ-bR-a5P">
                                 <rect key="frame" x="50" y="259" width="293" height="359"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nKh-sd-BdR">
@@ -224,7 +352,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="293" height="177"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4t-ba-6bM">
-                                                        <rect key="frame" x="0.0" y="0.6666666666666714" width="144" height="174.99999999999994"/>
+                                                        <rect key="frame" x="0.0" y="0.6666666666666714" width="144" height="175"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -351,27 +479,37 @@
                         <constraints>
                             <constraint firstItem="f6Q-ca-2lq" firstAttribute="trailing" secondItem="qKg-IQ-exw" secondAttribute="trailing" id="0yK-lF-Ee3"/>
                             <constraint firstItem="qKg-IQ-exw" firstAttribute="top" secondItem="gGh-cT-zPp" secondAttribute="bottom" constant="20" id="BUd-xi-oCI"/>
+                            <constraint firstItem="LHA-R5-Wi8" firstAttribute="leading" secondItem="f6Q-ca-2lq" secondAttribute="leading" constant="50" id="EHo-CT-cAi"/>
                             <constraint firstItem="qKg-IQ-exw" firstAttribute="top" secondItem="f6Q-ca-2lq" secondAttribute="top" constant="100" id="ISj-db-hS3"/>
                             <constraint firstItem="gGh-cT-zPp" firstAttribute="top" secondItem="f6Q-ca-2lq" secondAttribute="top" id="MpV-LI-QL0"/>
+                            <constraint firstItem="LHA-R5-Wi8" firstAttribute="centerX" secondItem="pss-3b-Q0q" secondAttribute="centerX" id="OvJ-fT-Efm"/>
                             <constraint firstItem="f6Q-ca-2lq" firstAttribute="bottom" secondItem="qKg-IQ-exw" secondAttribute="bottom" id="Pjf-SV-kyp"/>
                             <constraint firstItem="f6Q-ca-2lq" firstAttribute="bottom" secondItem="YZZ-bR-a5P" secondAttribute="bottom" constant="200" id="RhP-3z-1ia"/>
+                            <constraint firstItem="LHA-R5-Wi8" firstAttribute="centerY" secondItem="pss-3b-Q0q" secondAttribute="centerY" id="VT8-ic-zEc"/>
                             <constraint firstItem="f6Q-ca-2lq" firstAttribute="trailing" secondItem="YZZ-bR-a5P" secondAttribute="trailing" constant="50" id="WAS-Is-v5C"/>
                             <constraint firstItem="gGh-cT-zPp" firstAttribute="leading" secondItem="f6Q-ca-2lq" secondAttribute="leading" id="Wqi-fp-lG0"/>
                             <constraint firstItem="qKg-IQ-exw" firstAttribute="leading" secondItem="f6Q-ca-2lq" secondAttribute="leading" id="Xl1-CD-anj"/>
                             <constraint firstItem="YZZ-bR-a5P" firstAttribute="leading" secondItem="f6Q-ca-2lq" secondAttribute="leading" constant="50" id="Y46-QX-mQK"/>
                             <constraint firstItem="YZZ-bR-a5P" firstAttribute="top" secondItem="f6Q-ca-2lq" secondAttribute="top" constant="200" id="ayB-rU-aKX"/>
                             <constraint firstItem="f6Q-ca-2lq" firstAttribute="trailing" secondItem="gGh-cT-zPp" secondAttribute="trailing" id="nWw-4D-g4v"/>
+                            <constraint firstItem="f6Q-ca-2lq" firstAttribute="trailing" secondItem="LHA-R5-Wi8" secondAttribute="trailing" constant="50" id="vhb-oE-xpu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="categoryCollectionView" destination="JDf-dp-sEu" id="YQV-bW-lTm"/>
                         <outlet property="cellTabView" destination="YZZ-bR-a5P" id="H0U-UC-UBK"/>
+                        <outlet property="chooseCategoryView" destination="LHA-R5-Wi8" id="JzJ-Xs-DLz"/>
                         <outlet property="collectionView" destination="qKg-IQ-exw" id="Ytd-E8-bpR"/>
                         <outlet property="upperView" destination="gGh-cT-zPp" id="8tK-AL-fMM"/>
                         <outletCollection property="cardBtns" destination="P4t-ba-6bM" collectionClass="NSMutableArray" id="8Wz-G8-FnS"/>
                         <outletCollection property="cardBtns" destination="050-vJ-Enl" collectionClass="NSMutableArray" id="D7z-15-c0a"/>
                         <outletCollection property="cardBtns" destination="YbT-wg-lLb" collectionClass="NSMutableArray" id="FjW-We-UoZ"/>
                         <outletCollection property="cardBtns" destination="LrO-pU-aps" collectionClass="NSMutableArray" id="Mbe-1l-JMH"/>
+                        <outletCollection property="categoryBtns" destination="2qr-VS-tfb" collectionClass="NSMutableArray" id="kjP-xw-KAy"/>
+                        <outletCollection property="categoryBtns" destination="amd-cd-DeJ" collectionClass="NSMutableArray" id="tVh-84-l96"/>
+                        <outletCollection property="categoryBtns" destination="MKP-cZ-dzu" collectionClass="NSMutableArray" id="gKM-ze-YsR"/>
+                        <outletCollection property="categoryBtns" destination="EBa-IS-Rr7" collectionClass="NSMutableArray" id="LFL-B2-eIR"/>
+                        <outletCollection property="categoryBtns" destination="6YQ-JJ-az7" collectionClass="NSMutableArray" id="0RS-4e-MYU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kB7-Tp-cBN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -516,6 +654,9 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
