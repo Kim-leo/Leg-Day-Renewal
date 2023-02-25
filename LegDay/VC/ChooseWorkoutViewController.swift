@@ -29,6 +29,7 @@ class ChooseWorkoutViewController: UIViewController {
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var chooseCategoryView: UIView!
     @IBOutlet var categoryBtns: [UIButton]!
+    @IBOutlet weak var cancelChoosingCategoryBtn: UIButton!
     
     
 
@@ -125,6 +126,10 @@ class ChooseWorkoutViewController: UIViewController {
         print("workoutForCategories: \(chosenWorkout.workoutForCategories)")
     }
     
+    @IBAction func cancelChoosingCategoryBtnTapped(_ sender: UIButton) {
+        chooseCategoryView.alpha = 0
+        collectionView.alpha = 1
+    }
     
    
     
