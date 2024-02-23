@@ -9,11 +9,7 @@ import UIKit
 
 class StartWorkoutViewController: UIViewController {
 
-    var deckOfCards = Cards().cardSet
-    var sampleData = SampleData().datas
-    var emptyArray = [String]()
-    var pickedCard: String = ""
-    
+    //MARK: - View
     lazy var cardImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -35,23 +31,29 @@ class StartWorkoutViewController: UIViewController {
         return btn
     }()
     
+    // MARK: - Parameters
+    var cards = Cards()
+   
+    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(cardImageView)
         self.view.addSubview(cardNameLabel)
-        
         self.view.addSubview(nextBtn)
-
-        nextBtn.addTarget(self, action: #selector(self.nextBtnTappedAction), for: .touchUpInside)
         cardImageViewLayout()
         cardNameLabelLayout()
-        
         nextBtnLayout()
+        
+        nextBtn.addTarget(self, action: #selector(self.nextBtnTappedAction), for: .touchUpInside)
+        
     }
 
 }
 
 extension StartWorkoutViewController {
+    
+    // MARK: - Functions
     @objc func nextBtnTappedAction(_ sender: UIButton) {
         switch sender.currentTitle ?? "" {
         case "운동 끝!":
@@ -59,9 +61,7 @@ extension StartWorkoutViewController {
         case "재시작":
             nextBtn.setTitle("다음", for: .normal)
             
-            deckOfCards = Cards().cardSet
-            emptyArray.removeAll()
-            pickedCard = ""
+            cards = Cards()
             
             nextBtnTapped()
         default:
@@ -72,7 +72,7 @@ extension StartWorkoutViewController {
     }
     
     func nextBtnTapped() {
-        switch emptyArray.count {
+        switch cards.emptyArray.count {
         case 52:
             cardImageView.image = UIImage(named: "Joker")
             cardNameLabel.text = "운동 끝!"
@@ -80,15 +80,16 @@ extension StartWorkoutViewController {
             nextBtn.setTitle("재시작", for: .normal)
             break
         default:
-            pickedCard = deckOfCards.randomElement() ?? ""
+            cards.pickedCard = cards.cardSet.randomElement() ?? ""
             
-            cardNameLabel.text = pickedCard
-            cardImageView.image = UIImage(named: pickedCard)
+            cardNameLabel.text = cards.pickedCard
+            cardImageView.image = UIImage(named: cards.pickedCard)
                 
-            deckOfCards.remove(pickedCard)
-            emptyArray.append(pickedCard)
+            cards.cardSet.remove(cards.pickedCard)
+            cards.emptyArray.append(cards.pickedCard)
         }
     }
+    
     
     // MARK: - UI Components Auto Layout
     func cardImageViewLayout() {
@@ -116,6 +117,6 @@ extension StartWorkoutViewController {
         nextBtn.topAnchor.constraint(equalTo: cardNameLabel.bottomAnchor, constant: 50).isActive = true
         nextBtn.widthAnchor.constraint(equalToConstant: 100).isActive = true
         nextBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    
+        
     }
 }
