@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E66815E32B8AE9E800673D37 /* SetWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66815E22B8AE9E800673D37 /* SetWorkoutViewController.swift */; };
 		E6EB83F92B8839EF00E4C6E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB83F82B8839EF00E4C6E7 /* AppDelegate.swift */; };
 		E6EB83FB2B8839EF00E4C6E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB83FA2B8839EF00E4C6E7 /* SceneDelegate.swift */; };
 		E6EB83FD2B8839EF00E4C6E7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB83FC2B8839EF00E4C6E7 /* HomeViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E66815E22B8AE9E800673D37 /* SetWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetWorkoutViewController.swift; sourceTree = "<group>"; };
 		E6EB83F52B8839EF00E4C6E7 /* DeckOfCardsWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeckOfCardsWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6EB83F82B8839EF00E4C6E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6EB83FA2B8839EF00E4C6E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				E6EB83FC2B8839EF00E4C6E7 /* HomeViewController.swift */,
 				E6EB840C2B88409C00E4C6E7 /* StartWorkoutViewController.swift */,
+				E66815E22B8AE9E800673D37 /* SetWorkoutViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				E6EB83FB2B8839EF00E4C6E7 /* SceneDelegate.swift in Sources */,
 				E6EB841B2B885DDE00E4C6E7 /* Workout.swift in Sources */,
 				E6EB841D2B886AA100E4C6E7 /* Extensions.swift in Sources */,
+				E66815E32B8AE9E800673D37 /* SetWorkoutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
