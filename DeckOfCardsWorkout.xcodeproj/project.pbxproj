@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E66815E32B8AE9E800673D37 /* SetWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66815E22B8AE9E800673D37 /* SetWorkoutViewController.swift */; };
+		E66815E82B8B2FA200673D37 /* UpperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66815E62B8B2FA200673D37 /* UpperCell.swift */; };
+		E66815E92B8B2FA200673D37 /* UpperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E66815E72B8B2FA200673D37 /* UpperCell.xib */; };
 		E6EB83F92B8839EF00E4C6E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB83F82B8839EF00E4C6E7 /* AppDelegate.swift */; };
 		E6EB83FB2B8839EF00E4C6E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB83FA2B8839EF00E4C6E7 /* SceneDelegate.swift */; };
 		E6EB83FD2B8839EF00E4C6E7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB83FC2B8839EF00E4C6E7 /* HomeViewController.swift */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		E66815E22B8AE9E800673D37 /* SetWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetWorkoutViewController.swift; sourceTree = "<group>"; };
+		E66815E62B8B2FA200673D37 /* UpperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperCell.swift; sourceTree = "<group>"; };
+		E66815E72B8B2FA200673D37 /* UpperCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpperCell.xib; sourceTree = "<group>"; };
 		E6EB83F52B8839EF00E4C6E7 /* DeckOfCardsWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeckOfCardsWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6EB83F82B8839EF00E4C6E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6EB83FA2B8839EF00E4C6E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 				E6EB83FC2B8839EF00E4C6E7 /* HomeViewController.swift */,
 				E6EB840C2B88409C00E4C6E7 /* StartWorkoutViewController.swift */,
 				E66815E22B8AE9E800673D37 /* SetWorkoutViewController.swift */,
+				E66815E62B8B2FA200673D37 /* UpperCell.swift */,
+				E66815E72B8B2FA200673D37 /* UpperCell.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -182,6 +188,7 @@
 			files = (
 				E6EB84052B8839F200E4C6E7 /* LaunchScreen.storyboard in Resources */,
 				E6EB84022B8839F200E4C6E7 /* Assets.xcassets in Resources */,
+				E66815E92B8B2FA200673D37 /* UpperCell.xib in Resources */,
 				E6EB84002B8839EF00E4C6E7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +204,7 @@
 				E6EB83F92B8839EF00E4C6E7 /* AppDelegate.swift in Sources */,
 				E6EB84152B885BD800E4C6E7 /* Card.swift in Sources */,
 				E6EB840D2B88409C00E4C6E7 /* StartWorkoutViewController.swift in Sources */,
+				E66815E82B8B2FA200673D37 /* UpperCell.swift in Sources */,
 				E6EB83FB2B8839EF00E4C6E7 /* SceneDelegate.swift in Sources */,
 				E6EB841B2B885DDE00E4C6E7 /* Workout.swift in Sources */,
 				E6EB841D2B886AA100E4C6E7 /* Extensions.swift in Sources */,

@@ -8,6 +8,8 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    // MARK: - View
 
     lazy var startWorkoutVCBtn: UIButton = {
         let btn = UIButton()
@@ -33,6 +35,10 @@ class HomeViewController: UIViewController {
         sv.spacing = 20
         return sv
     }()
+    
+    // MARK: - Parameters
+    
+    let chosenWorkouts = ChosenWorkouts.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
