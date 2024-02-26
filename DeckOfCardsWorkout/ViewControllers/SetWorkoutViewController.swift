@@ -54,6 +54,8 @@ class SetWorkoutViewController: UIViewController {
         return cv
     }()
     
+    
+    
     // MARK: - Parameters
     
     let workoutSorting = WorkoutSorting()
@@ -145,7 +147,18 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView.tag {
         case 0:
-            print(workoutSorting.typeOfWorkouts[indexPath.row])
+            collectionView.performBatchUpdates {
+                chosenWorkouts.yourAllWorkoutsArray.removeAll()
+                if workoutSorting.typeOfWorkouts[indexPath.row] == "전체" {
+                    chosenWorkouts.yourAllWorkoutsArray.append("+ 직접 입력")
+                    chosenWorkouts.yourAllWorkoutsArray += Array(chosenWorkouts.workoutForCategories.joined())
+                } else {
+                    chosenWorkouts.yourAllWorkoutsArray += Array(chosenWorkouts.workoutForCategories[indexPath.row])
+                }
+                self.lowerCollectinView.reloadData()
+            }
+        case 1:
+            print("hi")
         default:
             break
         }
