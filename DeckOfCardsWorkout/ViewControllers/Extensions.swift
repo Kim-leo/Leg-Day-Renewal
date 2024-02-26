@@ -49,3 +49,20 @@ extension String {
         }
     }
 }
+
+extension UIViewController {
+    @objc func leftBarBtnTapped(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func rightBarBtnTapped(_ sender: UIBarButtonItem) {
+//        chosenWorkout.spadePart = preChosenSpade
+//        chosenWorkout.heartPart = preChosenHeart
+//        chosenWorkout.diamondPart = preChosenDiamond
+//        chosenWorkout.cloverPart = preChosenClover
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
+}
