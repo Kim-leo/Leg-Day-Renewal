@@ -10,56 +10,15 @@ import UIKit
 class SetWorkoutViewController: UIViewController {
 
     // MARK: - View
-    lazy var upperView: UIView = {
-        let v = UIView()
-        return v
-    }()
-    
-    lazy var upperCollectinView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 50
-        layout.footerReferenceSize = .zero
-        layout.headerReferenceSize = .zero
-        
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.tag = 0
-        cv.isPagingEnabled = true
-        cv.showsHorizontalScrollIndicator = true
-        cv.backgroundColor = .clear
-        cv.register(UpperCell.self, forCellWithReuseIdentifier: "UpperCell")
-        return cv
-    }()
-    
-    lazy var lowerView: UIView = {
-        let v = UIView()
-        return v
-    }()
-    
-    lazy var lowerCollectinView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 5
-        layout.minimumInteritemSpacing = 5
-        layout.footerReferenceSize = .zero
-        layout.headerReferenceSize = .zero
-        
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.tag = 1
-        cv.isPagingEnabled = true
-        cv.showsVerticalScrollIndicator = true
-        cv.register(LowerCell.self, forCellWithReuseIdentifier: "LowerCell")
-        cv.backgroundColor = .clear
-        return cv
-    }()
-    
     
     
     // MARK: - Parameters
     
     let workoutSorting = WorkoutSorting()
     let chosenWorkouts = ChosenWorkouts.shared
+    let anyView = AnyView()
+    
+    var inputWorkout: String = ""
     
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -71,22 +30,8 @@ class SetWorkoutViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
         self.navigationItem.rightBarButtonItem = self.rightBarBtn
-
-        /*
-         [startWorkoutVCBtn, setWorkoutVCBtn].map {
-             self.stackViewForBtns.addArrangedSubview($0)
-         }
-         */
-        [upperView, lowerView].map {
-            self.view.addSubview($0)
-        }
-        upperView.addSubview(upperCollectinView)
-        lowerView.addSubview(lowerCollectinView)
         
-        upperCollectinView.delegate = self
-        upperCollectinView.dataSource = self
-        lowerCollectinView.delegate = self
-        lowerCollectinView.dataSource = self
+        setupUI()
         viewsLayout()
         
         chosenWorkouts.yourAllWorkoutsArray += Array(chosenWorkouts.workoutForCategories.joined())
@@ -132,8 +77,8 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView.tag {
         case 0:
-            let width = upperCollectinView.frame.width / 4
-            let height = upperCollectinView.frame.height
+            let width = anyView.upperCollectinView.frame.width / 4
+            let height = anyView.upperCollectinView.frame.height
             return CGSize(width: width, height: height)
         case 1:
             let width = collectionView.frame.width / 3 - 5
@@ -155,10 +100,32 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
                 } else {
                     chosenWorkouts.yourAllWorkoutsArray += Array(chosenWorkouts.workoutForCategories[indexPath.row])
                 }
-                self.lowerCollectinView.reloadData()
+                anyView.lowerCollectinView.reloadData()
             }
         case 1:
-            print("hi")
+            switch chosenWorkouts.yourAllWorkoutsArray[indexPath.row] {
+            case "+ 직접 입력":
+                let alert = UIAlertController(title: "추가하기", message: "수행하고 싶은 운동을 직접 추가합니다.", preferredStyle: .alert)
+                alert.addTextField{ (myTextField) in
+                    myTextField.placeholder = "입력하기"
+                }
+                let okAction = UIAlertAction(title: "카테고리 지정", style: .default) { [self] (ok) in
+                    // 카테고리 지정하는 뷰 띄우기
+                    anyView.lowerCollectinView.alpha = 0.5
+                    anyView.stackViewVertical.alpha = 1
+                    self.view.bringSubviewToFront(anyView.stackViewVertical)
+                    inputWorkout = alert.textFields?[0].text ?? ""
+                }
+                let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in }
+                alert.addAction(okAction)
+                alert.addAction(cancel)
+                self.present(alert, animated: true, completion: nil)
+            default:
+                collectionView.alpha = 0.5
+//                cellTabView.alpha = 1
+//                self.view.bringSubviewToFront(cellTabView)
+//                whichWorkout = chosenWorkouts.yourAllWorkoutsArray[indexPath.row]
+            }
         default:
             break
         }
@@ -168,31 +135,62 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
 
 // MARK: - View Layout
 extension SetWorkoutViewController {
+    func setupUI() {
+        [anyView.upperView, anyView.lowerView, anyView.stackViewVertical].map {
+            self.view.addSubview($0)
+        }
+        
+        [anyView.stackViewHorizontal1, anyView.stackViewHorizontal2, anyView.cancelBtnView].map {
+            anyView.stackViewVertical.addArrangedSubview($0)
+        }
+
+        anyView.upperView.addSubview(anyView.upperCollectinView)
+        anyView.lowerView.addSubview(anyView.lowerCollectinView)
+        
+        anyView.upperCollectinView.delegate = self
+        anyView.upperCollectinView.dataSource = self
+        anyView.lowerCollectinView.delegate = self
+        anyView.lowerCollectinView.dataSource = self
+        
+        anyView.stackViewVertical.alpha = 0
+    }
+    
     func viewsLayout() {
-        upperView.translatesAutoresizingMaskIntoConstraints = false
-        upperView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        upperView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+        anyView.upperView.translatesAutoresizingMaskIntoConstraints = false
+        anyView.upperView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        anyView.upperView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         .isActive = true
-        upperView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        upperView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        anyView.upperView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        anyView.upperView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        upperCollectinView.translatesAutoresizingMaskIntoConstraints = false
-        upperCollectinView.topAnchor.constraint(equalTo: upperView.topAnchor).isActive = true
-        upperCollectinView.leadingAnchor.constraint(equalTo: upperView.leadingAnchor).isActive = true
-        upperCollectinView.trailingAnchor.constraint(equalTo: upperView.trailingAnchor).isActive = true
-        upperCollectinView.bottomAnchor.constraint(equalTo: upperView.bottomAnchor).isActive = true
+        anyView.upperCollectinView.translatesAutoresizingMaskIntoConstraints = false
+        anyView.upperCollectinView.topAnchor.constraint(equalTo: anyView.upperView.topAnchor).isActive = true
+        anyView.upperCollectinView.leadingAnchor.constraint(equalTo: anyView.upperView.leadingAnchor).isActive = true
+        anyView.upperCollectinView.trailingAnchor.constraint(equalTo: anyView.upperView.trailingAnchor).isActive = true
+        anyView.upperCollectinView.bottomAnchor.constraint(equalTo: anyView.upperView.bottomAnchor).isActive = true
         
-        lowerView.translatesAutoresizingMaskIntoConstraints = false
-        lowerView.topAnchor.constraint(equalTo: self.upperView.bottomAnchor, constant: 5).isActive = true
-        lowerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        lowerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        lowerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        anyView.lowerView.translatesAutoresizingMaskIntoConstraints = false
+        anyView.lowerView.topAnchor.constraint(equalTo: anyView.upperView.bottomAnchor, constant: 5).isActive = true
+        anyView.lowerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        anyView.lowerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        anyView.lowerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-        lowerCollectinView.translatesAutoresizingMaskIntoConstraints = false
-        lowerCollectinView.topAnchor.constraint(equalTo: lowerView.topAnchor).isActive = true
-        lowerCollectinView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 5).isActive = true
-        lowerCollectinView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -5).isActive = true
-        lowerCollectinView.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor).isActive = true
+        anyView.lowerCollectinView.translatesAutoresizingMaskIntoConstraints = false
+        anyView.lowerCollectinView.topAnchor.constraint(equalTo: anyView.lowerView.topAnchor).isActive = true
+        anyView.lowerCollectinView.leadingAnchor.constraint(equalTo: anyView.lowerView.leadingAnchor, constant: 5).isActive = true
+        anyView.lowerCollectinView.trailingAnchor.constraint(equalTo: anyView.lowerView.trailingAnchor, constant: -5).isActive = true
+        anyView.lowerCollectinView.bottomAnchor.constraint(equalTo: anyView.lowerView.bottomAnchor).isActive = true
         
+        anyView.stackViewVertical.translatesAutoresizingMaskIntoConstraints = false
+        anyView.stackViewVertical.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        anyView.stackViewVertical.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        anyView.stackViewVertical.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
+        anyView.stackViewVertical.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3).isActive = true
+        
+        anyView.cancelBtn.translatesAutoresizingMaskIntoConstraints = false
+        anyView.cancelBtn.centerXAnchor.constraint(equalTo: anyView.stackViewVertical.centerXAnchor).isActive = true
+        anyView.cancelBtn.centerYAnchor.constraint(equalTo: anyView.cancelBtnView.centerYAnchor).isActive = true
+        anyView.cancelBtn.widthAnchor.constraint(equalTo: anyView.cancelBtnView.widthAnchor, multiplier: 0.2).isActive = true
+        anyView.cancelBtn.heightAnchor.constraint(equalTo: anyView.cancelBtn.widthAnchor).isActive = true
     }
 }

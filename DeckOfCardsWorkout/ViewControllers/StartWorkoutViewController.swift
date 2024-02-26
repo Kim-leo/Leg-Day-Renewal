@@ -41,6 +41,7 @@ class StartWorkoutViewController: UIViewController {
     // MARK: - Parameters
     var cards = Cards()
     let chosenWorkout = ChosenWorkouts.shared
+    let anyView = AnyView()
     
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {

@@ -26,28 +26,29 @@ class HomeViewController: UIViewController {
         return btn
     }()
     
-    lazy var stackViewForBtns: UIStackView = {
-        let sv = UIStackView()
-        sv.axis = .vertical
-        sv.alignment = .fill
-        sv.distribution = .fillEqually
-        sv.spacing = 20
-        return sv
-    }()
+//    lazy var stackViewForBtns: UIStackView = {
+//        let sv = UIStackView()
+//        sv.axis = .vertical
+//        sv.alignment = .fill
+//        sv.distribution = .fillEqually
+//        sv.spacing = 20
+//        return sv
+//    }()
     
     // MARK: - Parameters
     
     let chosenWorkouts = ChosenWorkouts.shared
+    let anyView = AnyView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Home ViewController")
         
-        self.view.addSubview(stackViewForBtns)
+        self.view.addSubview(anyView.stackViewVertical)
         [startWorkoutVCBtn, setWorkoutVCBtn].map {
-            self.stackViewForBtns.addArrangedSubview($0)
+            self.anyView.stackViewVertical.addArrangedSubview($0)
         }
-        stackViewForBtnsLayout()
+        viewsLayout()
         
         startWorkoutVCBtn.addTarget(self, action: #selector(self.startWorkoutVCBtnTapped), for: .touchUpInside)
         setWorkoutVCBtn.addTarget(self, action: #selector(self.setWorkoutVCBtnTapped), for: .touchUpInside)
@@ -68,14 +69,12 @@ extension HomeViewController {
         self.navigationController?.pushViewController(setWorkoutVC, animated: true)
     }
     
-    func stackViewForBtnsLayout() {
-        stackViewForBtns.translatesAutoresizingMaskIntoConstraints = false
-        stackViewForBtns.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        stackViewForBtns.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        stackViewForBtns.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
-        stackViewForBtns.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
-        stackViewForBtns.heightAnchor.constraint(equalToConstant: 100).isActive = true
+    func viewsLayout() {
+        anyView.stackViewVertical.translatesAutoresizingMaskIntoConstraints = false
+        anyView.stackViewVertical.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        anyView.stackViewVertical.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 50).isActive = true
+        anyView.stackViewVertical.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -50).isActive = true
+        anyView.stackViewVertical.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
-
     
 }
