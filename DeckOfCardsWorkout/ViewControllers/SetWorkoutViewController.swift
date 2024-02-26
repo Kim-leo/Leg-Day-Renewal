@@ -16,8 +16,10 @@ class SetWorkoutViewController: UIViewController {
     
     let workoutSorting = WorkoutSorting()
     let chosenWorkouts = ChosenWorkouts.shared
+    var originalWorkouts = [String]()
     let anyView = AnyView()
     
+    var whichWorkout: String = ""
     var inputWorkout: String = ""
     
     // MARK: - View Life Cycle
@@ -35,7 +37,11 @@ class SetWorkoutViewController: UIViewController {
         viewsLayout()
         
         chosenWorkouts.yourAllWorkoutsArray += Array(chosenWorkouts.workoutForCategories.joined())
+        originalWorkouts = chosenWorkouts.yourAllWorkoutsArray
+        
     }
+    
+    
     
 }
 
@@ -67,6 +73,13 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: indexPath) as? LowerCell else { return UICollectionViewCell() }
             cell.parent = self
             cell.typesOfWorkoutLabel.text = chosenWorkouts.yourAllWorkoutsArray[indexPath.row]
+            
+//            if !originalWorkouts.contains(inputWorkout) {
+//                cell.typesOfWorkoutLabel.backgroundColor = .systemBlue
+//                cell.typesOfWorkoutLabel.textColor = .white
+//            }
+            
+            
             return cell
         default:
             return UICollectionViewCell()
@@ -111,10 +124,10 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
                 }
                 let okAction = UIAlertAction(title: "카테고리 지정", style: .default) { [self] (ok) in
                     // 카테고리 지정하는 뷰 띄우기
+                    inputWorkout = alert.textFields?[0].text ?? ""
                     anyView.lowerCollectinView.alpha = 0.5
                     anyView.stackViewVertical.alpha = 1
                     self.view.bringSubviewToFront(anyView.stackViewVertical)
-                    inputWorkout = alert.textFields?[0].text ?? ""
                 }
                 let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in }
                 alert.addAction(okAction)
@@ -123,7 +136,7 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
             default:
                 collectionView.alpha = 0.5
 //                cellTabView.alpha = 1
-//                self.view.bringSubviewToFront(cellTabView)
+//                self.view.bringSubviewToFront(anyView.cellTabView)
 //                whichWorkout = chosenWorkouts.yourAllWorkoutsArray[indexPath.row]
             }
         default:
@@ -135,6 +148,40 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
 
 // MARK: - View Layout
 extension SetWorkoutViewController {
+    @objc func categoryBtnTapped(_ sender: UIButton) {
+        
+        
+        anyView.stackViewVertical.alpha = 0
+        anyView.lowerCollectinView.alpha = 1
+       
+        chosenWorkouts.workoutForCategories[sender.tag].append(inputWorkout)
+        
+        
+        
+//        var yourCell = anyView.lowerCollectinView.cellForItem(at: IndexPath(item: 1, section: 0))
+//        yourCell?.backgroundColor = .systemBlue
+        
+        anyView.lowerCollectinView.reloadData()
+        anyView.lowerCollectinView.performBatchUpdates {
+            
+            
+            anyView.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
+            
+            chosenWorkouts.yourAllWorkoutsArray.insert(inputWorkout, at: 1)
+            
+            
+        } completion: { [weak self] _ in
+        }
+        
+        originalWorkouts.append(inputWorkout)
+    }
+    
+    @objc func cancelBtnTapped(_ sender: UIButton) {
+        inputWorkout = ""
+        anyView.stackViewVertical.alpha = 0
+        anyView.lowerCollectinView.alpha = 1
+    }
+    
     func setupUI() {
         [anyView.upperView, anyView.lowerView, anyView.stackViewVertical].map {
             self.view.addSubview($0)
@@ -143,6 +190,12 @@ extension SetWorkoutViewController {
         [anyView.stackViewHorizontal1, anyView.stackViewHorizontal2, anyView.cancelBtnView].map {
             anyView.stackViewVertical.addArrangedSubview($0)
         }
+        
+        anyView.categoryBtns.map {
+            $0.setTitle("\(workoutSorting.typeOfWorkouts[$0.tag])", for: .normal)
+            $0.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
+        }
+        anyView.cancelBtn.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
 
         anyView.upperView.addSubview(anyView.upperCollectinView)
         anyView.lowerView.addSubview(anyView.lowerCollectinView)
