@@ -10,7 +10,6 @@ import UIKit
 class HomeViewController: UIViewController {
     
     // MARK: - View
-
     lazy var startWorkoutVCBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("운동 시작", for: .normal)
@@ -47,7 +46,6 @@ class HomeViewController: UIViewController {
         self.view.addSubview(stackViewForBtns)
         [startWorkoutVCBtn, setWorkoutVCBtn].map {
             self.stackViewForBtns.addArrangedSubview($0)
-            
         }
         stackViewForBtnsLayout()
         

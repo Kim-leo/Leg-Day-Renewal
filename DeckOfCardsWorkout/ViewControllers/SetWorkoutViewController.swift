@@ -10,39 +10,47 @@ import UIKit
 class SetWorkoutViewController: UIViewController {
 
     // MARK: - View
-    lazy var leftBarBtn: UIBarButtonItem = {
-        let btn = UIBarButtonItem(title: "돌아가기", style: .plain, target: self, action: #selector(leftBarBtnTapped(_:)))
-        btn.tintColor = .darkGray
-        return btn
-    }()
-    
-    lazy var rightBarBtn: UIBarButtonItem = {
-        let btn = UIBarButtonItem(title: "저장하기", style: .plain, target: self, action: #selector(rightBarBtnTapped(_:)))
-        btn.tintColor = .darkGray
-        return btn
-    }()
-    
     lazy var upperView: UIView = {
         let v = UIView()
-        v.backgroundColor = .black
         return v
     }()
     
     lazy var upperCollectinView: UICollectionView = {
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 50
         layout.footerReferenceSize = .zero
         layout.headerReferenceSize = .zero
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .systemBlue
         cv.tag = 0
         cv.isPagingEnabled = true
-        cv.showsHorizontalScrollIndicator = false
+        cv.showsHorizontalScrollIndicator = true
+        cv.backgroundColor = .clear
         cv.register(UpperCell.self, forCellWithReuseIdentifier: "UpperCell")
-        cv.backgroundColor = .lightGray
+        return cv
+    }()
+    
+    lazy var lowerView: UIView = {
+        let v = UIView()
+        return v
+    }()
+    
+    lazy var lowerCollectinView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
+        layout.footerReferenceSize = .zero
+        layout.headerReferenceSize = .zero
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.tag = 1
+        cv.isPagingEnabled = true
+        cv.showsVerticalScrollIndicator = true
+        cv.register(LowerCell.self, forCellWithReuseIdentifier: "LowerCell")
+        cv.backgroundColor = .clear
         return cv
     }()
     
@@ -62,31 +70,28 @@ class SetWorkoutViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
         self.navigationItem.rightBarButtonItem = self.rightBarBtn
 
-        self.view.addSubview(upperView)
+        /*
+         [startWorkoutVCBtn, setWorkoutVCBtn].map {
+             self.stackViewForBtns.addArrangedSubview($0)
+         }
+         */
+        [upperView, lowerView].map {
+            self.view.addSubview($0)
+        }
         upperView.addSubview(upperCollectinView)
+        lowerView.addSubview(lowerCollectinView)
         
         upperCollectinView.delegate = self
         upperCollectinView.dataSource = self
-        
+        lowerCollectinView.delegate = self
+        lowerCollectinView.dataSource = self
         viewsLayout()
+        
+        chosenWorkouts.yourAllWorkoutsArray += Array(chosenWorkouts.workoutForCategories.joined())
     }
     
 }
 
-extension SetWorkoutViewController {
-    @objc func leftBarBtnTapped(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func rightBarBtnTapped(_ sender: UIBarButtonItem) {
-//        chosenWorkout.spadePart = preChosenSpade
-//        chosenWorkout.heartPart = preChosenHeart
-//        chosenWorkout.diamondPart = preChosenDiamond
-//        chosenWorkout.cloverPart = preChosenClover
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-}
 // MARK: - CollectionView Extension
 extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -96,6 +101,8 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
         switch collectionView.tag {
         case 0:
             return workoutSorting.typeOfWorkouts.count
+        case 1:
+            return chosenWorkouts.yourAllWorkoutsArray.count
         default:
             return 0
             break
@@ -109,6 +116,11 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.typesOfWorkoutLabel.text = workoutSorting.typeOfWorkouts[indexPath.row]
             
             return cell
+        case 1:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: indexPath) as? LowerCell else { return UICollectionViewCell() }
+            cell.parent = self
+            cell.typesOfWorkoutLabel.text = chosenWorkouts.yourAllWorkoutsArray[indexPath.row]
+            return cell
         default:
             return UICollectionViewCell()
             break
@@ -121,6 +133,9 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
             let width = upperCollectinView.frame.width / 4
             let height = upperCollectinView.frame.height
             return CGSize(width: width, height: height)
+        case 1:
+            let width = collectionView.frame.width / 3 - 5
+            return CGSize(width: width, height: width)
         default:
             return CGSize()
             break
@@ -153,6 +168,18 @@ extension SetWorkoutViewController {
         upperCollectinView.leadingAnchor.constraint(equalTo: upperView.leadingAnchor).isActive = true
         upperCollectinView.trailingAnchor.constraint(equalTo: upperView.trailingAnchor).isActive = true
         upperCollectinView.bottomAnchor.constraint(equalTo: upperView.bottomAnchor).isActive = true
+        
+        lowerView.translatesAutoresizingMaskIntoConstraints = false
+        lowerView.topAnchor.constraint(equalTo: self.upperView.bottomAnchor, constant: 5).isActive = true
+        lowerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        lowerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        lowerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        lowerCollectinView.translatesAutoresizingMaskIntoConstraints = false
+        lowerCollectinView.topAnchor.constraint(equalTo: lowerView.topAnchor).isActive = true
+        lowerCollectinView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 5).isActive = true
+        lowerCollectinView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -5).isActive = true
+        lowerCollectinView.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor).isActive = true
         
     }
 }

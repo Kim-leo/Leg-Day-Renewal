@@ -13,9 +13,10 @@ class UpperCell: UICollectionViewCell {
     
     lazy var typesOfWorkoutLabel: UILabel = {
         let label = UILabel()
-        label.layer.cornerRadius = 5
+        label.layer.cornerRadius = 10
         label.clipsToBounds = true
         label.layer.borderColor = UIColor.darkGray.cgColor
+        label.layer.borderWidth = 1
         label.backgroundColor = .white
         label.textColor = .darkGray
         label.textAlignment = .center
