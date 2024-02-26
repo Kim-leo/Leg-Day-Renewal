@@ -117,9 +117,10 @@ class ChooseWorkoutViewController: UIViewController {
         chosenWorkout.workoutForCategories[sender.tag].append(inputWorkout)
         chosenWorkout.yourAllWorkoutsArray.append(inputWorkout)
         
+        collectionView.reloadData()
         collectionView.performBatchUpdates {
-        chosenWorkout.yourAllWorkoutsArray.insert(inputWorkout, at: 1)
-        self.collectionView.insertItems(at: [IndexPath(item: 1, section: 0)])
+            chosenWorkout.yourAllWorkoutsArray.insert(inputWorkout, at: 1)
+            self.collectionView.insertItems(at: [IndexPath(item: 1, section: 0)])
         } completion: { [weak self] _ in
         }
         
@@ -178,6 +179,7 @@ extension ChooseWorkoutViewController: UICollectionViewDelegate, UICollectionVie
         case 1:
             print(workoutData.typeOfWorkouts[indexPath.row])    // 상체
             print(workoutData.categoryArrays[indexPath.row])    // 이두, 삼두 ,,,,
+            
             
             if workoutData.typeOfWorkouts[indexPath.row] == "전체" {
                 collectionView.performBatchUpdates {
