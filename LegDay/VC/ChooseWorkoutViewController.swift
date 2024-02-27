@@ -43,6 +43,7 @@ class ChooseWorkoutViewController: UIViewController {
     var preChosenClover: String?
     
     var preChosenWorkoutArray = ["", "", "", ""]
+    var originalWorkouts = [String]()
     
     var whichWorkout: String = ""
     var inputWorkout: String = ""
@@ -68,16 +69,20 @@ class ChooseWorkoutViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = self.rightBarBtn
 
         cellTabView.alpha = 0
-        
-        
-//        chosenWorkout.yourAllWorkoutsArray += Array(workoutData.categoryArrays.joined())
-        chosenWorkout.yourAllWorkoutsArray += Array(chosenWorkout.workoutForCategories.joined())
+        initialSetting()
     }
     
    
     
     
     // MARK: - Functions
+    func initialSetting() {
+        if chosenWorkout.yourAllWorkoutsArray.count == 1 {
+            chosenWorkout.yourAllWorkoutsArray += Array(chosenWorkout.workoutForCategories.joined())
+            originalWorkouts = chosenWorkout.yourAllWorkoutsArray
+        }
+    }
+    
     @objc func leftBarBtnTapped(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -117,12 +122,14 @@ class ChooseWorkoutViewController: UIViewController {
         chosenWorkout.workoutForCategories[sender.tag].append(inputWorkout)
         chosenWorkout.yourAllWorkoutsArray.append(inputWorkout)
         
-        collectionView.reloadData()
+        
         collectionView.performBatchUpdates {
             chosenWorkout.yourAllWorkoutsArray.insert(inputWorkout, at: 1)
             self.collectionView.insertItems(at: [IndexPath(item: 1, section: 0)])
+            collectionView.reloadData()
         } completion: { [weak self] _ in
         }
+        
         
         print("workoutForCategories: \(chosenWorkout.workoutForCategories)")
     }
