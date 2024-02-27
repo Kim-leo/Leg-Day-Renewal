@@ -26,19 +26,14 @@ class HomeViewController: UIViewController {
         return btn
     }()
     
-//    lazy var stackViewForBtns: UIStackView = {
-//        let sv = UIStackView()
-//        sv.axis = .vertical
-//        sv.alignment = .fill
-//        sv.distribution = .fillEqually
-//        sv.spacing = 20
-//        return sv
-//    }()
-    
     // MARK: - Parameters
     
     let chosenWorkouts = ChosenWorkouts.shared
     let anyView = AnyView()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("Hello")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -22,22 +22,24 @@ class SetWorkoutViewController: UIViewController {
     var whichWorkout: String = ""
     var inputWorkout: String = ""
     
+    
+    
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
-        self.navigationItem.rightBarButtonItem = self.rightBarBtn
         
         setupUI()
         viewsLayout()
         
-        chosenWorkouts.yourAllWorkoutsArray += Array(chosenWorkouts.workoutForCategories.joined())
-        originalWorkouts = chosenWorkouts.yourAllWorkoutsArray
+        initialSetting()
+        
         
     }
     
@@ -73,12 +75,6 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: indexPath) as? LowerCell else { return UICollectionViewCell() }
             cell.parent = self
             cell.typesOfWorkoutLabel.text = chosenWorkouts.yourAllWorkoutsArray[indexPath.row]
-            
-//            if !originalWorkouts.contains(inputWorkout) {
-//                cell.typesOfWorkoutLabel.backgroundColor = .systemBlue
-//                cell.typesOfWorkoutLabel.textColor = .white
-//            }
-            
             
             return cell
         default:
@@ -135,9 +131,9 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
                 self.present(alert, animated: true, completion: nil)
             default:
                 collectionView.alpha = 0.5
-//                cellTabView.alpha = 1
-//                self.view.bringSubviewToFront(anyView.cellTabView)
-//                whichWorkout = chosenWorkouts.yourAllWorkoutsArray[indexPath.row]
+                anyView.verticalStackViewForSettingPokerShapes.alpha = 1
+                self.view.bringSubviewToFront(anyView.verticalStackViewForSettingPokerShapes)
+                whichWorkout = chosenWorkouts.yourAllWorkoutsArray[indexPath.row]
             }
         default:
             break
@@ -148,31 +144,23 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
 
 // MARK: - View Layout
 extension SetWorkoutViewController {
+    func initialSetting() {
+        if chosenWorkouts.yourAllWorkoutsArray.count == 1 {
+            chosenWorkouts.yourAllWorkoutsArray += Array(chosenWorkouts.workoutForCategories.joined())
+            originalWorkouts = chosenWorkouts.yourAllWorkoutsArray
+        }
+    }
+    
     @objc func categoryBtnTapped(_ sender: UIButton) {
-        
-        
         anyView.stackViewVertical.alpha = 0
         anyView.lowerCollectinView.alpha = 1
-       
         chosenWorkouts.workoutForCategories[sender.tag].append(inputWorkout)
-        
-        
-        
-//        var yourCell = anyView.lowerCollectinView.cellForItem(at: IndexPath(item: 1, section: 0))
-//        yourCell?.backgroundColor = .systemBlue
-        
         anyView.lowerCollectinView.reloadData()
         anyView.lowerCollectinView.performBatchUpdates {
-            
-            
             anyView.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
-            
             chosenWorkouts.yourAllWorkoutsArray.insert(inputWorkout, at: 1)
-            
-            
         } completion: { [weak self] _ in
         }
-        
         originalWorkouts.append(inputWorkout)
     }
     
@@ -182,8 +170,18 @@ extension SetWorkoutViewController {
         anyView.lowerCollectinView.alpha = 1
     }
     
+    @objc func pokerShapeBtnsTapped(_ sender: UIButton) {
+        anyView.verticalStackViewForSettingPokerShapes.alpha = 0
+        anyView.lowerCollectinView.alpha = 1
+        
+        sender.setTitle(whichWorkout, for: .normal)
+        
+        chosenWorkouts.selectedWorkoutPerPokerShapeArray[sender.tag] = whichWorkout
+        print(chosenWorkouts.selectedWorkoutPerPokerShapeArray)
+    }
+    
     func setupUI() {
-        [anyView.upperView, anyView.lowerView, anyView.stackViewVertical].map {
+        [anyView.upperView, anyView.lowerView, anyView.stackViewVertical, anyView.verticalStackViewForSettingPokerShapes].map {
             self.view.addSubview($0)
         }
         
@@ -196,7 +194,11 @@ extension SetWorkoutViewController {
             $0.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
         }
         anyView.cancelBtn.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
-
+        
+        anyView.pokerShapeBtns.map {
+            $0.addTarget(self, action: #selector(pokerShapeBtnsTapped), for: .touchUpInside)
+        }
+        
         anyView.upperView.addSubview(anyView.upperCollectinView)
         anyView.lowerView.addSubview(anyView.lowerCollectinView)
         
@@ -206,6 +208,7 @@ extension SetWorkoutViewController {
         anyView.lowerCollectinView.dataSource = self
         
         anyView.stackViewVertical.alpha = 0
+        anyView.verticalStackViewForSettingPokerShapes.alpha = 0
     }
     
     func viewsLayout() {
@@ -245,5 +248,11 @@ extension SetWorkoutViewController {
         anyView.cancelBtn.centerYAnchor.constraint(equalTo: anyView.cancelBtnView.centerYAnchor).isActive = true
         anyView.cancelBtn.widthAnchor.constraint(equalTo: anyView.cancelBtnView.widthAnchor, multiplier: 0.2).isActive = true
         anyView.cancelBtn.heightAnchor.constraint(equalTo: anyView.cancelBtn.widthAnchor).isActive = true
+        
+        anyView.verticalStackViewForSettingPokerShapes.translatesAutoresizingMaskIntoConstraints = false
+        anyView.verticalStackViewForSettingPokerShapes.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        anyView.verticalStackViewForSettingPokerShapes.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        anyView.verticalStackViewForSettingPokerShapes.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
+        anyView.verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3).isActive = true
     }
 }

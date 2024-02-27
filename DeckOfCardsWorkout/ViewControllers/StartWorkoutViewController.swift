@@ -129,13 +129,13 @@ extension StartWorkoutViewController {
     func checkWhichWorkout(words: String) {
         howManyTimesWorkout(words: words)
         if words.hasPrefix("Spade") {
-            workoutNameLabel.text = "\(chosenWorkout.spadePart ?? "Workout") : \(chosenWorkout.howManyTimesNum) times"
+            workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[0]) : \(chosenWorkout.howManyTimesNum) times"
         } else if words.hasPrefix("Heart") {
-            workoutNameLabel.text = "\(chosenWorkout.heartPart ?? "Workout") : \(chosenWorkout.howManyTimesNum) times"
+            workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[1]) : \(chosenWorkout.howManyTimesNum) times"
         } else if words.hasPrefix("Clover") {
-            workoutNameLabel.text = "\(chosenWorkout.cloverPart ?? "Workout") : \(chosenWorkout.howManyTimesNum) times"
+            workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[2]) : \(chosenWorkout.howManyTimesNum) times"
         } else if words.hasPrefix("Diamond") {
-            workoutNameLabel.text = "\(chosenWorkout.diamondPart ?? "Workout") : \(chosenWorkout.howManyTimesNum) times"
+            workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[3]) : \(chosenWorkout.howManyTimesNum) times"
         } else if words.hasPrefix("운동") {
             workoutNameLabel.text = "축하해요~"
         } else {

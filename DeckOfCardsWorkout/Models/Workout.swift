@@ -34,6 +34,8 @@ class ChosenWorkouts {
     var cloverPart: String?
     var diamondPart: String?
     
+    var selectedWorkoutPerPokerShapeArray = ["운동 1", "운동 2", "운동 3", "운동 4"]
+    
     var yourWorkoutArray: [String] = ["+ 직접 입력", "턱걸이", "딥스", "푸쉬업", "스쿼트", "윗몸 일으키기", "버피", "브릿지", "마운틴 클라이머", "바이시클 메뉴버"]
     
     var yourAllWorkoutsArray: [String] = ["+ 직접 입력"]

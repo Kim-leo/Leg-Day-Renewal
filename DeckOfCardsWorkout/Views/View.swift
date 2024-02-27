@@ -17,25 +17,12 @@ extension UIViewController {
         }
     }
     
-    var rightBarBtn: UIBarButtonItem {
-        get {
-            let btn = UIBarButtonItem(title: "저장하기", style: .plain, target: self, action: #selector(rightBarBtnTapped(_:)))
-            btn.tintColor = .darkGray
-            return btn
-        }
-    }
+
     
     @objc func leftBarBtnTapped(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func rightBarBtnTapped(_ sender: UIBarButtonItem) {
-//        chosenWorkout.spadePart = preChosenSpade
-//        chosenWorkout.heartPart = preChosenHeart
-//        chosenWorkout.diamondPart = preChosenDiamond
-//        chosenWorkout.cloverPart = preChosenClover
-        self.navigationController?.popViewController(animated: true)
-    }
     
     
     
@@ -44,6 +31,8 @@ extension UIViewController {
 class AnyView: UIView {
     static let identifier = "anyView"
     
+    
+    // MARK: - SetWorkoutVC View
     lazy var stackViewVertical: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
@@ -115,7 +104,6 @@ class AnyView: UIView {
         sv.spacing = 10
         return sv
     }()
-
     
     lazy var categoryBtns: [UIButton] = {
         var btnArr = [UIButton]()
@@ -152,6 +140,57 @@ class AnyView: UIView {
         return btn
     }()
     
+    lazy var verticalStackViewForSettingPokerShapes: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.alignment = .fill
+        sv.distribution = .fillEqually
+        sv.spacing = 10
+        sv.backgroundColor = .clear
+        return sv
+    }()
+    
+    lazy var stackViewHorizontal3: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.alignment = .fill
+        sv.distribution = .fillEqually
+        sv.spacing = 10
+        return sv
+    }()
+    
+    lazy var stackViewHorizontal4: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.alignment = .fill
+        sv.distribution = .fillEqually
+        sv.spacing = 10
+        return sv
+    }()
+    
+    lazy var pokerShapeBtns: [UIButton] = {
+        var btnArr = [UIButton]()
+        let pokerShapeImages = ["suit.spade.fill", "diamond.fill", "heart.fill", "suit.club.fill"]
+        for num in 0...3 {
+            let btn = UIButton()
+            btn.tag = num
+            btn.backgroundColor = .white
+//            btn.setImage(UIImage(systemName: pokerShapeImages[num]), for: .normal)
+            btn.setBackgroundImage(UIImage(systemName: pokerShapeImages[num]), for: .normal)
+            btn.setTitle("+", for: .normal)
+            btn.setTitleColor(.white, for: .normal)
+            btn.tintColor = (num % 3 == 0) ? .black : .red
+            btn.layer.cornerRadius = 15
+            btn.clipsToBounds = true
+            btn.layer.borderColor = UIColor.darkGray.cgColor
+            btn.layer.borderWidth = 1
+            btnArr.append(btn)
+        }
+        return btnArr
+    }()
+    
+    
+    // MARK: - initializing
     override init(frame: CGRect) {
         super.init(frame: frame)
         settingUI()
@@ -162,10 +201,19 @@ class AnyView: UIView {
 
     }
     
-    private func settingUI() {
+    private func settingUI() {        
         for num in 0...2 {
             stackViewHorizontal1.addArrangedSubview(categoryBtns[num])
             stackViewHorizontal2.addArrangedSubview(categoryBtns[num + 3])
+        }
+        
+        [stackViewHorizontal3, stackViewHorizontal4].map {
+            verticalStackViewForSettingPokerShapes.addArrangedSubview($0)
+        }
+        
+        for num in 0...1 {
+            stackViewHorizontal3.addArrangedSubview(pokerShapeBtns[num])
+            stackViewHorizontal4.addArrangedSubview(pokerShapeBtns[num + 2])
         }
         
         cancelBtnView.addSubview(cancelBtn)
