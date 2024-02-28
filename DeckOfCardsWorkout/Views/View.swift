@@ -28,11 +28,9 @@ extension UIViewController {
     
 }
 
-class AnyView: UIView {
+class ViewFile: UIView {
     static let identifier = "anyView"
-    
-    
-    // MARK: - SetWorkoutVC View
+    // MARK: - Common Views
     lazy var stackViewVertical: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
@@ -43,6 +41,53 @@ class AnyView: UIView {
         return sv
     }()
     
+    // MARK: - HomeVC Views
+    lazy var startWorkoutVCBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("운동 시작", for: .normal)
+        btn.backgroundColor = .black
+        btn.setTitleColor(.white, for: .normal)
+        return btn
+    }()
+    
+    lazy var setWorkoutVCBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("운동 설정", for: .normal)
+        btn.backgroundColor = .darkGray
+        btn.setTitleColor(.white, for: .normal)
+        return btn
+    }()
+    
+    // MARK: - StartWorkoutVC Views
+    lazy var cardImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.image = UIImage(named: "Joker")
+        return iv
+    }()
+    
+    lazy var cardNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.textAlignment = .center
+        return label
+    }()
+    
+    lazy var workoutNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.textAlignment = .center
+        return label
+    }()
+    
+    lazy var nextBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("다음", for: .normal)
+        btn.backgroundColor = .systemBlue
+        return btn
+    }()
+    
+    // MARK: - SetWorkoutVC Views
     lazy var upperView: UIView = {
         let v = UIView()
         return v

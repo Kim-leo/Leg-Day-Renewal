@@ -10,38 +10,38 @@ import UIKit
 class StartWorkoutViewController: UIViewController {
 
     //MARK: - View    
-    lazy var cardImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "Joker")
-        return iv
-    }()
-    
-    lazy var cardNameLabel: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var workoutNameLabel: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var nextBtn: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("다음", for: .normal)
-        btn.backgroundColor = .systemBlue
-        return btn
-    }()
+//    lazy var cardImageView: UIImageView = {
+//        let iv = UIImageView()
+//        iv.contentMode = .scaleAspectFit
+//        iv.image = UIImage(named: "Joker")
+//        return iv
+//    }()
+//    
+//    lazy var cardNameLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = ""
+//        label.textAlignment = .center
+//        return label
+//    }()
+//    
+//    lazy var workoutNameLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = ""
+//        label.textAlignment = .center
+//        return label
+//    }()
+//    
+//    lazy var nextBtn: UIButton = {
+//        let btn = UIButton()
+//        btn.setTitle("다음", for: .normal)
+//        btn.backgroundColor = .systemBlue
+//        return btn
+//    }()
     
     // MARK: - Parameters
     var cards = Cards()
     let chosenWorkout = ChosenWorkouts.shared
-    let anyView = AnyView()
+    let viewFile = ViewFile()
     
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -55,13 +55,13 @@ class StartWorkoutViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
         
         componentsInitialSetting()
-        [cardImageView, cardNameLabel, workoutNameLabel, nextBtn].map {
+        [viewFile.cardImageView, viewFile.cardNameLabel, viewFile.workoutNameLabel, viewFile.nextBtn].map {
             self.view.addSubview($0)
         }
         
         viewsLayout()
         
-        nextBtn.addTarget(self, action: #selector(self.nextBtnTappedAction), for: .touchUpInside)
+        viewFile.nextBtn.addTarget(self, action: #selector(self.nextBtnTappedAction), for: .touchUpInside)
         
     }
 
@@ -71,11 +71,11 @@ extension StartWorkoutViewController {
     
     // MARK: - Functions
     func componentsInitialSetting() {
-        cardNameLabel.text = "시작 버튼 클릭"
-        workoutNameLabel.text = "화이팅"
-        workoutNameLabel.textColor = .black
-        nextBtn.setTitle("운동 시작", for: .normal)
-        nextBtn.backgroundColor = .systemBlue
+        viewFile.cardNameLabel.text = "시작 버튼 클릭"
+        viewFile.workoutNameLabel.text = "화이팅"
+        viewFile.workoutNameLabel.textColor = .black
+        viewFile.nextBtn.setTitle("운동 시작", for: .normal)
+        viewFile.nextBtn.backgroundColor = .systemBlue
         
     }
     
@@ -84,14 +84,14 @@ extension StartWorkoutViewController {
             
         case "재시작":
             componentsInitialSetting()
-            nextBtn.setTitle("다음", for: .normal)
+            viewFile.nextBtn.setTitle("다음", for: .normal)
             
             cards = Cards()
             
             nextBtnTapped()
             checkWhichWorkout(words: cards.pickedCard)
         default:
-            nextBtn.setTitle("다음", for: .normal)
+            viewFile.nextBtn.setTitle("다음", for: .normal)
             nextBtnTapped()
             
             
@@ -109,8 +109,8 @@ extension StartWorkoutViewController {
             cards.pickedCard = cards.cardSet.randomElement() ?? ""
             checkBlackOrRed(words: cards.pickedCard)
             checkWhichWorkout(words: cards.pickedCard)
-            cardNameLabel.text = cards.pickedCard
-            cardImageView.image = UIImage(named: cards.pickedCard)
+            viewFile.cardNameLabel.text = cards.pickedCard
+            viewFile.cardImageView.image = UIImage(named: cards.pickedCard)
                 
             cards.cardSet.remove(cards.pickedCard)
             cards.emptyArray.append(cards.pickedCard)
@@ -120,24 +120,24 @@ extension StartWorkoutViewController {
     
     func checkBlackOrRed(words: String) {
         if words.hasPrefix("Heart") || words.hasPrefix("Diamond") {
-            cardNameLabel.textColor = .systemRed
+            viewFile.cardNameLabel.textColor = .systemRed
         } else {
-            cardNameLabel.textColor = .black
+            viewFile.cardNameLabel.textColor = .black
         }
     }
     
     func checkWhichWorkout(words: String) {
         howManyTimesWorkout(words: words)
         if words.hasPrefix("Spade") {
-            workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[0]) : \(chosenWorkout.howManyTimesNum) times"
+            viewFile.workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[0]) : \(chosenWorkout.howManyTimesNum) times"
         } else if words.hasPrefix("Heart") {
-            workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[1]) : \(chosenWorkout.howManyTimesNum) times"
+            viewFile.workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[1]) : \(chosenWorkout.howManyTimesNum) times"
         } else if words.hasPrefix("Clover") {
-            workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[2]) : \(chosenWorkout.howManyTimesNum) times"
+            viewFile.workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[2]) : \(chosenWorkout.howManyTimesNum) times"
         } else if words.hasPrefix("Diamond") {
-            workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[3]) : \(chosenWorkout.howManyTimesNum) times"
+            viewFile.workoutNameLabel.text = "\(chosenWorkout.selectedWorkoutPerPokerShapeArray[3]) : \(chosenWorkout.howManyTimesNum) times"
         } else if words.hasPrefix("운동") {
-            workoutNameLabel.text = "축하해요~"
+            viewFile.workoutNameLabel.text = "축하해요~"
         } else {
             componentsInitialSetting()
         }
@@ -160,43 +160,43 @@ extension StartWorkoutViewController {
     }
     
     func doneWorkout() {
-        cardImageView.image = UIImage(named: "Joker")
-        cardNameLabel.text = "운동 끝!"
-        cardNameLabel.textColor = .systemBlue
-        workoutNameLabel.text = "축하해요~"
-        workoutNameLabel.textColor = .systemGreen
-        nextBtn.setTitle("재시작", for: .normal)
-        nextBtn.backgroundColor = .black
+        viewFile.cardImageView.image = UIImage(named: "Joker")
+        viewFile.cardNameLabel.text = "운동 끝!"
+        viewFile.cardNameLabel.textColor = .systemBlue
+        viewFile.workoutNameLabel.text = "축하해요~"
+        viewFile.workoutNameLabel.textColor = .systemGreen
+        viewFile.nextBtn.setTitle("재시작", for: .normal)
+        viewFile.nextBtn.backgroundColor = .black
         
     }
     
     
     // MARK: - UI Components Auto Layout
     func viewsLayout() {
-        cardImageView.translatesAutoresizingMaskIntoConstraints = false
-        cardImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
-        cardImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 100).isActive = true
-        cardImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -100).isActive = true
-        cardImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        viewFile.cardImageView.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.cardImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        viewFile.cardImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 100).isActive = true
+        viewFile.cardImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -100).isActive = true
+        viewFile.cardImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
     
-        cardNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        cardNameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        cardNameLabel.topAnchor.constraint(equalTo: cardImageView.bottomAnchor, constant: 10).isActive = true
-        cardNameLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 50).isActive = true
-        cardNameLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -50).isActive = true
-        cardNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        viewFile.cardNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.cardNameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        viewFile.cardNameLabel.topAnchor.constraint(equalTo: viewFile.cardImageView.bottomAnchor, constant: 10).isActive = true
+        viewFile.cardNameLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 50).isActive = true
+        viewFile.cardNameLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -50).isActive = true
+        viewFile.cardNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     
-        workoutNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        workoutNameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        workoutNameLabel.topAnchor.constraint(equalTo: cardNameLabel.bottomAnchor, constant: 10).isActive = true
-        workoutNameLabel.leadingAnchor.constraint(equalTo: cardNameLabel.leadingAnchor).isActive = true
-        workoutNameLabel.trailingAnchor.constraint(equalTo: cardNameLabel.trailingAnchor).isActive = true
-        workoutNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        viewFile.workoutNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.workoutNameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        viewFile.workoutNameLabel.topAnchor.constraint(equalTo: viewFile.cardNameLabel.bottomAnchor, constant: 10).isActive = true
+        viewFile.workoutNameLabel.leadingAnchor.constraint(equalTo: viewFile.cardNameLabel.leadingAnchor).isActive = true
+        viewFile.workoutNameLabel.trailingAnchor.constraint(equalTo: viewFile.cardNameLabel.trailingAnchor).isActive = true
+        viewFile.workoutNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     
-        nextBtn.translatesAutoresizingMaskIntoConstraints = false
-        nextBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        nextBtn.topAnchor.constraint(equalTo: workoutNameLabel.bottomAnchor, constant: 50).isActive = true
-        nextBtn.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        nextBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        viewFile.nextBtn.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.nextBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        viewFile.nextBtn.topAnchor.constraint(equalTo: viewFile.workoutNameLabel.bottomAnchor, constant: 50).isActive = true
+        viewFile.nextBtn.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        viewFile.nextBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }

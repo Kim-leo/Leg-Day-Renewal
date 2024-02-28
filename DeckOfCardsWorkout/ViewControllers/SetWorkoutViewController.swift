@@ -8,16 +8,12 @@
 import UIKit
 
 class SetWorkoutViewController: UIViewController {
-
-    // MARK: - View
-    
-    
     // MARK: - Parameters
     
     let workoutSorting = WorkoutSorting()
     let chosenWorkouts = ChosenWorkouts.shared
     var originalWorkouts = [String]()
-    let anyView = AnyView()
+    let viewFile = ViewFile()
     
     var whichWorkout: String = ""
     var inputWorkout: String = ""
@@ -86,8 +82,8 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView.tag {
         case 0:
-            let width = anyView.upperCollectinView.frame.width / 4
-            let height = anyView.upperCollectinView.frame.height
+            let width = viewFile.upperCollectinView.frame.width / 4
+            let height = viewFile.upperCollectinView.frame.height
             return CGSize(width: width, height: height)
         case 1:
             let width = collectionView.frame.width / 3 - 5
@@ -109,7 +105,7 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
                 } else {
                     chosenWorkouts.yourAllWorkoutsArray += Array(chosenWorkouts.workoutForCategories[indexPath.row])
                 }
-                anyView.lowerCollectinView.reloadData()
+                viewFile.lowerCollectinView.reloadData()
             }
         case 1:
             switch chosenWorkouts.yourAllWorkoutsArray[indexPath.row] {
@@ -121,9 +117,9 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
                 let okAction = UIAlertAction(title: "카테고리 지정", style: .default) { [self] (ok) in
                     // 카테고리 지정하는 뷰 띄우기
                     inputWorkout = alert.textFields?[0].text ?? ""
-                    anyView.lowerCollectinView.alpha = 0.5
-                    anyView.stackViewVertical.alpha = 1
-                    self.view.bringSubviewToFront(anyView.stackViewVertical)
+                    viewFile.lowerCollectinView.alpha = 0.5
+                    viewFile.stackViewVertical.alpha = 1
+                    self.view.bringSubviewToFront(viewFile.stackViewVertical)
                 }
                 let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in }
                 alert.addAction(okAction)
@@ -131,8 +127,8 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
                 self.present(alert, animated: true, completion: nil)
             default:
                 collectionView.alpha = 0.5
-                anyView.verticalStackViewForSettingPokerShapes.alpha = 1
-                self.view.bringSubviewToFront(anyView.verticalStackViewForSettingPokerShapes)
+                viewFile.verticalStackViewForSettingPokerShapes.alpha = 1
+                self.view.bringSubviewToFront(viewFile.verticalStackViewForSettingPokerShapes)
                 whichWorkout = chosenWorkouts.yourAllWorkoutsArray[indexPath.row]
             }
         default:
@@ -152,12 +148,12 @@ extension SetWorkoutViewController {
     }
     
     @objc func categoryBtnTapped(_ sender: UIButton) {
-        anyView.stackViewVertical.alpha = 0
-        anyView.lowerCollectinView.alpha = 1
+        viewFile.stackViewVertical.alpha = 0
+        viewFile.lowerCollectinView.alpha = 1
         chosenWorkouts.workoutForCategories[sender.tag].append(inputWorkout)
-        anyView.lowerCollectinView.reloadData()
-        anyView.lowerCollectinView.performBatchUpdates {
-            anyView.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
+        viewFile.lowerCollectinView.reloadData()
+        viewFile.lowerCollectinView.performBatchUpdates {
+            viewFile.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
             chosenWorkouts.yourAllWorkoutsArray.insert(inputWorkout, at: 1)
         } completion: { [weak self] _ in
         }
@@ -166,13 +162,13 @@ extension SetWorkoutViewController {
     
     @objc func cancelBtnTapped(_ sender: UIButton) {
         inputWorkout = ""
-        anyView.stackViewVertical.alpha = 0
-        anyView.lowerCollectinView.alpha = 1
+        viewFile.stackViewVertical.alpha = 0
+        viewFile.lowerCollectinView.alpha = 1
     }
     
     @objc func pokerShapeBtnsTapped(_ sender: UIButton) {
-        anyView.verticalStackViewForSettingPokerShapes.alpha = 0
-        anyView.lowerCollectinView.alpha = 1
+        viewFile.verticalStackViewForSettingPokerShapes.alpha = 0
+        viewFile.lowerCollectinView.alpha = 1
         
         sender.setTitle(whichWorkout, for: .normal)
         
@@ -181,78 +177,78 @@ extension SetWorkoutViewController {
     }
     
     func setupUI() {
-        [anyView.upperView, anyView.lowerView, anyView.stackViewVertical, anyView.verticalStackViewForSettingPokerShapes].map {
+        [viewFile.upperView, viewFile.lowerView, viewFile.stackViewVertical, viewFile.verticalStackViewForSettingPokerShapes].map {
             self.view.addSubview($0)
         }
         
-        [anyView.stackViewHorizontal1, anyView.stackViewHorizontal2, anyView.cancelBtnView].map {
-            anyView.stackViewVertical.addArrangedSubview($0)
+        [viewFile.stackViewHorizontal1, viewFile.stackViewHorizontal2, viewFile.cancelBtnView].map {
+            viewFile.stackViewVertical.addArrangedSubview($0)
         }
         
-        anyView.categoryBtns.map {
+        viewFile.categoryBtns.map {
             $0.setTitle("\(workoutSorting.typeOfWorkouts[$0.tag])", for: .normal)
             $0.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
         }
-        anyView.cancelBtn.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
+        viewFile.cancelBtn.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
         
-        anyView.pokerShapeBtns.map {
+        viewFile.pokerShapeBtns.map {
             $0.addTarget(self, action: #selector(pokerShapeBtnsTapped), for: .touchUpInside)
         }
         
-        anyView.upperView.addSubview(anyView.upperCollectinView)
-        anyView.lowerView.addSubview(anyView.lowerCollectinView)
+        viewFile.upperView.addSubview(viewFile.upperCollectinView)
+        viewFile.lowerView.addSubview(viewFile.lowerCollectinView)
         
-        anyView.upperCollectinView.delegate = self
-        anyView.upperCollectinView.dataSource = self
-        anyView.lowerCollectinView.delegate = self
-        anyView.lowerCollectinView.dataSource = self
+        viewFile.upperCollectinView.delegate = self
+        viewFile.upperCollectinView.dataSource = self
+        viewFile.lowerCollectinView.delegate = self
+        viewFile.lowerCollectinView.dataSource = self
         
-        anyView.stackViewVertical.alpha = 0
-        anyView.verticalStackViewForSettingPokerShapes.alpha = 0
+        viewFile.stackViewVertical.alpha = 0
+        viewFile.verticalStackViewForSettingPokerShapes.alpha = 0
     }
     
     func viewsLayout() {
-        anyView.upperView.translatesAutoresizingMaskIntoConstraints = false
-        anyView.upperView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        anyView.upperView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+        viewFile.upperView.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.upperView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        viewFile.upperView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         .isActive = true
-        anyView.upperView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        anyView.upperView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        viewFile.upperView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        viewFile.upperView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        anyView.upperCollectinView.translatesAutoresizingMaskIntoConstraints = false
-        anyView.upperCollectinView.topAnchor.constraint(equalTo: anyView.upperView.topAnchor).isActive = true
-        anyView.upperCollectinView.leadingAnchor.constraint(equalTo: anyView.upperView.leadingAnchor).isActive = true
-        anyView.upperCollectinView.trailingAnchor.constraint(equalTo: anyView.upperView.trailingAnchor).isActive = true
-        anyView.upperCollectinView.bottomAnchor.constraint(equalTo: anyView.upperView.bottomAnchor).isActive = true
+        viewFile.upperCollectinView.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.upperCollectinView.topAnchor.constraint(equalTo: viewFile.upperView.topAnchor).isActive = true
+        viewFile.upperCollectinView.leadingAnchor.constraint(equalTo: viewFile.upperView.leadingAnchor).isActive = true
+        viewFile.upperCollectinView.trailingAnchor.constraint(equalTo: viewFile.upperView.trailingAnchor).isActive = true
+        viewFile.upperCollectinView.bottomAnchor.constraint(equalTo: viewFile.upperView.bottomAnchor).isActive = true
         
-        anyView.lowerView.translatesAutoresizingMaskIntoConstraints = false
-        anyView.lowerView.topAnchor.constraint(equalTo: anyView.upperView.bottomAnchor, constant: 5).isActive = true
-        anyView.lowerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        anyView.lowerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        anyView.lowerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        viewFile.lowerView.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.lowerView.topAnchor.constraint(equalTo: viewFile.upperView.bottomAnchor, constant: 5).isActive = true
+        viewFile.lowerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        viewFile.lowerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        viewFile.lowerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-        anyView.lowerCollectinView.translatesAutoresizingMaskIntoConstraints = false
-        anyView.lowerCollectinView.topAnchor.constraint(equalTo: anyView.lowerView.topAnchor).isActive = true
-        anyView.lowerCollectinView.leadingAnchor.constraint(equalTo: anyView.lowerView.leadingAnchor, constant: 5).isActive = true
-        anyView.lowerCollectinView.trailingAnchor.constraint(equalTo: anyView.lowerView.trailingAnchor, constant: -5).isActive = true
-        anyView.lowerCollectinView.bottomAnchor.constraint(equalTo: anyView.lowerView.bottomAnchor).isActive = true
+        viewFile.lowerCollectinView.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.lowerCollectinView.topAnchor.constraint(equalTo: viewFile.lowerView.topAnchor).isActive = true
+        viewFile.lowerCollectinView.leadingAnchor.constraint(equalTo: viewFile.lowerView.leadingAnchor, constant: 5).isActive = true
+        viewFile.lowerCollectinView.trailingAnchor.constraint(equalTo: viewFile.lowerView.trailingAnchor, constant: -5).isActive = true
+        viewFile.lowerCollectinView.bottomAnchor.constraint(equalTo: viewFile.lowerView.bottomAnchor).isActive = true
         
-        anyView.stackViewVertical.translatesAutoresizingMaskIntoConstraints = false
-        anyView.stackViewVertical.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        anyView.stackViewVertical.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        anyView.stackViewVertical.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
-        anyView.stackViewVertical.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3).isActive = true
+        viewFile.stackViewVertical.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.stackViewVertical.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        viewFile.stackViewVertical.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        viewFile.stackViewVertical.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
+        viewFile.stackViewVertical.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3).isActive = true
         
-        anyView.cancelBtn.translatesAutoresizingMaskIntoConstraints = false
-        anyView.cancelBtn.centerXAnchor.constraint(equalTo: anyView.stackViewVertical.centerXAnchor).isActive = true
-        anyView.cancelBtn.centerYAnchor.constraint(equalTo: anyView.cancelBtnView.centerYAnchor).isActive = true
-        anyView.cancelBtn.widthAnchor.constraint(equalTo: anyView.cancelBtnView.widthAnchor, multiplier: 0.2).isActive = true
-        anyView.cancelBtn.heightAnchor.constraint(equalTo: anyView.cancelBtn.widthAnchor).isActive = true
+        viewFile.cancelBtn.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.cancelBtn.centerXAnchor.constraint(equalTo: viewFile.stackViewVertical.centerXAnchor).isActive = true
+        viewFile.cancelBtn.centerYAnchor.constraint(equalTo: viewFile.cancelBtnView.centerYAnchor).isActive = true
+        viewFile.cancelBtn.widthAnchor.constraint(equalTo: viewFile.cancelBtnView.widthAnchor, multiplier: 0.2).isActive = true
+        viewFile.cancelBtn.heightAnchor.constraint(equalTo: viewFile.cancelBtn.widthAnchor).isActive = true
         
-        anyView.verticalStackViewForSettingPokerShapes.translatesAutoresizingMaskIntoConstraints = false
-        anyView.verticalStackViewForSettingPokerShapes.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        anyView.verticalStackViewForSettingPokerShapes.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        anyView.verticalStackViewForSettingPokerShapes.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
-        anyView.verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3).isActive = true
+        viewFile.verticalStackViewForSettingPokerShapes.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.verticalStackViewForSettingPokerShapes.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        viewFile.verticalStackViewForSettingPokerShapes.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        viewFile.verticalStackViewForSettingPokerShapes.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
+        viewFile.verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3).isActive = true
     }
 }

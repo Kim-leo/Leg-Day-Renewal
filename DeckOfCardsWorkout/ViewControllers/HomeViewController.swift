@@ -9,44 +9,25 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    // MARK: - View
-    lazy var startWorkoutVCBtn: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("운동 시작", for: .normal)
-        btn.backgroundColor = .black
-        btn.setTitleColor(.white, for: .normal)
-        return btn
-    }()
-    
-    lazy var setWorkoutVCBtn: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("운동 설정", for: .normal)
-        btn.backgroundColor = .darkGray
-        btn.setTitleColor(.white, for: .normal)
-        return btn
-    }()
-    
     // MARK: - Parameters
-    
     let chosenWorkouts = ChosenWorkouts.shared
-    let anyView = AnyView()
+    let viewFile = ViewFile()
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Hello")
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Home ViewController")
         
-        self.view.addSubview(anyView.stackViewVertical)
-        [startWorkoutVCBtn, setWorkoutVCBtn].map {
-            self.anyView.stackViewVertical.addArrangedSubview($0)
+        self.view.addSubview(viewFile.stackViewVertical)
+        [viewFile.startWorkoutVCBtn, viewFile.setWorkoutVCBtn].map {
+            self.viewFile.stackViewVertical.addArrangedSubview($0)
         }
         viewsLayout()
         
-        startWorkoutVCBtn.addTarget(self, action: #selector(self.startWorkoutVCBtnTapped), for: .touchUpInside)
-        setWorkoutVCBtn.addTarget(self, action: #selector(self.setWorkoutVCBtnTapped), for: .touchUpInside)
+        viewFile.startWorkoutVCBtn.addTarget(self, action: #selector(self.startWorkoutVCBtnTapped), for: .touchUpInside)
+        viewFile.setWorkoutVCBtn.addTarget(self, action: #selector(self.setWorkoutVCBtnTapped), for: .touchUpInside)
         
     }
     
@@ -65,11 +46,11 @@ extension HomeViewController {
     }
     
     func viewsLayout() {
-        anyView.stackViewVertical.translatesAutoresizingMaskIntoConstraints = false
-        anyView.stackViewVertical.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        anyView.stackViewVertical.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 50).isActive = true
-        anyView.stackViewVertical.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -50).isActive = true
-        anyView.stackViewVertical.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        viewFile.stackViewVertical.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.stackViewVertical.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        viewFile.stackViewVertical.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 50).isActive = true
+        viewFile.stackViewVertical.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -50).isActive = true
+        viewFile.stackViewVertical.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
 }
