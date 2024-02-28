@@ -8,36 +8,6 @@
 import UIKit
 
 class StartWorkoutViewController: UIViewController {
-
-    //MARK: - View    
-//    lazy var cardImageView: UIImageView = {
-//        let iv = UIImageView()
-//        iv.contentMode = .scaleAspectFit
-//        iv.image = UIImage(named: "Joker")
-//        return iv
-//    }()
-//    
-//    lazy var cardNameLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = ""
-//        label.textAlignment = .center
-//        return label
-//    }()
-//    
-//    lazy var workoutNameLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = ""
-//        label.textAlignment = .center
-//        return label
-//    }()
-//    
-//    lazy var nextBtn: UIButton = {
-//        let btn = UIButton()
-//        btn.setTitle("다음", for: .normal)
-//        btn.backgroundColor = .systemBlue
-//        return btn
-//    }()
-    
     // MARK: - Parameters
     var cards = Cards()
     let chosenWorkout = ChosenWorkouts.shared
@@ -47,6 +17,7 @@ class StartWorkoutViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
         cards.emptyArray.removeAll()
+        title = "운동 하기"
     }
     
     override func viewDidLoad() {
@@ -62,9 +33,7 @@ class StartWorkoutViewController: UIViewController {
         viewsLayout()
         
         viewFile.nextBtn.addTarget(self, action: #selector(self.nextBtnTappedAction), for: .touchUpInside)
-        
     }
-
 }
 
 extension StartWorkoutViewController {
@@ -76,7 +45,6 @@ extension StartWorkoutViewController {
         viewFile.workoutNameLabel.textColor = .black
         viewFile.nextBtn.setTitle("운동 시작", for: .normal)
         viewFile.nextBtn.backgroundColor = .systemBlue
-        
     }
     
     @objc func nextBtnTappedAction(_ sender: UIButton) {
@@ -93,8 +61,6 @@ extension StartWorkoutViewController {
         default:
             viewFile.nextBtn.setTitle("다음", for: .normal)
             nextBtnTapped()
-            
-            
             break
         }
         
@@ -114,7 +80,6 @@ extension StartWorkoutViewController {
                 
             cards.cardSet.remove(cards.pickedCard)
             cards.emptyArray.append(cards.pickedCard)
-            
         }
     }
     

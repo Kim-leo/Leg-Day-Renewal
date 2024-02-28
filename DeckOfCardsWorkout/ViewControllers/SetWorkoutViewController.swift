@@ -9,7 +9,6 @@ import UIKit
 
 class SetWorkoutViewController: UIViewController {
     // MARK: - Parameters
-    
     let workoutSorting = WorkoutSorting()
     let chosenWorkouts = ChosenWorkouts.shared
     var originalWorkouts = [String]()
@@ -18,29 +17,21 @@ class SetWorkoutViewController: UIViewController {
     var whichWorkout: String = ""
     var inputWorkout: String = ""
     
-    
-    
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        
+        title = "운동 설정"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
         
         setupUI()
         viewsLayout()
         
         initialSetting()
-        
-        
     }
-    
-    
-    
 }
 
 // MARK: - CollectionView Extension
@@ -110,26 +101,13 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
         case 1:
             switch chosenWorkouts.yourAllWorkoutsArray[indexPath.row] {
             case "+ 직접 입력":
-                let alert = UIAlertController(title: "추가하기", message: "수행하고 싶은 운동을 직접 추가합니다.", preferredStyle: .alert)
-                alert.addTextField{ (myTextField) in
-                    myTextField.placeholder = "입력하기"
-                }
-                let okAction = UIAlertAction(title: "카테고리 지정", style: .default) { [self] (ok) in
-                    // 카테고리 지정하는 뷰 띄우기
-                    inputWorkout = alert.textFields?[0].text ?? ""
-                    viewFile.lowerCollectinView.alpha = 0.5
-                    viewFile.stackViewVertical.alpha = 1
-                    self.view.bringSubviewToFront(viewFile.stackViewVertical)
-                }
-                let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in }
-                alert.addAction(okAction)
-                alert.addAction(cancel)
-                self.present(alert, animated: true, completion: nil)
+                addWorkoutByYourself()
             default:
                 collectionView.alpha = 0.5
                 viewFile.verticalStackViewForSettingPokerShapes.alpha = 1
                 self.view.bringSubviewToFront(viewFile.verticalStackViewForSettingPokerShapes)
                 whichWorkout = chosenWorkouts.yourAllWorkoutsArray[indexPath.row]
+                viewFile.pokerShapeBtns.map { $0.setTitle("\(chosenWorkouts.selectedWorkoutPerPokerShapeArray[$0.tag])", for: .normal)}
             }
         default:
             break
@@ -173,10 +151,32 @@ extension SetWorkoutViewController {
         sender.setTitle(whichWorkout, for: .normal)
         
         chosenWorkouts.selectedWorkoutPerPokerShapeArray[sender.tag] = whichWorkout
-        print(chosenWorkouts.selectedWorkoutPerPokerShapeArray)
+    }
+    
+    func addWorkoutByYourself() {
+        let alert = UIAlertController(title: "추가하기", message: "수행하고 싶은 운동을 직접 추가합니다.", preferredStyle: .alert)
+        alert.addTextField{ (myTextField) in
+            myTextField.placeholder = "입력하기"
+            myTextField.autocorrectionType = .no
+            myTextField.spellCheckingType = .no
+        }
+        let okAction = UIAlertAction(title: "카테고리 지정", style: .default) { [self] (ok) in
+            inputWorkout = alert.textFields?[0].text ?? ""
+            viewFile.lowerCollectinView.alpha = 0.5
+            viewFile.stackViewVertical.alpha = 1
+            self.view.bringSubviewToFront(viewFile.stackViewVertical)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in }
+        alert.addAction(okAction)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    
     }
     
     func setupUI() {
+        viewFile.upperView.addSubview(viewFile.upperCollectinView)
+        viewFile.lowerView.addSubview(viewFile.lowerCollectinView)
+        
         [viewFile.upperView, viewFile.lowerView, viewFile.stackViewVertical, viewFile.verticalStackViewForSettingPokerShapes].map {
             self.view.addSubview($0)
         }
@@ -194,9 +194,6 @@ extension SetWorkoutViewController {
         viewFile.pokerShapeBtns.map {
             $0.addTarget(self, action: #selector(pokerShapeBtnsTapped), for: .touchUpInside)
         }
-        
-        viewFile.upperView.addSubview(viewFile.upperCollectinView)
-        viewFile.lowerView.addSubview(viewFile.lowerCollectinView)
         
         viewFile.upperCollectinView.delegate = self
         viewFile.upperCollectinView.dataSource = self

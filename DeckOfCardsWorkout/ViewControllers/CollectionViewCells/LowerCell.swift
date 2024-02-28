@@ -17,10 +17,11 @@ class LowerCell: UICollectionViewCell {
         label.clipsToBounds = true
         label.layer.borderColor = UIColor.darkGray.cgColor
         label.layer.borderWidth = 1
-        label.backgroundColor = .lightGray
+        label.backgroundColor = Colors().colorArray.randomElement()
         label.textColor = .black
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.numberOfLines = 0
         return label
     }()
 
@@ -41,11 +42,11 @@ class LowerCell: UICollectionViewCell {
 
     func setupLayoutForUpperCell() {
         typesOfWorkoutLabel.translatesAutoresizingMaskIntoConstraints = false
-        typesOfWorkoutLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
-        typesOfWorkoutLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
-        typesOfWorkoutLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
-        typesOfWorkoutLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
         
+        typesOfWorkoutLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
+        typesOfWorkoutLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        typesOfWorkoutLabel.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.9).isActive = true
+        typesOfWorkoutLabel.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: 0.9).isActive = true
     }
 
 }

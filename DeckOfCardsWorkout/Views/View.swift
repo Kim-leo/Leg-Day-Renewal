@@ -17,15 +17,9 @@ extension UIViewController {
         }
     }
     
-
-    
     @objc func leftBarBtnTapped(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
-    
-    
 }
 
 class ViewFile: UIView {
@@ -42,20 +36,24 @@ class ViewFile: UIView {
     }()
     
     // MARK: - HomeVC Views
-    lazy var startWorkoutVCBtn: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("운동 시작", for: .normal)
-        btn.backgroundColor = .black
-        btn.setTitleColor(.white, for: .normal)
-        return btn
-    }()
-    
-    lazy var setWorkoutVCBtn: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("운동 설정", for: .normal)
-        btn.backgroundColor = .darkGray
-        btn.setTitleColor(.white, for: .normal)
-        return btn
+    lazy var goToVCBtns: [UIButton] = {
+        var btnArr = [UIButton]()
+        let titleForBtns = ["운동 시작", "운동 설정", "사용 설명"]
+        for num in 0...2 {
+            let btn = UIButton()
+            btn.tag = num
+            btn.backgroundColor = Colors().colorArray[num]
+            btn.setTitle("\(titleForBtns[num])", for: .normal)
+            btn.setTitleColor(.darkGray, for: .normal)
+            btn.tintColor = .white
+            btn.layer.cornerRadius = 10
+            btn.clipsToBounds = true
+            btn.layer.borderColor = UIColor.darkGray.cgColor
+            btn.layer.borderWidth = 1
+            btn.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            btnArr.append(btn)
+        }
+        return btnArr
     }()
     
     // MARK: - StartWorkoutVC Views
@@ -90,6 +88,7 @@ class ViewFile: UIView {
     // MARK: - SetWorkoutVC Views
     lazy var upperView: UIView = {
         let v = UIView()
+        v.backgroundColor = .systemGray6
         return v
     }()
     
@@ -220,7 +219,6 @@ class ViewFile: UIView {
             let btn = UIButton()
             btn.tag = num
             btn.backgroundColor = .white
-//            btn.setImage(UIImage(systemName: pokerShapeImages[num]), for: .normal)
             btn.setBackgroundImage(UIImage(systemName: pokerShapeImages[num]), for: .normal)
             btn.setTitle("+", for: .normal)
             btn.setTitleColor(.white, for: .normal)
@@ -234,7 +232,6 @@ class ViewFile: UIView {
         return btnArr
     }()
     
-    
     // MARK: - initializing
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -246,8 +243,12 @@ class ViewFile: UIView {
 
     }
     
-    private func settingUI() {        
+    private func settingUI() {   
+        
+        
         for num in 0...2 {
+            stackViewVertical.addArrangedSubview(goToVCBtns[num])
+            
             stackViewHorizontal1.addArrangedSubview(categoryBtns[num])
             stackViewHorizontal2.addArrangedSubview(categoryBtns[num + 3])
         }

@@ -9,6 +9,10 @@ import UIKit
 
 class AboutTheAppViewController: UIViewController {
 
+    override func viewWillAppear(_ animated: Bool) {
+        title = "사용 설명"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
