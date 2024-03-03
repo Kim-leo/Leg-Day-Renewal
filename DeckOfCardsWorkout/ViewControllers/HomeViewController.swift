@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.addSubview(viewFile.stackViewVertical)
+        self.view.addSubview(viewFile.stackViewForVCBtns)
 
         viewsLayout()
 
@@ -60,10 +60,10 @@ extension HomeViewController {
 //    }
     
     func viewsLayout() {
-        viewFile.stackViewVertical.translatesAutoresizingMaskIntoConstraints = false
-        viewFile.stackViewVertical.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        viewFile.stackViewVertical.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        viewFile.stackViewVertical.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
-        viewFile.stackViewVertical.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3).isActive = true
+        viewFile.stackViewForVCBtns.translatesAutoresizingMaskIntoConstraints = false
+        viewFile.stackViewForVCBtns.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        viewFile.stackViewForVCBtns.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        viewFile.stackViewForVCBtns.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
+        viewFile.stackViewForVCBtns.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3).isActive = true
     }
 }

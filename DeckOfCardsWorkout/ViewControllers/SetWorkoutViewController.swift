@@ -84,6 +84,7 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
             break
         }
     }
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView.tag {
@@ -129,13 +130,15 @@ extension SetWorkoutViewController {
         viewFile.stackViewVertical.alpha = 0
         viewFile.lowerCollectinView.alpha = 1
         chosenWorkouts.workoutForCategories[sender.tag].append(inputWorkout)
-        viewFile.lowerCollectinView.reloadData()
+        
+//        viewFile.lowerCollectinView.reloadData()
         viewFile.lowerCollectinView.performBatchUpdates {
             viewFile.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
             chosenWorkouts.yourAllWorkoutsArray.insert(inputWorkout, at: 1)
         } completion: { [weak self] _ in
         }
         originalWorkouts.append(inputWorkout)
+        
     }
     
     @objc func cancelBtnTapped(_ sender: UIButton) {

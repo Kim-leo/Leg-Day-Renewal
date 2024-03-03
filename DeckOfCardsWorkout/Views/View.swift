@@ -24,8 +24,9 @@ extension UIViewController {
 
 class ViewFile: UIView {
     static let identifier = "anyView"
-    // MARK: - Common Views
-    lazy var stackViewVertical: UIStackView = {
+    
+    // MARK: - HomeVC Views
+    lazy var stackViewForVCBtns: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
         sv.alignment = .fill
@@ -35,7 +36,6 @@ class ViewFile: UIView {
         return sv
     }()
     
-    // MARK: - HomeVC Views
     lazy var goToVCBtns: [UIButton] = {
         var btnArr = [UIButton]()
         let titleForBtns = ["운동 시작", "운동 설정", "사용 설명"]
@@ -86,6 +86,16 @@ class ViewFile: UIView {
     }()
     
     // MARK: - SetWorkoutVC Views
+    lazy var stackViewVertical: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.alignment = .fill
+        sv.distribution = .fillEqually
+        sv.spacing = 10
+        sv.backgroundColor = .clear
+        return sv
+    }()
+    
     lazy var upperView: UIView = {
         let v = UIView()
         v.backgroundColor = .systemGray6
@@ -247,7 +257,7 @@ class ViewFile: UIView {
         
         
         for num in 0...2 {
-            stackViewVertical.addArrangedSubview(goToVCBtns[num])
+            stackViewForVCBtns.addArrangedSubview(goToVCBtns[num])
             
             stackViewHorizontal1.addArrangedSubview(categoryBtns[num])
             stackViewHorizontal2.addArrangedSubview(categoryBtns[num + 3])
