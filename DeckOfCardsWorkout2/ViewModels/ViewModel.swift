@@ -54,27 +54,20 @@ class ViewModelForHomeVC: UIViewController {
 class ViewModelForStartWorkoutVC {
     let cardModel: Card
     
-    let cardSet: Set<String> = ["Spade 1", "Spade 2", "Spade 3", "Spade 4", "Spade 5", "Spade 6", "Spade 7", "Spade 8", "Spade 9", "Spade 10", "Spade J", "Spade Q", "Spade K", "Heart 1", "Heart 2", "Heart 3", "Heart 4", "Heart 5", "Heart 6", "Heart 7", "Heart 8", "Heart 9", "Heart 10", "Heart J", "Heart Q", "Heart K", "Clover 1", "Clover 2", "Clover 3", "Clover 4", "Clover 5", "Clover 6", "Clover 7", "Clover 8", "Clover 9", "Clover 10", "Clover J", "Clover Q", "Clover K", "Diamond 1", "Diamond 2", "Diamond 3", "Diamond 4", "Diamond 5", "Diamond 6", "Diamond 7", "Diamond 8", "Diamond 9", "Diamond 10", "Diamond J", "Diamond Q", "Diamond K"
-    ]
-    
-    var cardSetCopy: Set<String> = ["Spade 1", "Spade 2", "Spade 3", "Spade 4", "Spade 5", "Spade 6", "Spade 7", "Spade 8", "Spade 9", "Spade 10", "Spade J", "Spade Q", "Spade K", "Heart 1", "Heart 2", "Heart 3", "Heart 4", "Heart 5", "Heart 6", "Heart 7", "Heart 8", "Heart 9", "Heart 10", "Heart J", "Heart Q", "Heart K", "Clover 1", "Clover 2", "Clover 3", "Clover 4", "Clover 5", "Clover 6", "Clover 7", "Clover 8", "Clover 9", "Clover 10", "Clover J", "Clover Q", "Clover K", "Diamond 1", "Diamond 2", "Diamond 3", "Diamond 4", "Diamond 5", "Diamond 6", "Diamond 7", "Diamond 8", "Diamond 9", "Diamond 10", "Diamond J", "Diamond Q", "Diamond K"
-    ]
+    var cardSet = Card().cardSet
+
     
     var emptyArray = [String]()
     var pickedCard: String = ""
     
     init(cardModel: Card) {
         self.cardModel = Card()
+        
     }
-    
-    
-    
-    
-    
+
 }
 
 extension ViewModelForStartWorkoutVC {
-    
     
     func componentsInitialSetting(_ view: ViewForStartWorkout) {
         view.cardNameLabel.text = "운동 시작 클릭!"
@@ -92,7 +85,8 @@ extension ViewModelForStartWorkoutVC {
             view.nextBtn.setTitle("다음", for: .normal)
             
             emptyArray.removeAll()
-            cardSetCopy = cardSet
+            
+            cardSet = Card().cardSet
             
             pickOneCard(view)
         default:
@@ -101,7 +95,7 @@ extension ViewModelForStartWorkoutVC {
             view.nextBtn.setTitle("다음", for: .normal)
             pickOneCard(view)
             
-            cardSetCopy.remove(pickedCard)
+            cardSet.remove(pickedCard)
             emptyArray.append(pickedCard)
             break
         }
@@ -119,7 +113,7 @@ extension ViewModelForStartWorkoutVC {
             view.nextBtn.backgroundColor = .black
             
         default:
-            pickedCard = cardSetCopy.randomElement() ?? ""
+            pickedCard = cardSet.randomElement() ?? ""
             
             view.cardNameLabel.text = pickedCard
             view.cardImageView.image = UIImage(named: pickedCard)

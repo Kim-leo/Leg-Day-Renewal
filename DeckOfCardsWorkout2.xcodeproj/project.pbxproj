@@ -76,7 +76,7 @@
 				E680A6F92B971625003183D7 /* Resources */,
 				E680A6F82B97161C003183D7 /* AppDelegate */,
 				E680A6F72B971614003183D7 /* Controllers */,
-				E680A6F62B97160D003183D7 /* VIews */,
+				E680A6F62B97160D003183D7 /* Views */,
 				E680A6F52B971604003183D7 /* ViewModels */,
 				E680A6F42B9715FA003183D7 /* Models */,
 			);
@@ -99,7 +99,7 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		E680A6F62B97160D003183D7 /* VIews */ = {
+		E680A6F62B97160D003183D7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				E680A7002B9718BF003183D7 /* View.swift */,
@@ -107,7 +107,7 @@
 				E680A6E62B971403003183D7 /* Main.storyboard */,
 				E680A6EB2B971405003183D7 /* LaunchScreen.storyboard */,
 			);
-			path = VIews;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E680A6F72B971614003183D7 /* Controllers */ = {
