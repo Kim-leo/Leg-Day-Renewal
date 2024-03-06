@@ -9,22 +9,33 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let myView = MyView()
+    let myView = ViewForHomeVC()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.addSubview(myView)
-        setupViewLayout()
+        setupViewLayout(yourView: myView)
         
+        myView.goToVCBtns.map { $0.addTarget(self, action: #selector(self.goToVCBtnsTapped), for: .touchUpInside)}
     }
 
-    func setupViewLayout() {
-        myView.translatesAutoresizingMaskIntoConstraints = false
-        myView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        myView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        myView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        myView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-    }
+    
 }
 
+extension HomeViewController {
+    @objc func goToVCBtnsTapped(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            guard let startWorkoutVC = self.storyboard?.instantiateViewController(withIdentifier: "StartWorkoutViewController") as? StartWorkoutViewController else { return }
+            self.navigationController?.pushViewController(startWorkoutVC, animated: true)
+        case 1:
+            guard let setWorkoutVC = self.storyboard?.instantiateViewController(withIdentifier: "SetWorkoutViewController") as? SetWorkoutViewController else { return }
+            self.navigationController?.pushViewController(setWorkoutVC, animated: true)
+        case 2:
+            guard let aboutTheAppVC = self.storyboard?.instantiateViewController(withIdentifier: "AboutTheAppViewController") as? AboutTheAppViewController else { return }
+            self.navigationController?.pushViewController(aboutTheAppVC, animated: true)
+        default:
+            break
+        }
+    }
+}

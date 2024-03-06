@@ -17,6 +17,8 @@
 		E680A6FD2B97178B003183D7 /* SetWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A6FC2B97178B003183D7 /* SetWorkoutViewController.swift */; };
 		E680A6FF2B971797003183D7 /* AboutTheAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A6FE2B971797003183D7 /* AboutTheAppViewController.swift */; };
 		E680A7012B9718BF003183D7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A7002B9718BF003183D7 /* View.swift */; };
+		E6A496C12B984E14004ACA8E /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496C02B984E14004ACA8E /* ExtensionViewController.swift */; };
+		E6A496C32B984E71004ACA8E /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496C22B984E71004ACA8E /* ExtensionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		E680A6FC2B97178B003183D7 /* SetWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetWorkoutViewController.swift; sourceTree = "<group>"; };
 		E680A6FE2B971797003183D7 /* AboutTheAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTheAppViewController.swift; sourceTree = "<group>"; };
 		E680A7002B9718BF003183D7 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		E6A496C02B984E14004ACA8E /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
+		E6A496C22B984E71004ACA8E /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				E680A7002B9718BF003183D7 /* View.swift */,
+				E6A496C22B984E71004ACA8E /* ExtensionView.swift */,
 				E680A6E62B971403003183D7 /* Main.storyboard */,
 				E680A6EB2B971405003183D7 /* LaunchScreen.storyboard */,
 			);
@@ -106,6 +111,7 @@
 				E680A6FA2B97177F003183D7 /* StartWorkoutViewController.swift */,
 				E680A6FC2B97178B003183D7 /* SetWorkoutViewController.swift */,
 				E680A6FE2B971797003183D7 /* AboutTheAppViewController.swift */,
+				E6A496C02B984E14004ACA8E /* ExtensionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,9 +205,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E680A6FF2B971797003183D7 /* AboutTheAppViewController.swift in Sources */,
+				E6A496C32B984E71004ACA8E /* ExtensionView.swift in Sources */,
 				E680A6E52B971403003183D7 /* HomeViewController.swift in Sources */,
 				E680A6E12B971403003183D7 /* AppDelegate.swift in Sources */,
 				E680A6FD2B97178B003183D7 /* SetWorkoutViewController.swift in Sources */,
+				E6A496C12B984E14004ACA8E /* ExtensionViewController.swift in Sources */,
 				E680A6FB2B97177F003183D7 /* StartWorkoutViewController.swift in Sources */,
 				E680A7012B9718BF003183D7 /* View.swift in Sources */,
 				E680A6E32B971403003183D7 /* SceneDelegate.swift in Sources */,

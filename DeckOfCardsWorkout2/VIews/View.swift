@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
+// MARK: - HomeVC View
 class ViewForHomeVC: UIView {
-    // MARK: - HomeVC
     lazy var stackViewForVCBtns: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
@@ -40,7 +40,34 @@ class ViewForHomeVC: UIView {
         return btnArr
     }()
     
-    // MARK: - StartWorkoutVC
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = .systemGreen
+        
+        self.addSubview(stackViewForVCBtns)
+        for num in 0...2 {
+            stackViewForVCBtns.addArrangedSubview(goToVCBtns[num])
+        }
+        
+        viewLayoutForHomeVC()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("뷰 초기화 에러 발생!")
+    }
+    
+    func viewLayoutForHomeVC() {
+        stackViewForVCBtns.translatesAutoresizingMaskIntoConstraints = false
+        stackViewForVCBtns.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        stackViewForVCBtns.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        stackViewForVCBtns.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        stackViewForVCBtns.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
+    }
+}
+
+// MARK: - StartWorkoutVC View
+class ViewForStartWorkout: UIView {
     lazy var cardImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -69,7 +96,53 @@ class ViewForHomeVC: UIView {
         return btn
     }()
     
-    // MARK: - SetWorkoutVC
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = .systemOrange
+        
+        [cardImageView, cardNameLabel, workoutNameLabel, nextBtn].map {
+            self.addSubview($0)
+        }
+        
+        viewLayoutForStartWorkoutVC()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("뷰 초기화 에러 발생!")
+    }
+    
+    func viewLayoutForStartWorkoutVC() {
+        cardImageView.translatesAutoresizingMaskIntoConstraints = false
+        cardImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 100).isActive = true
+        cardImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 100).isActive = true
+        cardImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -100).isActive = true
+        cardImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+    
+        cardNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        cardNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        cardNameLabel.topAnchor.constraint(equalTo: cardImageView.bottomAnchor, constant: 10).isActive = true
+        cardNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 50).isActive = true
+        cardNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50).isActive = true
+        cardNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    
+        workoutNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        workoutNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        workoutNameLabel.topAnchor.constraint(equalTo: cardNameLabel.bottomAnchor, constant: 10).isActive = true
+        workoutNameLabel.leadingAnchor.constraint(equalTo: cardNameLabel.leadingAnchor).isActive = true
+        workoutNameLabel.trailingAnchor.constraint(equalTo: cardNameLabel.trailingAnchor).isActive = true
+        workoutNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    
+        nextBtn.translatesAutoresizingMaskIntoConstraints = false
+        nextBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        nextBtn.topAnchor.constraint(equalTo: workoutNameLabel.bottomAnchor, constant: 50).isActive = true
+        nextBtn.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        nextBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+}
+
+// MARK: - SetWorkoutVC View
+class ViewForSetWorkoutVC: UIView {
     lazy var stackViewVertical: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
@@ -225,48 +298,4 @@ class ViewForHomeVC: UIView {
         }
         return btnArr
     }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        backgroundColor = .systemGreen
-        
-        setupUI()
-        
-        viewLayoutForHomeVC()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("뷰 초기화 에러 발생!")
-    }
-    
-    func setupUI() {
-        self.addSubview(stackViewForVCBtns)
-        
-        for num in 0...2 {
-            stackViewForVCBtns.addArrangedSubview(goToVCBtns[num])
-            stackViewHorizontal1.addArrangedSubview(categoryBtns[num])
-            stackViewHorizontal2.addArrangedSubview(categoryBtns[num + 3])
-        }
-        
-        [stackViewHorizontal3, stackViewHorizontal4].map {
-            verticalStackViewForSettingPokerShapes.addArrangedSubview($0)
-        }
-        
-        for num in 0...1 {
-            stackViewHorizontal3.addArrangedSubview(pokerShapeBtns[num])
-            stackViewHorizontal4.addArrangedSubview(pokerShapeBtns[num + 2])
-        }
-        cancelBtnView.addSubview(cancelBtn)
-    }
-    
-    func viewLayoutForHomeVC() {
-        stackViewForVCBtns.translatesAutoresizingMaskIntoConstraints = false
-        stackViewForVCBtns.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        stackViewForVCBtns.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        stackViewForVCBtns.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-        stackViewForVCBtns.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
-    }
-    
-    
 }

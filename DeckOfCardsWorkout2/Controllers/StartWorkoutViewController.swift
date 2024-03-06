@@ -9,10 +9,12 @@ import UIKit
 
 class StartWorkoutViewController: UIViewController {
 
+    let myView = ViewForStartWorkout()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        self.view.addSubview(myView)
+        setupViewLayout(yourView: myView)
     }
     
 
