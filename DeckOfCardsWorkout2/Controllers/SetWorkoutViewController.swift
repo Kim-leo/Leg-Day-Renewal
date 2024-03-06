@@ -11,8 +11,8 @@ class SetWorkoutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        self.navigationItem.leftBarButtonItem = self.leftBarBtn
+        self.view.backgroundColor = .systemPink
     }
     
 

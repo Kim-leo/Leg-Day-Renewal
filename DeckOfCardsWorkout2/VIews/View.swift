@@ -98,14 +98,13 @@ class ViewForStartWorkout: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .systemOrange
-        
         [cardImageView, cardNameLabel, workoutNameLabel, nextBtn].map {
             self.addSubview($0)
         }
         
         viewLayoutForStartWorkoutVC()
+        
+        
     }
     
     required init?(coder: NSCoder) {
