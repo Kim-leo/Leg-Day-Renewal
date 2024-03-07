@@ -21,6 +21,7 @@
 		E6A496C32B984E71004ACA8E /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496C22B984E71004ACA8E /* ExtensionView.swift */; };
 		E6A496CB2B9858BD004ACA8E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496CA2B9858BD004ACA8E /* ViewModel.swift */; };
 		E6A496CD2B9858CB004ACA8E /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496CC2B9858CB004ACA8E /* CardModel.swift */; };
+		E6B8ACEA2B999A58007EF2D3 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B8ACE92B999A58007EF2D3 /* WorkoutModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		E6A496C22B984E71004ACA8E /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		E6A496CA2B9858BD004ACA8E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		E6A496CC2B9858CB004ACA8E /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		E6B8ACE92B999A58007EF2D3 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				E6A496CC2B9858CB004ACA8E /* CardModel.swift */,
+				E6B8ACE92B999A58007EF2D3 /* WorkoutModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6A496CB2B9858BD004ACA8E /* ViewModel.swift in Sources */,
+				E6B8ACEA2B999A58007EF2D3 /* WorkoutModel.swift in Sources */,
 				E6A496CD2B9858CB004ACA8E /* CardModel.swift in Sources */,
 				E680A6FF2B971797003183D7 /* AboutTheAppViewController.swift in Sources */,
 				E6A496C32B984E71004ACA8E /* ExtensionView.swift in Sources */,

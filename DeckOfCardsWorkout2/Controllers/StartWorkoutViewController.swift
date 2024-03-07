@@ -10,7 +10,7 @@ import UIKit
 class StartWorkoutViewController: UIViewController {
 
     let myView = ViewForStartWorkout()
-    let viewModel = ViewModelForStartWorkoutVC(cardModel: Card())
+    let viewModel = ViewModelForStartWorkoutVC(cardModel: CardModel(), workoutModel: WorkoutModel())
     
     override func viewDidLoad() {
         super.viewDidLoad()
