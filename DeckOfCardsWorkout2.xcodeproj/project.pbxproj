@@ -16,12 +16,21 @@
 		E680A6FB2B97177F003183D7 /* StartWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A6FA2B97177F003183D7 /* StartWorkoutViewController.swift */; };
 		E680A6FD2B97178B003183D7 /* SetWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A6FC2B97178B003183D7 /* SetWorkoutViewController.swift */; };
 		E680A6FF2B971797003183D7 /* AboutTheAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A6FE2B971797003183D7 /* AboutTheAppViewController.swift */; };
-		E680A7012B9718BF003183D7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A7002B9718BF003183D7 /* View.swift */; };
-		E6A496C12B984E14004ACA8E /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496C02B984E14004ACA8E /* ExtensionViewController.swift */; };
+		E680A7012B9718BF003183D7 /* ViewForHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A7002B9718BF003183D7 /* ViewForHomeVC.swift */; };
+		E6A496C12B984E14004ACA8E /* ExtensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496C02B984E14004ACA8E /* ExtensionVC.swift */; };
 		E6A496C32B984E71004ACA8E /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496C22B984E71004ACA8E /* ExtensionView.swift */; };
-		E6A496CB2B9858BD004ACA8E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496CA2B9858BD004ACA8E /* ViewModel.swift */; };
+		E6A496CB2B9858BD004ACA8E /* ViewModelForHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496CA2B9858BD004ACA8E /* ViewModelForHomeVC.swift */; };
 		E6A496CD2B9858CB004ACA8E /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496CC2B9858CB004ACA8E /* CardModel.swift */; };
 		E6B8ACEA2B999A58007EF2D3 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B8ACE92B999A58007EF2D3 /* WorkoutModel.swift */; };
+		E6D014C82B9ADCFA0088C829 /* ViewForStartWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D014C72B9ADCFA0088C829 /* ViewForStartWorkoutVC.swift */; };
+		E6D014CA2B9ADD160088C829 /* ViewForSetWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D014C92B9ADD160088C829 /* ViewForSetWorkoutVC.swift */; };
+		E6D014CC2B9ADD210088C829 /* ViewForAboutTheAppVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D014CB2B9ADD210088C829 /* ViewForAboutTheAppVC.swift */; };
+		E6D014D02B9AE3ED0088C829 /* UpperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6D014CF2B9AE3ED0088C829 /* UpperCell.xib */; };
+		E6D014D12B9AE3ED0088C829 /* UpperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D014CE2B9AE3ED0088C829 /* UpperCell.swift */; };
+		E6D014D42B9AE3F80088C829 /* LowerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6D014D32B9AE3F80088C829 /* LowerCell.xib */; };
+		E6D014D52B9AE3F80088C829 /* LowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D014D22B9AE3F80088C829 /* LowerCell.swift */; };
+		E6D014D72B9AE4F20088C829 /* ViewModelForStartWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D014D62B9AE4F20088C829 /* ViewModelForStartWorkout.swift */; };
+		E6D014D92B9AE4FE0088C829 /* ViewModelForSetWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D014D82B9AE4FE0088C829 /* ViewModelForSetWorkout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,12 +45,21 @@
 		E680A6FA2B97177F003183D7 /* StartWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutViewController.swift; sourceTree = "<group>"; };
 		E680A6FC2B97178B003183D7 /* SetWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetWorkoutViewController.swift; sourceTree = "<group>"; };
 		E680A6FE2B971797003183D7 /* AboutTheAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTheAppViewController.swift; sourceTree = "<group>"; };
-		E680A7002B9718BF003183D7 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		E6A496C02B984E14004ACA8E /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
+		E680A7002B9718BF003183D7 /* ViewForHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewForHomeVC.swift; sourceTree = "<group>"; };
+		E6A496C02B984E14004ACA8E /* ExtensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionVC.swift; sourceTree = "<group>"; };
 		E6A496C22B984E71004ACA8E /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
-		E6A496CA2B9858BD004ACA8E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		E6A496CA2B9858BD004ACA8E /* ViewModelForHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelForHomeVC.swift; sourceTree = "<group>"; };
 		E6A496CC2B9858CB004ACA8E /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		E6B8ACE92B999A58007EF2D3 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		E6D014C72B9ADCFA0088C829 /* ViewForStartWorkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewForStartWorkoutVC.swift; sourceTree = "<group>"; };
+		E6D014C92B9ADD160088C829 /* ViewForSetWorkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewForSetWorkoutVC.swift; sourceTree = "<group>"; };
+		E6D014CB2B9ADD210088C829 /* ViewForAboutTheAppVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewForAboutTheAppVC.swift; sourceTree = "<group>"; };
+		E6D014CE2B9AE3ED0088C829 /* UpperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperCell.swift; sourceTree = "<group>"; };
+		E6D014CF2B9AE3ED0088C829 /* UpperCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpperCell.xib; sourceTree = "<group>"; };
+		E6D014D22B9AE3F80088C829 /* LowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowerCell.swift; sourceTree = "<group>"; };
+		E6D014D32B9AE3F80088C829 /* LowerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LowerCell.xib; sourceTree = "<group>"; };
+		E6D014D62B9AE4F20088C829 /* ViewModelForStartWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelForStartWorkout.swift; sourceTree = "<group>"; };
+		E6D014D82B9AE4FE0088C829 /* ViewModelForSetWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelForSetWorkout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +115,9 @@
 		E680A6F52B971604003183D7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				E6A496CA2B9858BD004ACA8E /* ViewModel.swift */,
+				E6A496CA2B9858BD004ACA8E /* ViewModelForHomeVC.swift */,
+				E6D014D62B9AE4F20088C829 /* ViewModelForStartWorkout.swift */,
+				E6D014D82B9AE4FE0088C829 /* ViewModelForSetWorkout.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -105,7 +125,11 @@
 		E680A6F62B97160D003183D7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E680A7002B9718BF003183D7 /* View.swift */,
+				E6D014CD2B9AE3CC0088C829 /* CollectionViewCells */,
+				E680A7002B9718BF003183D7 /* ViewForHomeVC.swift */,
+				E6D014C72B9ADCFA0088C829 /* ViewForStartWorkoutVC.swift */,
+				E6D014C92B9ADD160088C829 /* ViewForSetWorkoutVC.swift */,
+				E6D014CB2B9ADD210088C829 /* ViewForAboutTheAppVC.swift */,
 				E6A496C22B984E71004ACA8E /* ExtensionView.swift */,
 				E680A6E62B971403003183D7 /* Main.storyboard */,
 				E680A6EB2B971405003183D7 /* LaunchScreen.storyboard */,
@@ -120,7 +144,7 @@
 				E680A6FA2B97177F003183D7 /* StartWorkoutViewController.swift */,
 				E680A6FC2B97178B003183D7 /* SetWorkoutViewController.swift */,
 				E680A6FE2B971797003183D7 /* AboutTheAppViewController.swift */,
-				E6A496C02B984E14004ACA8E /* ExtensionViewController.swift */,
+				E6A496C02B984E14004ACA8E /* ExtensionVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -140,6 +164,17 @@
 				E680A6E92B971405003183D7 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E6D014CD2B9AE3CC0088C829 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E6D014CE2B9AE3ED0088C829 /* UpperCell.swift */,
+				E6D014CF2B9AE3ED0088C829 /* UpperCell.xib */,
+				E6D014D22B9AE3F80088C829 /* LowerCell.swift */,
+				E6D014D32B9AE3F80088C829 /* LowerCell.xib */,
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +237,8 @@
 			files = (
 				E680A6ED2B971405003183D7 /* LaunchScreen.storyboard in Resources */,
 				E680A6EA2B971405003183D7 /* Assets.xcassets in Resources */,
+				E6D014D42B9AE3F80088C829 /* LowerCell.xib in Resources */,
+				E6D014D02B9AE3ED0088C829 /* UpperCell.xib in Resources */,
 				E680A6E82B971403003183D7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,17 +250,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6A496CB2B9858BD004ACA8E /* ViewModel.swift in Sources */,
+				E6D014D52B9AE3F80088C829 /* LowerCell.swift in Sources */,
+				E6A496CB2B9858BD004ACA8E /* ViewModelForHomeVC.swift in Sources */,
 				E6B8ACEA2B999A58007EF2D3 /* WorkoutModel.swift in Sources */,
 				E6A496CD2B9858CB004ACA8E /* CardModel.swift in Sources */,
 				E680A6FF2B971797003183D7 /* AboutTheAppViewController.swift in Sources */,
+				E6D014D92B9AE4FE0088C829 /* ViewModelForSetWorkout.swift in Sources */,
 				E6A496C32B984E71004ACA8E /* ExtensionView.swift in Sources */,
+				E6D014CC2B9ADD210088C829 /* ViewForAboutTheAppVC.swift in Sources */,
+				E6D014D72B9AE4F20088C829 /* ViewModelForStartWorkout.swift in Sources */,
+				E6D014D12B9AE3ED0088C829 /* UpperCell.swift in Sources */,
 				E680A6E52B971403003183D7 /* HomeViewController.swift in Sources */,
 				E680A6E12B971403003183D7 /* AppDelegate.swift in Sources */,
 				E680A6FD2B97178B003183D7 /* SetWorkoutViewController.swift in Sources */,
-				E6A496C12B984E14004ACA8E /* ExtensionViewController.swift in Sources */,
+				E6D014CA2B9ADD160088C829 /* ViewForSetWorkoutVC.swift in Sources */,
+				E6D014C82B9ADCFA0088C829 /* ViewForStartWorkoutVC.swift in Sources */,
+				E6A496C12B984E14004ACA8E /* ExtensionVC.swift in Sources */,
 				E680A6FB2B97177F003183D7 /* StartWorkoutViewController.swift in Sources */,
-				E680A7012B9718BF003183D7 /* View.swift in Sources */,
+				E680A7012B9718BF003183D7 /* ViewForHomeVC.swift in Sources */,
 				E680A6E32B971403003183D7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
