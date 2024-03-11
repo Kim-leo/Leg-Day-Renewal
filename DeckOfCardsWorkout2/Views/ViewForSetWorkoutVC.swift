@@ -182,7 +182,6 @@ class ViewForSetWorkoutVC: UIView {
         }
         cancelBtnView.addSubview(cancelBtn)
         
-        
         [stackViewHorizontal3, stackViewHorizontal4].map {
             verticalStackViewForSettingPokerShapes.addArrangedSubview($0)
         }

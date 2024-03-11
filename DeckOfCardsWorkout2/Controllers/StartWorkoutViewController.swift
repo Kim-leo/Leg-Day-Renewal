@@ -21,6 +21,7 @@ class StartWorkoutViewController: UIViewController {
         viewModel.componentsInitialSetting(myView)
         
         myView.nextBtn.addTarget(self, action: #selector(nextBtnTappedAction), for: .touchUpInside)
+        print(WorkoutModel().selectedWorkoutPerPokerShapeArray)
     }
     
 

@@ -11,7 +11,11 @@ import Combine
 
 class ViewModelForStartWorkoutVC {
     let cardModel: CardModel
-    let workoutModel: WorkoutModel
+//    var workoutModel: WorkoutModel
+    
+    var workoutModel = WorkoutModel()
+    
+    var myWorkoutModel = MyWorkout.shared
     
     var cardSet = CardModel().cardSet
     var emptyArray = [String]()
@@ -81,13 +85,13 @@ extension ViewModelForStartWorkoutVC {
     func checkWhichWorkout(words: String, view: ViewForStartWorkout) {
          howManyTimesWorkout(words: words)
         if words.hasPrefix("Spade") {
-            view.workoutNameLabel.text = "\(workoutModel.selectedWorkoutPerPokerShapeArray[0]) : \(workoutModel.howManyTimesNum) times"
+            view.workoutNameLabel.text = "\(myWorkoutModel.selectedWorkoutPerPokerShapeArray[0]) : \(workoutModel.howManyTimesNum) times"
         } else if words.hasPrefix("Heart") {
-            view.workoutNameLabel.text = "\(workoutModel.selectedWorkoutPerPokerShapeArray[1]) : \(workoutModel.howManyTimesNum) times"
+            view.workoutNameLabel.text = "\(myWorkoutModel.selectedWorkoutPerPokerShapeArray[1]) : \(workoutModel.howManyTimesNum) times"
         } else if words.hasPrefix("Clover") {
-            view.workoutNameLabel.text = "\(workoutModel.selectedWorkoutPerPokerShapeArray[2]) : \(workoutModel.howManyTimesNum) times"
+            view.workoutNameLabel.text = "\(myWorkoutModel.selectedWorkoutPerPokerShapeArray[2]) : \(workoutModel.howManyTimesNum) times"
         } else if words.hasPrefix("Diamond") {
-            view.workoutNameLabel.text = "\(workoutModel.selectedWorkoutPerPokerShapeArray[3]) : \(workoutModel.howManyTimesNum) times"
+            view.workoutNameLabel.text = "\(myWorkoutModel.selectedWorkoutPerPokerShapeArray[3]) : \(workoutModel.howManyTimesNum) times"
         } else if words.hasPrefix("운동") {
             view.workoutNameLabel.text = "축하해요~"
         } else {

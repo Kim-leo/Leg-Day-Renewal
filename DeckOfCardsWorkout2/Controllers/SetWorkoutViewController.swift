@@ -10,7 +10,8 @@ import UIKit
 class SetWorkoutViewController: UIViewController {
     
     let myView = ViewForSetWorkoutVC()
-    let viewModel = ViewModelForSetWorkoutVC(workoutMode: WorkoutModel())
+//    let viewModel = ViewModelForSetWorkoutVC(workoutMode: WorkoutModel())
+    let viewModel = ViewModelForSetWorkoutVC.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,41 @@ class SetWorkoutViewController: UIViewController {
         myView.lowerCollectinView.delegate = self
         myView.lowerCollectinView.dataSource = self
         
-        viewModel.initialSetting()
+        viewModel.initialSetting(view: myView)
+        
+        myView.categoryBtns.map {
+            $0.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
+        }
+        myView.cancelBtn.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
+        
+        myView.pokerShapeBtns.map {
+            $0.addTarget(self, action: #selector(pokerShapeBtnsTapped), for: .touchUpInside)
+        }
+        
+        
+        print(viewModel.selectedWorkoutPerPokerShapeArray)
+//        print(viewModel.yourAllWorkoutsArray)
     }
     
+}
+
+extension SetWorkoutViewController {
+    @objc func categoryBtnTapped(_ sender: UIButton) {
+        viewModel.workoutForCategories[sender.tag].append(viewModel.inputWorkout)
+        viewModel.categoryBtnTapped(view: myView)
+//        print(viewModel.yourAllWorkoutsArray)
+    }
+    
+    @objc func cancelBtnTapped(_ sender: UIButton) {
+        viewModel.cancelBtnTapped(view: myView)
+    }
+    
+    @objc func pokerShapeBtnsTapped(_ sender: UIButton) {
+        viewModel.pokerCardBtnTapped(view: myView, sender)
+        sender.setTitle(viewModel.whichWorkout, for: .normal)
+        
+//        viewModel.selectedWorkoutPerPokerShapeArray[sender.tag] = viewModel.whichWorkout
+    }
 }
 
 extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -78,7 +111,6 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView.tag {
         case 0:
-//            print(viewModel.typeOfWorkouts[indexPath.row])
             collectionView.performBatchUpdates {
                 viewModel.yourAllWorkoutsArray.removeAll()
                 if viewModel.typeOfWorkouts[indexPath.row] == "전체" {
@@ -89,13 +121,24 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
                 }
                 myView.lowerCollectinView.reloadData()
             }
-            
-            
         case 1:
             print(viewModel.yourAllWorkoutsArray[indexPath.row])
+            switch viewModel.yourAllWorkoutsArray[indexPath.row] {
+            case "+ 직접 입력":
+                viewModel.addWorkoutByYourself(view: myView, vc: self)
+            default:
+                collectionView.alpha = 0.5
+                myView.verticalStackViewForSettingPokerShapes.alpha = 1
+                self.view.bringSubviewToFront(myView.verticalStackViewForSettingPokerShapes)
+                viewModel.whichWorkout = viewModel.yourAllWorkoutsArray[indexPath.row]
+                myView.pokerShapeBtns.map { $0.setTitle("\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])", for: .normal)}
+            }
+            
         default:
             break
         }
     }
     
 }
+
+
