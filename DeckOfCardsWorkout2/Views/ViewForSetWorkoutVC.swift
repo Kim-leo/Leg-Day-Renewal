@@ -166,14 +166,33 @@ class ViewForSetWorkoutVC: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        [upperView, lowerView].map {
+        [upperView, lowerView, stackViewVertical, verticalStackViewForSettingPokerShapes].map {
             self.addSubview($0)
         }
         upperView.addSubview(upperCollectinView)
         lowerView.addSubview(lowerCollectinView)
         
         
+        [stackViewHorizontal1, stackViewHorizontal2, cancelBtnView].map {
+            stackViewVertical.addArrangedSubview($0)
+        }
+        for num in 0...2 {
+            stackViewHorizontal1.addArrangedSubview(categoryBtns[num])
+            stackViewHorizontal2.addArrangedSubview(categoryBtns[num + 3])
+        }
+        cancelBtnView.addSubview(cancelBtn)
         
+        
+        [stackViewHorizontal3, stackViewHorizontal4].map {
+            verticalStackViewForSettingPokerShapes.addArrangedSubview($0)
+        }
+        for num in 0...1 {
+            stackViewHorizontal3.addArrangedSubview(pokerShapeBtns[num])
+            stackViewHorizontal4.addArrangedSubview(pokerShapeBtns[num + 2])
+        }
+        
+        stackViewVertical.alpha = 0
+        verticalStackViewForSettingPokerShapes.alpha = 0
         
         viewLayoutForSetWorkoutVC()
     }
@@ -207,6 +226,24 @@ class ViewForSetWorkoutVC: UIView {
         lowerCollectinView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor).isActive = true
         lowerCollectinView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor).isActive = true
         lowerCollectinView.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor).isActive = true
+        
+        stackViewVertical.translatesAutoresizingMaskIntoConstraints = false
+        stackViewVertical.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        stackViewVertical.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        stackViewVertical.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
+        stackViewVertical.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
+        
+        cancelBtn.translatesAutoresizingMaskIntoConstraints = false
+        cancelBtn.centerXAnchor.constraint(equalTo: stackViewVertical.centerXAnchor).isActive = true
+        cancelBtn.centerYAnchor.constraint(equalTo: cancelBtnView.centerYAnchor).isActive = true
+        cancelBtn.widthAnchor.constraint(equalTo: cancelBtnView.widthAnchor, multiplier: 0.2).isActive = true
+        cancelBtn.heightAnchor.constraint(equalTo: cancelBtn.widthAnchor).isActive = true
+        
+        verticalStackViewForSettingPokerShapes.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackViewForSettingPokerShapes.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        verticalStackViewForSettingPokerShapes.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        verticalStackViewForSettingPokerShapes.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
+        verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
     }
 }
 
