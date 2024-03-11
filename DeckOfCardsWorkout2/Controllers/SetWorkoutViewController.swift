@@ -10,7 +10,7 @@ import UIKit
 class SetWorkoutViewController: UIViewController {
     
     let myView = ViewForSetWorkoutVC()
-    let viewModel = ViewModelForSetWorkoutVC()
+    let viewModel = ViewModelForSetWorkoutVC(workoutMode: WorkoutModel())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,8 @@ class SetWorkoutViewController: UIViewController {
         myView.upperCollectinView.dataSource = self
         myView.lowerCollectinView.delegate = self
         myView.lowerCollectinView.dataSource = self
+        
+        viewModel.initialSetting()
     }
     
 }
@@ -78,7 +80,7 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
         case 0:
             print(viewModel.typeOfWorkouts[indexPath.row])
         case 1:
-            print("hi")
+            print(viewModel.yourAllWorkoutsArray[indexPath.row])
         default:
             break
         }

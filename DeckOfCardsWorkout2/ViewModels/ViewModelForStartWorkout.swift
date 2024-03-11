@@ -11,8 +11,8 @@ import Combine
 
 class ViewModelForStartWorkoutVC {
     let cardModel: CardModel
-//    var workoutModel = WorkoutModel.shared
     let workoutModel: WorkoutModel
+    
     var cardSet = CardModel().cardSet
     var emptyArray = [String]()
     var pickedCard: String = ""
