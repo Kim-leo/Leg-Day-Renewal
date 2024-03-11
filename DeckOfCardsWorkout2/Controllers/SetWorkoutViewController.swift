@@ -78,7 +78,19 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView.tag {
         case 0:
-            print(viewModel.typeOfWorkouts[indexPath.row])
+//            print(viewModel.typeOfWorkouts[indexPath.row])
+            collectionView.performBatchUpdates {
+                viewModel.yourAllWorkoutsArray.removeAll()
+                if viewModel.typeOfWorkouts[indexPath.row] == "전체" {
+                    viewModel.yourAllWorkoutsArray.append("+ 직접 입력")
+                    viewModel.yourAllWorkoutsArray += Array(viewModel.workoutForCategories.joined())
+                } else {
+                    viewModel.yourAllWorkoutsArray += Array(viewModel.workoutForCategories[indexPath.row])
+                }
+                myView.lowerCollectinView.reloadData()
+            }
+            
+            
         case 1:
             print(viewModel.yourAllWorkoutsArray[indexPath.row])
         default:
