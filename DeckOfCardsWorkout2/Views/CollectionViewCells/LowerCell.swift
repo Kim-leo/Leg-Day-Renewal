@@ -11,11 +11,7 @@ class LowerCell: UICollectionViewCell {
     
     lazy var typesOfWorkoutLabel: UILabel = {
         let label = UILabel()
-        label.layer.cornerRadius = 10
-        label.clipsToBounds = true
-        label.layer.borderColor = UIColor.darkGray.cgColor
-        label.layer.borderWidth = 1
-        label.backgroundColor = Colors().colorArray.randomElement()
+        
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18)
@@ -39,6 +35,13 @@ class LowerCell: UICollectionViewCell {
     }
 
     func setupLayoutForUpperCell() {
+        
+        self.contentView.layer.cornerRadius = 10
+        self.contentView.clipsToBounds = true
+        self.contentView.layer.borderColor = UIColor.darkGray.cgColor
+        self.contentView.layer.borderWidth = 1
+        self.contentView.backgroundColor = Colors().colorArray.randomElement()
+        
         typesOfWorkoutLabel.translatesAutoresizingMaskIntoConstraints = false
         
         typesOfWorkoutLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true

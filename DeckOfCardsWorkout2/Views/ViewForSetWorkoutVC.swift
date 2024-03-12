@@ -143,6 +143,20 @@ class ViewForSetWorkoutVC: UIView {
         sv.spacing = 10
         return sv
     }()
+
+    lazy var pokerShapeViews: [UIView] = {
+        var views = [UIView]()
+        for num in 0...3 {
+            var view = UIView()
+            view.backgroundColor = .white
+            view.layer.cornerRadius = 15
+            view.clipsToBounds = true
+            view.layer.borderColor = UIColor.darkGray.cgColor
+            view.layer.borderWidth = 1
+            views.append(view)
+        }
+        return views
+    }()
     
     lazy var pokerShapeBtns: [UIButton] = {
         var btnArr = [UIButton]()
@@ -152,19 +166,28 @@ class ViewForSetWorkoutVC: UIView {
             btn.tag = num
             btn.backgroundColor = .white
             btn.setBackgroundImage(UIImage(systemName: pokerShapeImages[num]), for: .normal)
-            btn.setTitle("+", for: .normal)
-            btn.setTitleColor(.systemGray6, for: .normal)
-            btn.titleLabel?.numberOfLines = 0
-            btn.titleLabel?.lineBreakMode = .byWordWrapping
-            btn.titleLabel?.textAlignment = .center
+            btn.imageView?.contentMode = .scaleToFill
             btn.tintColor = (num % 3 == 0) ? .black : .red
-            btn.layer.cornerRadius = 15
-            btn.clipsToBounds = true
-            btn.layer.borderColor = UIColor.darkGray.cgColor
-            btn.layer.borderWidth = 1
             btnArr.append(btn)
         }
         return btnArr
+    }()
+    
+    lazy var pokerWorkoutNameLabels: [UILabel] = {
+        var labelArr = [UILabel]()
+        for num in 0...3 {
+            let label = UILabel()
+            label.tag = num
+            label.backgroundColor = .white
+            label.textAlignment = .center
+            label.textColor = .darkGray
+            label.text = "\(num) sample"
+            label.font = UIFont.systemFont(ofSize: 18)
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
+            labelArr.append(label)
+        }
+        return labelArr
     }()
     
     override init(frame: CGRect) {
@@ -188,9 +211,15 @@ class ViewForSetWorkoutVC: UIView {
         [stackViewHorizontal3, stackViewHorizontal4].map {
             verticalStackViewForSettingPokerShapes.addArrangedSubview($0)
         }
-        for num in 0...1 {
-            stackViewHorizontal3.addArrangedSubview(pokerShapeBtns[num])
-            stackViewHorizontal4.addArrangedSubview(pokerShapeBtns[num + 2])
+        
+        for i in 0...1 {
+            stackViewHorizontal3.addArrangedSubview(pokerShapeViews[i])
+            stackViewHorizontal4.addArrangedSubview(pokerShapeViews[i + 2])
+        }
+        
+        for i in 0...3 {
+            pokerShapeViews[i].addSubview(pokerShapeBtns[i])
+            pokerShapeViews[i].addSubview(pokerWorkoutNameLabels[i])
         }
         
         stackViewVertical.alpha = 0
@@ -245,7 +274,21 @@ class ViewForSetWorkoutVC: UIView {
         verticalStackViewForSettingPokerShapes.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         verticalStackViewForSettingPokerShapes.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         verticalStackViewForSettingPokerShapes.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
-        verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
+        verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5).isActive = true
+        
+        for i in 0...3 {
+            pokerShapeBtns[i].translatesAutoresizingMaskIntoConstraints = false
+            pokerShapeBtns[i].leadingAnchor.constraint(equalTo: pokerShapeViews[i].leadingAnchor).isActive = true
+            pokerShapeBtns[i].trailingAnchor.constraint(equalTo: pokerShapeViews[i].trailingAnchor).isActive = true
+            pokerShapeBtns[i].topAnchor.constraint(equalTo: pokerShapeViews[i].topAnchor).isActive = true
+            pokerShapeBtns[i].heightAnchor.constraint(equalTo: pokerShapeViews[i].heightAnchor, multiplier: 0.7).isActive = true
+            
+            pokerWorkoutNameLabels[i].translatesAutoresizingMaskIntoConstraints = false
+            pokerWorkoutNameLabels[i].centerXAnchor.constraint(equalTo: pokerShapeViews[i].centerXAnchor).isActive = true
+            pokerWorkoutNameLabels[i].widthAnchor.constraint(equalTo: pokerShapeViews[i].widthAnchor, multiplier: 0.9).isActive = true
+            pokerWorkoutNameLabels[i].topAnchor.constraint(equalTo: pokerShapeBtns[i].bottomAnchor).isActive = true
+            pokerWorkoutNameLabels[i].bottomAnchor.constraint(equalTo: pokerShapeViews[i].bottomAnchor).isActive = true
+        }
     }
 }
 

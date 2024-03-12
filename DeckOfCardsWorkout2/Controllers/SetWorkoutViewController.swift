@@ -56,7 +56,9 @@ extension SetWorkoutViewController {
     
     @objc func pokerShapeBtnsTapped(_ sender: UIButton) {
         viewModel.pokerCardBtnTapped(view: myView, sender)
-        sender.setTitle(viewModel.whichWorkout, for: .normal)
+//        sender.setTitle(viewModel.whichWorkout, for: .normal)
+//        myView.pokerWorkoutNameLabels.map { $0.text = "\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])" }
+        myView.pokerWorkoutNameLabels[sender.tag].text = viewModel.whichWorkout
         
 //        viewModel.selectedWorkoutPerPokerShapeArray[sender.tag] = viewModel.whichWorkout
     }
@@ -131,7 +133,8 @@ extension SetWorkoutViewController: UICollectionViewDelegate, UICollectionViewDa
                 myView.verticalStackViewForSettingPokerShapes.alpha = 1
                 self.view.bringSubviewToFront(myView.verticalStackViewForSettingPokerShapes)
                 viewModel.whichWorkout = viewModel.yourAllWorkoutsArray[indexPath.row]
-                myView.pokerShapeBtns.map { $0.setTitle("\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])", for: .normal)}
+//                myView.pokerShapeBtns.map { $0.setTitle("\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])", for: .normal)}
+                myView.pokerWorkoutNameLabels.map { $0.text = "\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])" }
             }
             
         default:
