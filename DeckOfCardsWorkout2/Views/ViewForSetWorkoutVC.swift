@@ -153,7 +153,10 @@ class ViewForSetWorkoutVC: UIView {
             btn.backgroundColor = .white
             btn.setBackgroundImage(UIImage(systemName: pokerShapeImages[num]), for: .normal)
             btn.setTitle("+", for: .normal)
-            btn.setTitleColor(.white, for: .normal)
+            btn.setTitleColor(.systemGray6, for: .normal)
+            btn.titleLabel?.numberOfLines = 0
+            btn.titleLabel?.lineBreakMode = .byWordWrapping
+            btn.titleLabel?.textAlignment = .center
             btn.tintColor = (num % 3 == 0) ? .black : .red
             btn.layer.cornerRadius = 15
             btn.clipsToBounds = true
@@ -241,8 +244,8 @@ class ViewForSetWorkoutVC: UIView {
         verticalStackViewForSettingPokerShapes.translatesAutoresizingMaskIntoConstraints = false
         verticalStackViewForSettingPokerShapes.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         verticalStackViewForSettingPokerShapes.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        verticalStackViewForSettingPokerShapes.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
-        verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
+        verticalStackViewForSettingPokerShapes.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
     }
 }
 
