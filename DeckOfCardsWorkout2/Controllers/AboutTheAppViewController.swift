@@ -9,13 +9,31 @@ import UIKit
 
 class AboutTheAppViewController: UIViewController {
 
+    let myView = ViewForAboutTheAppVC()
+    var viewModel = ViewModelForAboutTheApp()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "운동 설명"
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
-        self.view.backgroundColor = .white
+        
+        self.view.addSubview(myView)
+        setupViewLayout(yourView: myView)
+        
+        myView.descriptionBtns.map {
+            $0.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
+        }
+        
+       
     }
     
 
-    
+}
 
+extension AboutTheAppViewController {
+    @objc func descriptionBtnTapped(_ sender: UIButton, tag: Int) {
+        viewModel.descriptionBtnsTapped(view: myView, sender)
+    }
+    
+    
 }

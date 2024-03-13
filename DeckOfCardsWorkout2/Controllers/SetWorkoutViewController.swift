@@ -15,6 +15,7 @@ class SetWorkoutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "운동 설정"
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
         
         self.view.addSubview(myView)
