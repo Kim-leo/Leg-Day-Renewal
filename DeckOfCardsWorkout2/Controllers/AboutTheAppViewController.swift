@@ -12,7 +12,7 @@ class AboutTheAppViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
-        self.view.backgroundColor = .systemBlue
+        self.view.backgroundColor = .white
     }
     
 
