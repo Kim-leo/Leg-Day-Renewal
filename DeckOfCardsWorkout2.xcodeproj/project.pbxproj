@@ -18,6 +18,12 @@
 		E680A6FF2B971797003183D7 /* AboutTheAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A6FE2B971797003183D7 /* AboutTheAppViewController.swift */; };
 		E680A7012B9718BF003183D7 /* ViewForHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A7002B9718BF003183D7 /* ViewForHomeVC.swift */; };
 		E6911A9F2BA20A1400870503 /* ViewModelForAboutTheApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6911A9E2BA20A1400870503 /* ViewModelForAboutTheApp.swift */; };
+		E6911AA32BA20CC500870503 /* Description1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6911AA12BA20CC400870503 /* Description1Cell.swift */; };
+		E6911AA42BA20CC500870503 /* Description1Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6911AA22BA20CC400870503 /* Description1Cell.xib */; };
+		E6911AA82BA20CE500870503 /* Description2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6911AA62BA20CE500870503 /* Description2Cell.swift */; };
+		E6911AA92BA20CE500870503 /* Description2Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6911AA72BA20CE500870503 /* Description2Cell.xib */; };
+		E6911AAC2BA20CF700870503 /* Description3Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6911AAA2BA20CF700870503 /* Description3Cell.swift */; };
+		E6911AAD2BA20CF700870503 /* Description3Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6911AAB2BA20CF700870503 /* Description3Cell.xib */; };
 		E6A496C12B984E14004ACA8E /* ExtensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496C02B984E14004ACA8E /* ExtensionVC.swift */; };
 		E6A496C32B984E71004ACA8E /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496C22B984E71004ACA8E /* ExtensionView.swift */; };
 		E6A496CB2B9858BD004ACA8E /* ViewModelForHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A496CA2B9858BD004ACA8E /* ViewModelForHomeVC.swift */; };
@@ -48,6 +54,12 @@
 		E680A6FE2B971797003183D7 /* AboutTheAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTheAppViewController.swift; sourceTree = "<group>"; };
 		E680A7002B9718BF003183D7 /* ViewForHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewForHomeVC.swift; sourceTree = "<group>"; };
 		E6911A9E2BA20A1400870503 /* ViewModelForAboutTheApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelForAboutTheApp.swift; sourceTree = "<group>"; };
+		E6911AA12BA20CC400870503 /* Description1Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Description1Cell.swift; sourceTree = "<group>"; };
+		E6911AA22BA20CC400870503 /* Description1Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Description1Cell.xib; sourceTree = "<group>"; };
+		E6911AA62BA20CE500870503 /* Description2Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Description2Cell.swift; sourceTree = "<group>"; };
+		E6911AA72BA20CE500870503 /* Description2Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Description2Cell.xib; sourceTree = "<group>"; };
+		E6911AAA2BA20CF700870503 /* Description3Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Description3Cell.swift; sourceTree = "<group>"; };
+		E6911AAB2BA20CF700870503 /* Description3Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Description3Cell.xib; sourceTree = "<group>"; };
 		E6A496C02B984E14004ACA8E /* ExtensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionVC.swift; sourceTree = "<group>"; };
 		E6A496C22B984E71004ACA8E /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		E6A496CA2B9858BD004ACA8E /* ViewModelForHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelForHomeVC.swift; sourceTree = "<group>"; };
@@ -128,11 +140,12 @@
 		E680A6F62B97160D003183D7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E6D014CD2B9AE3CC0088C829 /* CollectionViewCells */,
 				E680A7002B9718BF003183D7 /* ViewForHomeVC.swift */,
 				E6D014C72B9ADCFA0088C829 /* ViewForStartWorkoutVC.swift */,
 				E6D014C92B9ADD160088C829 /* ViewForSetWorkoutVC.swift */,
+				E6D014CD2B9AE3CC0088C829 /* CellsForSetWorkoutVC */,
 				E6D014CB2B9ADD210088C829 /* ViewForAboutTheAppVC.swift */,
+				E6911AA02BA20CA400870503 /* CellsForAboutTheAppVC */,
 				E6A496C22B984E71004ACA8E /* ExtensionView.swift */,
 				E680A6E62B971403003183D7 /* Main.storyboard */,
 				E680A6EB2B971405003183D7 /* LaunchScreen.storyboard */,
@@ -169,7 +182,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		E6D014CD2B9AE3CC0088C829 /* CollectionViewCells */ = {
+		E6911AA02BA20CA400870503 /* CellsForAboutTheAppVC */ = {
+			isa = PBXGroup;
+			children = (
+				E6911AA12BA20CC400870503 /* Description1Cell.swift */,
+				E6911AA22BA20CC400870503 /* Description1Cell.xib */,
+				E6911AA62BA20CE500870503 /* Description2Cell.swift */,
+				E6911AA72BA20CE500870503 /* Description2Cell.xib */,
+				E6911AAA2BA20CF700870503 /* Description3Cell.swift */,
+				E6911AAB2BA20CF700870503 /* Description3Cell.xib */,
+			);
+			path = CellsForAboutTheAppVC;
+			sourceTree = "<group>";
+		};
+		E6D014CD2B9AE3CC0088C829 /* CellsForSetWorkoutVC */ = {
 			isa = PBXGroup;
 			children = (
 				E6D014CE2B9AE3ED0088C829 /* UpperCell.swift */,
@@ -177,7 +203,7 @@
 				E6D014D22B9AE3F80088C829 /* LowerCell.swift */,
 				E6D014D32B9AE3F80088C829 /* LowerCell.xib */,
 			);
-			path = CollectionViewCells;
+			path = CellsForSetWorkoutVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +268,9 @@
 				E680A6EA2B971405003183D7 /* Assets.xcassets in Resources */,
 				E6D014D42B9AE3F80088C829 /* LowerCell.xib in Resources */,
 				E6D014D02B9AE3ED0088C829 /* UpperCell.xib in Resources */,
+				E6911AAD2BA20CF700870503 /* Description3Cell.xib in Resources */,
+				E6911AA92BA20CE500870503 /* Description2Cell.xib in Resources */,
+				E6911AA42BA20CC500870503 /* Description1Cell.xib in Resources */,
 				E680A6E82B971403003183D7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,14 +285,17 @@
 				E6D014D52B9AE3F80088C829 /* LowerCell.swift in Sources */,
 				E6A496CB2B9858BD004ACA8E /* ViewModelForHomeVC.swift in Sources */,
 				E6B8ACEA2B999A58007EF2D3 /* WorkoutModel.swift in Sources */,
+				E6911AA82BA20CE500870503 /* Description2Cell.swift in Sources */,
 				E6A496CD2B9858CB004ACA8E /* CardModel.swift in Sources */,
 				E680A6FF2B971797003183D7 /* AboutTheAppViewController.swift in Sources */,
 				E6D014D92B9AE4FE0088C829 /* ViewModelForSetWorkout.swift in Sources */,
 				E6A496C32B984E71004ACA8E /* ExtensionView.swift in Sources */,
 				E6D014CC2B9ADD210088C829 /* ViewForAboutTheAppVC.swift in Sources */,
+				E6911AAC2BA20CF700870503 /* Description3Cell.swift in Sources */,
 				E6D014D72B9AE4F20088C829 /* ViewModelForStartWorkout.swift in Sources */,
 				E6D014D12B9AE3ED0088C829 /* UpperCell.swift in Sources */,
 				E680A6E52B971403003183D7 /* HomeViewController.swift in Sources */,
+				E6911AA32BA20CC500870503 /* Description1Cell.swift in Sources */,
 				E680A6E12B971403003183D7 /* AppDelegate.swift in Sources */,
 				E6911A9F2BA20A1400870503 /* ViewModelForAboutTheApp.swift in Sources */,
 				E680A6FD2B97178B003183D7 /* SetWorkoutViewController.swift in Sources */,

@@ -39,17 +39,73 @@ class ViewForAboutTheAppVC: UIView {
         return btnArr
     }()
     
+    lazy var descripTion1CollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+//        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.footerReferenceSize = .zero
+        layout.headerReferenceSize = .zero
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.tag = 0
+        cv.isScrollEnabled = true
+        cv.isPagingEnabled = true
+        cv.showsHorizontalScrollIndicator = false
+        cv.register(Description1Cell.self, forCellWithReuseIdentifier: "Description1Cell")
+        return cv
+    }()
     
+    lazy var descripTion2CollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+//        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.footerReferenceSize = .zero
+        layout.headerReferenceSize = .zero
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.tag = 1
+        cv.isScrollEnabled = true
+        cv.isPagingEnabled = true
+        cv.showsHorizontalScrollIndicator = false
+        cv.register(Description2Cell.self, forCellWithReuseIdentifier: "Description2Cell")
+        return cv
+    }()
+    
+    lazy var descripTion3CollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+//        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.footerReferenceSize = .zero
+        layout.headerReferenceSize = .zero
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.tag = 2
+        cv.isScrollEnabled = true
+        cv.isPagingEnabled = true
+        cv.showsHorizontalScrollIndicator = false
+        cv.register(Description3Cell.self, forCellWithReuseIdentifier: "Description3Cell")
+        return cv
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        [stackViewFor3Btns].map {
+        [stackViewFor3Btns, descripTion1CollectionView, descripTion2CollectionView, descripTion3CollectionView].map {
             self.addSubview($0)
         }
         
         descriptionBtns.map {
             stackViewFor3Btns.addArrangedSubview($0)
         }
+        
+        descripTion1CollectionView.alpha = 1
+        descripTion2CollectionView.alpha = 0
+        descripTion3CollectionView.alpha = 0
         
         viewLayoutForAboutTheAppVC()
     }
@@ -64,6 +120,24 @@ class ViewForAboutTheAppVC: UIView {
         stackViewFor3Btns.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         stackViewFor3Btns.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         stackViewFor3Btns.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
+        
+        descripTion1CollectionView.translatesAutoresizingMaskIntoConstraints = false
+        descripTion1CollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        descripTion1CollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        descripTion1CollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        descripTion1CollectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
+        
+        descripTion2CollectionView.translatesAutoresizingMaskIntoConstraints = false
+        descripTion2CollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        descripTion2CollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        descripTion2CollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        descripTion2CollectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
+        
+        descripTion3CollectionView.translatesAutoresizingMaskIntoConstraints = false
+        descripTion3CollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        descripTion3CollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        descripTion3CollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        descripTion3CollectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
     }
     
 }
