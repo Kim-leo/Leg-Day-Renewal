@@ -20,4 +20,12 @@ extension ViewModelForAboutTheApp {
     func xBtnTapped(view: ViewForAboutTheAppVC) {
         view.backgroundView.alpha = 0
     }
+    
+    func leftBtnTapped(view: ViewForAboutTheAppVC) {
+        print("left")
+    }
+    
+    func rightBtnTapped(view: ViewForAboutTheAppVC) {
+        print("right")
+    }
 }

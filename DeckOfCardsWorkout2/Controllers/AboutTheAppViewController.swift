@@ -24,7 +24,8 @@ class AboutTheAppViewController: UIViewController {
             $0.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
         }
         myView.xBtn.addTarget(self, action: #selector(xBtnTapped), for: .touchUpInside)
-        
+        myView.leftBtn.addTarget(self, action: #selector(leftOrRightBtnTapped), for: .touchUpInside)
+        myView.rightBtn.addTarget(self, action: #selector(leftOrRightBtnTapped), for: .touchUpInside)
         
         myView.descripTionCollectionView.delegate = self
         myView.descripTionCollectionView.dataSource = self
@@ -43,6 +44,17 @@ extension AboutTheAppViewController {
     
     @objc func xBtnTapped(_ sender: UIButton, tag: Int) {
         viewModel.xBtnTapped(view: myView)
+    }
+    
+    @objc func leftOrRightBtnTapped(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            viewModel.leftBtnTapped(view: myView)
+        case 1:
+            viewModel.rightBtnTapped(view: myView)
+        default:
+            break
+        }
     }
 }
 

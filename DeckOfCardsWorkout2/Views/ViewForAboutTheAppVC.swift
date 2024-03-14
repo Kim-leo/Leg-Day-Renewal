@@ -86,6 +86,7 @@ class ViewForAboutTheAppVC: UIView {
     
     lazy var leftBtn: UIButton = {
         let btn = UIButton()
+        btn.tag = 0
         btn.setTitleColor(.darkGray, for: .normal)
         btn.setTitle("<", for: .normal)
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
@@ -95,6 +96,7 @@ class ViewForAboutTheAppVC: UIView {
     
     lazy var rightBtn: UIButton = {
         let btn = UIButton()
+        btn.tag = 1
         btn.setTitleColor(.darkGray, for: .normal)
         btn.setTitle(">", for: .normal)
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
