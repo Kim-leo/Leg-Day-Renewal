@@ -8,7 +8,10 @@
 import UIKit
 
 class AboutTheAppViewController: UIViewController {
-
+    let color1 = [UIColor.systemRed, UIColor.systemOrange, UIColor.systemGreen, UIColor.systemBlue, UIColor.systemBrown]
+    let color2 = [UIColor.systemGray2, UIColor.systemGray3, UIColor.systemGray4, UIColor.systemGray5, UIColor.systemGray6]
+    let color3 = [UIColor.systemCyan, UIColor.systemMint, UIColor.systemPink, UIColor.systemPurple, UIColor.systemTeal]
+    
     let myView = ViewForAboutTheAppVC()
     var viewModel = ViewModelForAboutTheApp()
     
@@ -60,17 +63,22 @@ extension AboutTheAppViewController {
 
 extension AboutTheAppViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DescriptionCell", for: indexPath) as? DescriptionCell else { return UICollectionViewCell() }
+        cell.backgroundColor = color1[indexPath.row]
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
     }
-    
+
+}
+
+extension AboutTheAppViewController: UIScrollViewDelegate {
     
 }

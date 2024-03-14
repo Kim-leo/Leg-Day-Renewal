@@ -70,16 +70,15 @@ class ViewForAboutTheAppVC: UIView {
         cv.isPagingEnabled = true
         cv.showsHorizontalScrollIndicator = false
         cv.register(DescriptionCell.self, forCellWithReuseIdentifier: "DescriptionCell")
-        cv.backgroundColor = .systemRed
+        cv.backgroundColor = .clear
         return cv
     }()
     
     lazy var bottomMiniStackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .horizontal
-        sv.spacing = 15
+        sv.spacing = 20
         sv.alignment = .fill
-        sv.backgroundColor = .systemGreen
         sv.distribution = .fillEqually
         return sv
     }()
@@ -104,6 +103,12 @@ class ViewForAboutTheAppVC: UIView {
         return btn
     }()
     
+    lazy var pageControBar: UIPageControl = {
+        let pc = UIPageControl()
+        pc.backgroundColor = .systemGray3
+        return pc
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -112,9 +117,9 @@ class ViewForAboutTheAppVC: UIView {
         backgroundView.addSubview(xBtn)
         backgroundView.addSubview(descripTionCollectionView)
         backgroundView.addSubview(bottomMiniStackView)
-        bottomMiniStackView.addArrangedSubview(leftBtn)
-        
-        bottomMiniStackView.addArrangedSubview(rightBtn)
+        [leftBtn, pageControBar, rightBtn].map {
+            bottomMiniStackView.addArrangedSubview($0)
+        }
         
         descriptionBtns.map {
             stackViewFor3Btns.addArrangedSubview($0)
