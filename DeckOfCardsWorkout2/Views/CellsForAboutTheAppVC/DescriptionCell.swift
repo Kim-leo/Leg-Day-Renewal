@@ -12,6 +12,12 @@ class DescriptionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.backgroundColor = nil
     }
 
 }

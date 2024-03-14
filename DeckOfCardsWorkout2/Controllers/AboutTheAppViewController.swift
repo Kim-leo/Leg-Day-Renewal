@@ -12,11 +12,13 @@ class AboutTheAppViewController: UIViewController {
     let color2 = [UIColor.systemGray2, UIColor.systemGray3, UIColor.systemGray4, UIColor.systemGray5, UIColor.systemGray6]
     let color3 = [UIColor.systemCyan, UIColor.systemMint, UIColor.systemPink, UIColor.systemPurple, UIColor.systemTeal]
     
+    
     let myView = ViewForAboutTheAppVC()
     var viewModel = ViewModelForAboutTheApp()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.title = "운동 설명"
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
         
@@ -42,7 +44,22 @@ class AboutTheAppViewController: UIViewController {
 
 extension AboutTheAppViewController {
     @objc func descriptionBtnTapped(_ sender: UIButton, tag: Int) {
-        viewModel.descriptionBtnsTapped(view: myView)
+        viewModel.descriptionBtnsTapped(view: myView, sender)
+        
+        
+        
+//        switch viewModel.chosenBtnTag {
+//        case 0:
+//            myView.descripTionCollectionView.backgroundColor = color1[0]
+//        case 1:
+//            myView.descripTionCollectionView.backgroundColor = color2[0]
+//        case 2:
+//            myView.descripTionCollectionView.backgroundColor = color3[0]
+//        default:
+//            print("?")
+//            break
+//        }
+        
     }
     
     @objc func xBtnTapped(_ sender: UIButton, tag: Int) {
@@ -67,9 +84,11 @@ extension AboutTheAppViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DescriptionCell", for: indexPath) as? DescriptionCell else { return UICollectionViewCell() }
-        cell.backgroundColor = color1[indexPath.row]
-        
+        let colorArr = [color1, color2, color3]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DescriptionCell", for: indexPath) as? DescriptionCell else { return .init() }
+        collectionView.reloadData()
+        cell.backgroundColor = colorArr[viewModel.chosenBtnTag][indexPath.row]
+//        collectionView.reloadData()
         return cell
     }
     
