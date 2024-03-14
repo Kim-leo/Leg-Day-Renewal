@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Description1Cell: UICollectionViewCell {
+class DescriptionCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
