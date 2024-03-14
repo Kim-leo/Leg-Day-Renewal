@@ -140,12 +140,12 @@
 		E680A6F62B97160D003183D7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E6D014CD2B9AE3CC0088C829 /* CellsForSetWorkoutVC */,
+				E6911AA02BA20CA400870503 /* CellsForAboutTheAppVC */,
 				E680A7002B9718BF003183D7 /* ViewForHomeVC.swift */,
 				E6D014C72B9ADCFA0088C829 /* ViewForStartWorkoutVC.swift */,
 				E6D014C92B9ADD160088C829 /* ViewForSetWorkoutVC.swift */,
-				E6D014CD2B9AE3CC0088C829 /* CellsForSetWorkoutVC */,
 				E6D014CB2B9ADD210088C829 /* ViewForAboutTheAppVC.swift */,
-				E6911AA02BA20CA400870503 /* CellsForAboutTheAppVC */,
 				E6A496C22B984E71004ACA8E /* ExtensionView.swift */,
 				E680A6E62B971403003183D7 /* Main.storyboard */,
 				E680A6EB2B971405003183D7 /* LaunchScreen.storyboard */,

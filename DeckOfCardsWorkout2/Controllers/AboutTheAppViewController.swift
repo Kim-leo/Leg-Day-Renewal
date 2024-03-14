@@ -23,6 +23,9 @@ class AboutTheAppViewController: UIViewController {
         myView.descriptionBtns.map {
             $0.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
         }
+        myView.xBtn.map {
+            $0.addTarget(self, action: #selector(xBtnTapped), for: .touchUpInside)
+        }
         
         myView.descripTion1CollectionView.delegate = self
         myView.descripTion1CollectionView.dataSource = self
@@ -31,7 +34,7 @@ class AboutTheAppViewController: UIViewController {
         myView.descripTion3CollectionView.delegate = self
         myView.descripTion3CollectionView.dataSource = self
         
-       
+        
     }
     
 
@@ -42,7 +45,9 @@ extension AboutTheAppViewController {
         viewModel.descriptionBtnsTapped(view: myView, sender)
     }
     
-    
+    @objc func xBtnTapped(_ sender: UIButton, tag: Int) {
+        viewModel.xBtnTapped(view: myView, sender)
+    }
 }
 
 extension AboutTheAppViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

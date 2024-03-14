@@ -39,6 +39,31 @@ class ViewForAboutTheAppVC: UIView {
         return btnArr
     }()
     
+    
+    lazy var backgroundViews: [UIView] = {
+        var viewArr = [UIView]()
+        for i in 0...2 {
+            let view = UIView()
+            view.tag = i
+            view.backgroundColor = .white
+            viewArr.append(view)
+        }
+        return viewArr
+    }()
+    
+    lazy var xBtn: [UIButton] = {
+        var btns = [UIButton]()
+        for i in 0...2 {
+            let btn = UIButton()
+            btn.tag = i
+            btn.setBackgroundImage(UIImage(systemName: "xmark.app"), for: .normal)
+            btn.imageView?.contentMode = .scaleToFill
+            btn.tintColor = .black
+            btns.append(btn)
+        }
+        return btns
+    }()
+    
     lazy var descripTion1CollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
@@ -54,6 +79,7 @@ class ViewForAboutTheAppVC: UIView {
         cv.isPagingEnabled = true
         cv.showsHorizontalScrollIndicator = false
         cv.register(Description1Cell.self, forCellWithReuseIdentifier: "Description1Cell")
+        cv.backgroundColor = .systemRed
         return cv
     }()
     
@@ -72,6 +98,7 @@ class ViewForAboutTheAppVC: UIView {
         cv.isPagingEnabled = true
         cv.showsHorizontalScrollIndicator = false
         cv.register(Description2Cell.self, forCellWithReuseIdentifier: "Description2Cell")
+        cv.backgroundColor = .systemGreen
         return cv
     }()
     
@@ -90,24 +117,32 @@ class ViewForAboutTheAppVC: UIView {
         cv.isPagingEnabled = true
         cv.showsHorizontalScrollIndicator = false
         cv.register(Description3Cell.self, forCellWithReuseIdentifier: "Description3Cell")
+        cv.backgroundColor = .systemBlue
         return cv
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        [stackViewFor3Btns, descripTion1CollectionView, descripTion2CollectionView, descripTion3CollectionView].map {
-            self.addSubview($0)
-        }
+        self.addSubview(stackViewFor3Btns)
+        
         
         descriptionBtns.map {
             stackViewFor3Btns.addArrangedSubview($0)
         }
         
-        descripTion1CollectionView.alpha = 1
-        descripTion2CollectionView.alpha = 0
-        descripTion3CollectionView.alpha = 0
+        backgroundViews.map {
+            $0.alpha = 0
+            self.addSubview($0)
+        }
+        for i in 0...2 {
+            backgroundViews[i].addSubview(xBtn[i])
+        }
+        backgroundViews[0].addSubview(descripTion1CollectionView)
+        backgroundViews[1].addSubview(descripTion2CollectionView)
+        backgroundViews[2].addSubview(descripTion3CollectionView)
         
         viewLayoutForAboutTheAppVC()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -121,23 +156,40 @@ class ViewForAboutTheAppVC: UIView {
         stackViewFor3Btns.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         stackViewFor3Btns.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
         
+        backgroundViews.map {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+            $0.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            $0.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            $0.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        }
+        
+        xBtn.map {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.125).isActive = true
+            $0.heightAnchor.constraint(equalTo: $0.widthAnchor).isActive = true
+            $0.topAnchor.constraint(equalTo: backgroundViews[0].topAnchor, constant: 20).isActive = true
+            $0.trailingAnchor.constraint(equalTo: backgroundViews[0].trailingAnchor, constant: -20).isActive = true
+        }
+        
+        
         descripTion1CollectionView.translatesAutoresizingMaskIntoConstraints = false
-        descripTion1CollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        descripTion1CollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        descripTion1CollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
-        descripTion1CollectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
+        descripTion1CollectionView.centerXAnchor.constraint(equalTo: backgroundViews[0].centerXAnchor).isActive = true
+        descripTion1CollectionView.topAnchor.constraint(equalTo: xBtn[0].bottomAnchor, constant: 10).isActive = true
+        descripTion1CollectionView.widthAnchor.constraint(equalTo: backgroundViews[0].widthAnchor, multiplier: 0.8).isActive = true
+        descripTion1CollectionView.heightAnchor.constraint(equalTo: backgroundViews[0].heightAnchor, multiplier: 0.8).isActive = true
         
         descripTion2CollectionView.translatesAutoresizingMaskIntoConstraints = false
-        descripTion2CollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        descripTion2CollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        descripTion2CollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
-        descripTion2CollectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
+        descripTion2CollectionView.centerXAnchor.constraint(equalTo: backgroundViews[1].centerXAnchor).isActive = true
+        descripTion2CollectionView.topAnchor.constraint(equalTo: xBtn[1].bottomAnchor, constant: 10).isActive = true
+        descripTion2CollectionView.widthAnchor.constraint(equalTo: backgroundViews[1].widthAnchor, multiplier: 0.8).isActive = true
+        descripTion2CollectionView.heightAnchor.constraint(equalTo: backgroundViews[1].heightAnchor, multiplier: 0.8).isActive = true
         
         descripTion3CollectionView.translatesAutoresizingMaskIntoConstraints = false
-        descripTion3CollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        descripTion3CollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        descripTion3CollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
-        descripTion3CollectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
+        descripTion3CollectionView.centerXAnchor.constraint(equalTo: backgroundViews[2].centerXAnchor).isActive = true
+        descripTion3CollectionView.topAnchor.constraint(equalTo: xBtn[2].bottomAnchor, constant: 10).isActive = true
+        descripTion3CollectionView.widthAnchor.constraint(equalTo: backgroundViews[2].widthAnchor, multiplier: 0.8).isActive = true
+        descripTion3CollectionView.heightAnchor.constraint(equalTo: backgroundViews[2].heightAnchor, multiplier: 0.8).isActive = true
     }
     
 }
