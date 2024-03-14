@@ -23,16 +23,12 @@ class AboutTheAppViewController: UIViewController {
         myView.descriptionBtns.map {
             $0.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
         }
-        myView.xBtn.map {
-            $0.addTarget(self, action: #selector(xBtnTapped), for: .touchUpInside)
-        }
+        myView.xBtn.addTarget(self, action: #selector(xBtnTapped), for: .touchUpInside)
         
-        myView.descripTion1CollectionView.delegate = self
-        myView.descripTion1CollectionView.dataSource = self
-        myView.descripTion2CollectionView.delegate = self
-        myView.descripTion2CollectionView.dataSource = self
-        myView.descripTion3CollectionView.delegate = self
-        myView.descripTion3CollectionView.dataSource = self
+        
+        myView.descripTionCollectionView.delegate = self
+        myView.descripTionCollectionView.dataSource = self
+        
         
         
     }
@@ -42,47 +38,22 @@ class AboutTheAppViewController: UIViewController {
 
 extension AboutTheAppViewController {
     @objc func descriptionBtnTapped(_ sender: UIButton, tag: Int) {
-        viewModel.descriptionBtnsTapped(view: myView, sender)
+        viewModel.descriptionBtnsTapped(view: myView)
     }
     
     @objc func xBtnTapped(_ sender: UIButton, tag: Int) {
-        viewModel.xBtnTapped(view: myView, sender)
+        viewModel.xBtnTapped(view: myView)
     }
 }
 
 extension AboutTheAppViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView.tag {
-        case 0:
-            return 3
-        case 1:
-            return 4
-        case 2:
-            return 5
-        default:
-            return 0
-            break
-        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView.tag {
-        case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Description1Cell", for: indexPath) as? Description1Cell else { return UICollectionViewCell() }
-                        
-            return cell
-        case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Description2Cell", for: indexPath) as? Description2Cell else { return UICollectionViewCell() }
-            
-            return cell
-        case 2:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Description3Cell", for: indexPath) as? Description3Cell else { return UICollectionViewCell() }
-            
-            return cell
-        default:
-            return UICollectionViewCell()
-            break
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DescriptionCell", for: indexPath) as? DescriptionCell else { return UICollectionViewCell() }
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

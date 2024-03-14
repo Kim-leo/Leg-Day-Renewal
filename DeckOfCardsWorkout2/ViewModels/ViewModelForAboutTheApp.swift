@@ -13,11 +13,11 @@ class ViewModelForAboutTheApp {
 }
 
 extension ViewModelForAboutTheApp {
-    func descriptionBtnsTapped(view: ViewForAboutTheAppVC, _ sender: UIButton) {
-        view.backgroundViews[sender.tag].alpha = 1
+    func descriptionBtnsTapped(view: ViewForAboutTheAppVC) {
+        view.backgroundView.alpha = 1
     }
     
-    func xBtnTapped(view: ViewForAboutTheAppVC, _ sender: UIButton) {
-        view.backgroundViews[sender.tag].alpha = 0
+    func xBtnTapped(view: ViewForAboutTheAppVC) {
+        view.backgroundView.alpha = 0
     }
 }

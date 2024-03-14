@@ -40,31 +40,22 @@ class ViewForAboutTheAppVC: UIView {
     }()
     
     
-    lazy var backgroundViews: [UIView] = {
-        var viewArr = [UIView]()
-        for i in 0...2 {
-            let view = UIView()
-            view.tag = i
-            view.backgroundColor = .white
-            viewArr.append(view)
-        }
-        return viewArr
+    lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+
+    lazy var xBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitleColor(.darkGray, for: .normal)
+        btn.setTitle("X", for: .normal)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        btn.tintColor = .black
+        return btn
     }()
     
-    lazy var xBtn: [UIButton] = {
-        var btns = [UIButton]()
-        for i in 0...2 {
-            let btn = UIButton()
-            btn.tag = i
-            btn.setBackgroundImage(UIImage(systemName: "xmark.app"), for: .normal)
-            btn.imageView?.contentMode = .scaleToFill
-            btn.tintColor = .black
-            btns.append(btn)
-        }
-        return btns
-    }()
-    
-    lazy var descripTion1CollectionView: UICollectionView = {
+    lazy var descripTionCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
@@ -78,68 +69,55 @@ class ViewForAboutTheAppVC: UIView {
         cv.isScrollEnabled = true
         cv.isPagingEnabled = true
         cv.showsHorizontalScrollIndicator = false
-        cv.register(Description1Cell.self, forCellWithReuseIdentifier: "Description1Cell")
+        cv.register(DescriptionCell.self, forCellWithReuseIdentifier: "DescriptionCell")
         cv.backgroundColor = .systemRed
         return cv
     }()
     
-    lazy var descripTion2CollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        layout.footerReferenceSize = .zero
-        layout.headerReferenceSize = .zero
-        
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.tag = 1
-        cv.isScrollEnabled = true
-        cv.isPagingEnabled = true
-        cv.showsHorizontalScrollIndicator = false
-        cv.register(Description2Cell.self, forCellWithReuseIdentifier: "Description2Cell")
-        cv.backgroundColor = .systemGreen
-        return cv
+    lazy var bottomMiniStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.spacing = 15
+        sv.alignment = .fill
+        sv.backgroundColor = .systemGreen
+        sv.distribution = .fillEqually
+        return sv
     }()
     
-    lazy var descripTion3CollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        layout.footerReferenceSize = .zero
-        layout.headerReferenceSize = .zero
-        
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.tag = 2
-        cv.isScrollEnabled = true
-        cv.isPagingEnabled = true
-        cv.showsHorizontalScrollIndicator = false
-        cv.register(Description3Cell.self, forCellWithReuseIdentifier: "Description3Cell")
-        cv.backgroundColor = .systemBlue
-        return cv
+    lazy var leftBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitleColor(.darkGray, for: .normal)
+        btn.setTitle("<", for: .normal)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        btn.tintColor = .black
+        return btn
     }()
+    
+    lazy var rightBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitleColor(.darkGray, for: .normal)
+        btn.setTitle(">", for: .normal)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        btn.tintColor = .black
+        return btn
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(stackViewFor3Btns)
+        self.addSubview(backgroundView)
+        backgroundView.addSubview(xBtn)
+        backgroundView.addSubview(descripTionCollectionView)
+        backgroundView.addSubview(bottomMiniStackView)
+        bottomMiniStackView.addArrangedSubview(leftBtn)
         
+        bottomMiniStackView.addArrangedSubview(rightBtn)
         
         descriptionBtns.map {
             stackViewFor3Btns.addArrangedSubview($0)
         }
-        
-        backgroundViews.map {
-            $0.alpha = 0
-            self.addSubview($0)
-        }
-        for i in 0...2 {
-            backgroundViews[i].addSubview(xBtn[i])
-        }
-        backgroundViews[0].addSubview(descripTion1CollectionView)
-        backgroundViews[1].addSubview(descripTion2CollectionView)
-        backgroundViews[2].addSubview(descripTion3CollectionView)
+        backgroundView.alpha = 0
         
         viewLayoutForAboutTheAppVC()
         
@@ -156,40 +134,29 @@ class ViewForAboutTheAppVC: UIView {
         stackViewFor3Btns.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         stackViewFor3Btns.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
         
-        backgroundViews.map {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-            $0.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-            $0.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-            $0.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        }
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        backgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
-        xBtn.map {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.125).isActive = true
-            $0.heightAnchor.constraint(equalTo: $0.widthAnchor).isActive = true
-            $0.topAnchor.constraint(equalTo: backgroundViews[0].topAnchor, constant: 20).isActive = true
-            $0.trailingAnchor.constraint(equalTo: backgroundViews[0].trailingAnchor, constant: -20).isActive = true
-        }
+        descripTionCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        descripTionCollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        descripTionCollectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        descripTionCollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        descripTionCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
         
+        xBtn.translatesAutoresizingMaskIntoConstraints = false
+        xBtn.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        xBtn.trailingAnchor.constraint(equalTo: descripTionCollectionView.trailingAnchor).isActive = true
+        xBtn.bottomAnchor.constraint(equalTo: descripTionCollectionView.topAnchor).isActive = true
+        xBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
         
-        descripTion1CollectionView.translatesAutoresizingMaskIntoConstraints = false
-        descripTion1CollectionView.centerXAnchor.constraint(equalTo: backgroundViews[0].centerXAnchor).isActive = true
-        descripTion1CollectionView.topAnchor.constraint(equalTo: xBtn[0].bottomAnchor, constant: 10).isActive = true
-        descripTion1CollectionView.widthAnchor.constraint(equalTo: backgroundViews[0].widthAnchor, multiplier: 0.8).isActive = true
-        descripTion1CollectionView.heightAnchor.constraint(equalTo: backgroundViews[0].heightAnchor, multiplier: 0.8).isActive = true
-        
-        descripTion2CollectionView.translatesAutoresizingMaskIntoConstraints = false
-        descripTion2CollectionView.centerXAnchor.constraint(equalTo: backgroundViews[1].centerXAnchor).isActive = true
-        descripTion2CollectionView.topAnchor.constraint(equalTo: xBtn[1].bottomAnchor, constant: 10).isActive = true
-        descripTion2CollectionView.widthAnchor.constraint(equalTo: backgroundViews[1].widthAnchor, multiplier: 0.8).isActive = true
-        descripTion2CollectionView.heightAnchor.constraint(equalTo: backgroundViews[1].heightAnchor, multiplier: 0.8).isActive = true
-        
-        descripTion3CollectionView.translatesAutoresizingMaskIntoConstraints = false
-        descripTion3CollectionView.centerXAnchor.constraint(equalTo: backgroundViews[2].centerXAnchor).isActive = true
-        descripTion3CollectionView.topAnchor.constraint(equalTo: xBtn[2].bottomAnchor, constant: 10).isActive = true
-        descripTion3CollectionView.widthAnchor.constraint(equalTo: backgroundViews[2].widthAnchor, multiplier: 0.8).isActive = true
-        descripTion3CollectionView.heightAnchor.constraint(equalTo: backgroundViews[2].heightAnchor, multiplier: 0.8).isActive = true
+        bottomMiniStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomMiniStackView.topAnchor.constraint(equalTo: descripTionCollectionView.bottomAnchor).isActive = true
+        bottomMiniStackView.leadingAnchor.constraint(equalTo: descripTionCollectionView.leadingAnchor).isActive = true
+        bottomMiniStackView.trailingAnchor.constraint(equalTo: descripTionCollectionView.trailingAnchor).isActive = true
+        bottomMiniStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
 }
