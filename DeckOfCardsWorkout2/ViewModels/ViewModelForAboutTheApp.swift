@@ -10,6 +10,13 @@ import UIKit
 
 class ViewModelForAboutTheApp {
     var chosenBtnTag: Int = 0
+    
+    let screenImageName = [
+        ["운동설명", "운동설명2"],
+        ["운동설정", "운동설정2", "운동설정3", "운동설정4", "운동설정5", "운동설정6", "운동설정7"],
+        ["운동시작", "운동시작2", "운동시작3"]
+    ]
+    
 }
 
 extension ViewModelForAboutTheApp {
@@ -18,6 +25,7 @@ extension ViewModelForAboutTheApp {
         
         chosenBtnTag = sender.tag
         
+        view.descripTionCollectionView.reloadData()
         view.descripTionCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: false)
     }
     
@@ -34,4 +42,6 @@ extension ViewModelForAboutTheApp {
     }
     
     
+    
 }
+

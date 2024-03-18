@@ -11,8 +11,6 @@ class DescriptionCell: UICollectionViewCell {
     lazy var screenImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "운동설명")
-        
         return iv
     }()
 
@@ -25,12 +23,14 @@ class DescriptionCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.backgroundColor = nil
+        screenImageView.image = nil
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.contentView.addSubview(screenImageView)
         setupLayoutForDescriptionCell()
+        
     }
     
     required init?(coder: NSCoder) {

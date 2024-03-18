@@ -9,6 +9,12 @@ import Foundation
 import UIKit
 
 class ViewForAboutTheAppVC: UIView {
+//    lazy var screenImageView: UIImageView = {
+//        let iv = UIImageView()
+//        iv.contentMode = .scaleAspectFit
+//        return iv
+//    }()
+    
     lazy var stackViewFor3Btns: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical

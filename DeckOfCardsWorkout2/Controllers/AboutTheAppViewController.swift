@@ -36,11 +36,10 @@ class AboutTheAppViewController: UIViewController {
         myView.descripTionCollectionView.dataSource = self
         
         
-        
     }
-    
-
 }
+
+
 
 extension AboutTheAppViewController {
     @objc func descriptionBtnTapped(_ sender: UIButton, tag: Int) {
@@ -84,17 +83,20 @@ extension AboutTheAppViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let colorArr = [color1, color2, color3]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DescriptionCell", for: indexPath) as? DescriptionCell else { return .init() }
-        collectionView.reloadData()
+//        collectionView.reloadData() -> 사용 금지
+        let colorArr = [color1, color2, color3]
         cell.backgroundColor = colorArr[viewModel.chosenBtnTag][indexPath.row]
-//        collectionView.reloadData()
+        cell.screenImageView.image = UIImage(named: "운동설명.png")
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
     }
+    
+    
 
 }
 

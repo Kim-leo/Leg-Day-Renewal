@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E60486922BA40977009A8C03 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60486912BA40977009A8C03 /* ImageModel.swift */; };
 		E680A6E12B971403003183D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A6E02B971403003183D7 /* AppDelegate.swift */; };
 		E680A6E32B971403003183D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A6E22B971403003183D7 /* SceneDelegate.swift */; };
 		E680A6E52B971403003183D7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680A6E42B971403003183D7 /* HomeViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E60486912BA40977009A8C03 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		E680A6DD2B971403003183D7 /* DeckOfCardsWorkout2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeckOfCardsWorkout2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E680A6E02B971403003183D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E680A6E22B971403003183D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				E6A496CC2B9858CB004ACA8E /* CardModel.swift */,
 				E6B8ACE92B999A58007EF2D3 /* WorkoutModel.swift */,
+				E60486912BA40977009A8C03 /* ImageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				E6D014D72B9AE4F20088C829 /* ViewModelForStartWorkout.swift in Sources */,
 				E6D014D12B9AE3ED0088C829 /* UpperCell.swift in Sources */,
 				E680A6E52B971403003183D7 /* HomeViewController.swift in Sources */,
+				E60486922BA40977009A8C03 /* ImageModel.swift in Sources */,
 				E6911AA32BA20CC500870503 /* DescriptionCell.swift in Sources */,
 				E680A6E12B971403003183D7 /* AppDelegate.swift in Sources */,
 				E6911A9F2BA20A1400870503 /* ViewModelForAboutTheApp.swift in Sources */,
