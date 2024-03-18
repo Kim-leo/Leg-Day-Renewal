@@ -83,7 +83,7 @@ class ViewForAboutTheAppVC: UIView {
     lazy var bottomMiniStackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .horizontal
-        sv.spacing = 20
+//        sv.spacing = 20
         sv.alignment = .fill
         sv.distribution = .fillEqually
         return sv
@@ -170,6 +170,15 @@ class ViewForAboutTheAppVC: UIView {
         bottomMiniStackView.leadingAnchor.constraint(equalTo: descripTionCollectionView.leadingAnchor).isActive = true
         bottomMiniStackView.trailingAnchor.constraint(equalTo: descripTionCollectionView.trailingAnchor).isActive = true
         bottomMiniStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        leftBtn.translatesAutoresizingMaskIntoConstraints = false
+        leftBtn.widthAnchor.constraint(equalTo: bottomMiniStackView.widthAnchor, multiplier: 0.15).isActive = true
+        
+        pageControBar.translatesAutoresizingMaskIntoConstraints = false
+        pageControBar.widthAnchor.constraint(equalTo: bottomMiniStackView.widthAnchor, multiplier: 0.7).isActive = true
+        
+        rightBtn.translatesAutoresizingMaskIntoConstraints = false
+        rightBtn.widthAnchor.constraint(equalTo: bottomMiniStackView.widthAnchor, multiplier: 0.15).isActive = true
     }
     
 }

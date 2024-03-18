@@ -36,6 +36,7 @@ class AboutTheAppViewController: UIViewController {
         myView.descripTionCollectionView.dataSource = self
         
         
+        
     }
 }
 
@@ -79,6 +80,7 @@ extension AboutTheAppViewController {
 
 extension AboutTheAppViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        myView.pageControBar.numberOfPages = color1.count
         return 5
     }
     
@@ -101,5 +103,11 @@ extension AboutTheAppViewController: UICollectionViewDelegate, UICollectionViewD
 }
 
 extension AboutTheAppViewController: UIScrollViewDelegate {
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.frame.size.width != 0 {
+            let value = (scrollView.contentOffset.x / scrollView.frame.width)
+            myView.pageControBar.currentPage = Int(round(value))
+        }
+        print(myView.pageControBar.currentPage)
+    }
 }

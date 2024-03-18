@@ -35,10 +35,15 @@ extension ViewModelForAboutTheApp {
     
     func leftBtnTapped(view: ViewForAboutTheAppVC) {
         print("left")
+        view.descripTionCollectionView.scrollToItem(at: IndexPath(item: view.pageControBar.currentPage - 1, section: 0), at: .left, animated: true)
     }
     
     func rightBtnTapped(view: ViewForAboutTheAppVC) {
         print("right")
+        if view.pageControBar.currentPage != 5 - 1 {
+            view.descripTionCollectionView.scrollToItem(at: IndexPath(item: view.pageControBar.currentPage + 1, section: 0), at: .right, animated: true)
+        }
+        
     }
     
     
