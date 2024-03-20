@@ -8,11 +8,6 @@
 import UIKit
 
 class AboutTheAppViewController: UIViewController {
-    let color1 = [UIColor.systemRed, UIColor.systemOrange, UIColor.systemGreen, UIColor.systemBlue, UIColor.systemBrown]
-    let color2 = [UIColor.systemGray2, UIColor.systemGray3, UIColor.systemGray4, UIColor.systemGray5, UIColor.systemGray6]
-    let color3 = [UIColor.systemCyan, UIColor.systemMint, UIColor.systemPink, UIColor.systemPurple, UIColor.systemTeal]
-    
-    
     let myView = ViewForAboutTheAppVC()
     var viewModel = ViewModelForAboutTheApp()
     
@@ -80,17 +75,16 @@ extension AboutTheAppViewController {
 
 extension AboutTheAppViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        myView.pageControBar.numberOfPages = color1.count
-        return 5
+        let numberOfCells = viewModel.screenImageName[viewModel.chosenBtnTag].count
+        myView.pageControBar.numberOfPages = numberOfCells
+        return numberOfCells
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DescriptionCell", for: indexPath) as? DescriptionCell else { return .init() }
 //        collectionView.reloadData() -> 사용 금지
-        let colorArr = [color1, color2, color3]
-        cell.backgroundColor = colorArr[viewModel.chosenBtnTag][indexPath.row]
-        cell.screenImageView.image = UIImage(named: "운동설명.png")
-        
+        let imageName: String = "\(viewModel.screenImageName[viewModel.chosenBtnTag][indexPath.row])" + ".jpg"
+        cell.screenImageView.image = UIImage(named: imageName)
         return cell
     }
     
