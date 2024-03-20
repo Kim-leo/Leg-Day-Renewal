@@ -40,7 +40,7 @@ extension ViewModelForAboutTheApp {
     
     func rightBtnTapped(view: ViewForAboutTheAppVC) {
         print("right")
-        if view.pageControBar.currentPage != 5 - 1 {
+        if view.pageControBar.currentPage != screenImageName[chosenBtnTag].count - 1 {
             view.descripTionCollectionView.scrollToItem(at: IndexPath(item: view.pageControBar.currentPage + 1, section: 0), at: .right, animated: true)
         }
         
